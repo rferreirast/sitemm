@@ -53,7 +53,9 @@
 #produto{float: left; color: #151515;  margin-left: 10px; font-weight: bold; font-size: 22px !important;}
 #preco{float: left; color: #151515; margin-left: 10px; margin-top: 8px; font-weight: normal; font-size: 14px !important;}
 
-input.qt_itens{float: right; color: #151515; margin-top: 8px; margin-right: 50px; width: 40px; border: 1px solid #d4d4d4 ; font-size: 15px !important; text-align: center;}
+input.qt_itens{float: right; color: #151515; margin-top: 8px; margin-right: 5px; width: 40px; border: 1px solid #d4d4d4 ; font-size: 15px !important; text-align: center;}
+input.qt_itens_atualizar{float: right; color: #151515; margin-top: 8px; margin-right: 50px; width: 20px; border: 1px solid #d4d4d4 ; font-size: 15px !important; text-align: center;}
+input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointer;}
 
 #precoTotal{float: right; color: #151515; width: 20%; font-size: 25px !important;}
 #corferro{float: left; color: #151515; margin-left: 10px; font-size: 16px !important;}
@@ -71,9 +73,9 @@ input.qt_itens{float: right; color: #151515; margin-top: 8px; margin-right: 50px
 
 /*TEXTO DO TOTAL DO PEDIDO =============*/
 
-.cont-TotalPedido{float: right; width: 100%; text-align: left; padding: 20px 0; display: flex; text-align: right;}
-#textoTotal{color: #151515; font-size: 18px !important; text-align: right; margin-right: 10px;}
-#valorTotal{color: #151515; font-size: 18px !important; text-align: right;}
+.cont-TotalPedido{float: right; width: 100%; padding: 15px 0;}
+#textoTotal{float: right;color: #151515; font-size: 18px !important; text-align: right; margin-right: 10px;}
+#valorTotal{float: right;color: #151515; font-size: 18px !important; text-align: right; }
 
 </style>
 
@@ -98,10 +100,12 @@ input.qt_itens{float: right; color: #151515; margin-top: 8px; margin-right: 50px
 		<div class="container-itens-pedido" style="width: 100%; float: left;">
 
 			<div class="lista-itens-pedido">
-				
+
+
+			    <!-- ITEM PRODUTO -->				
 				<div class="iten-pedido">	
 
-
+                    
 				    <div class="cont-imgProduto">
 				    <img id="imagempedido" src="http://www.mestremoveleiro.com.br/produtos/img-produtos/produto1.jpg" alt="">
 				    </div>
@@ -111,6 +115,7 @@ input.qt_itens{float: right; color: #151515; margin-top: 8px; margin-right: 50px
 					<p id="preco">199,90</p>
 
 					<p id="precoTotal">R$ 1.999,90</p>
+					<input type="text" value="🔃" class="qt_itens_atualizar" name="update">
 					<input type="text" class="qt_itens" name="quantidade">
 					
 					</div>
@@ -124,10 +129,11 @@ input.qt_itens{float: right; color: #151515; margin-top: 8px; margin-right: 50px
 					<a href="#" id="button_excluirItem">remover item</a>
 					</div>
 				</div>
+				<!-- FIM ITEM PEDIDO -->
 
 				<div class="cont-TotalPedido">
+				    <p id="valorTotal">1.999,90</p>
 					<p id="textoTotal">Total:</p>
-					<p id="valorTotal">1.999,90</p>
 				</div>
 
                 <div class="buttons-actionPedido">
