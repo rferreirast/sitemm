@@ -9,7 +9,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Mestre Moveleiro | Itens de pedido</title> <!-- INFO 1 -->
+  <title>Mestre Moveleiro | Itens do pedido</title> <!-- INFO 1 -->
     <meta name="description" content="<?php echo utf8_encode ($SOBRE_PAGINA)?>"> <!-- INFO 2 -->
     <meta name="author" content="Rafael Ferreira">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -62,6 +62,19 @@ input.qt_itens{float: right; color: #151515; margin-top: 8px; margin-right: 50px
 #button_excluirItem{color: #e74c3c; font-weight: bold; margin-left: 10px; font-size: 16px !important;}
 #button_excluirItem:hover{color: #c0392b;}
 
+/*========================*/
+
+.buttons-actionPedido{ float: left; width: 100%; text-align: left; padding: 20px 0;}
+
+#finalizaPedido{float: right; color: #fff; background: #16a085; border-radius: 5px; padding: 10px 20px; width: 20%; font-size: 18px !important; margin: 0 10px; text-align: center;}
+#adicionarItens{float: right; color: #fff; background: #014d8f; border-radius: 5px; padding: 10px 20px; width: 20%; font-size: 18px !important; margin: 0 10px; text-align: center;}
+
+/*TEXTO DO TOTAL DO PEDIDO =============*/
+
+.cont-TotalPedido{float: right; width: 100%; text-align: left; padding: 20px 0; display: flex; text-align: right;}
+#textoTotal{color: #151515; font-size: 18px !important; text-align: right; margin-right: 10px;}
+#valorTotal{color: #151515; font-size: 18px !important; text-align: right;}
+
 </style>
 
 </head>
@@ -80,7 +93,7 @@ input.qt_itens{float: right; color: #151515; margin-top: 8px; margin-right: 50px
 <div class="container-produtos">
 	<div class="container-site">
 
-	<div class="titulo-container-produtos" style="width: 100%; float: left;"><p style="font-size: 28px !important; color: #666666; margin-left: 10px; margin-right: 10px;">Itens de pedido</p></div>
+	<div class="titulo-container-produtos" style="width: 100%; float: left;"><p style="font-size: 28px !important; color: #666666; margin-left: 10px; margin-right: 10px;">Itens do pedido</p></div>
 		
 		<div class="container-itens-pedido" style="width: 100%; float: left;">
 
@@ -110,6 +123,16 @@ input.qt_itens{float: right; color: #151515; margin-top: 8px; margin-right: 50px
 					<div class="cont-buttons">
 					<a href="#" id="button_excluirItem">remover item</a>
 					</div>
+				</div>
+
+				<div class="cont-TotalPedido">
+					<p id="textoTotal">Total:</p>
+					<p id="valorTotal">1.999,90</p>
+				</div>
+
+                <div class="buttons-actionPedido">
+				<a href="#" id="finalizaPedido">Finalizar pedido</a>
+				<a href="#" id="adicionarItens">Adicionar + Itens</a>
 				</div>
 
 
