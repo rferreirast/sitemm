@@ -12,10 +12,10 @@ include_once("system/verifica_sessao.php");
 if (isset($_POST['cadastrar_produto'])) {
 $foto = utf8_decode( $_POST["foto"]);  
 $nome = utf8_decode( $_POST["nome"]);
-$medidas = utf8_decode( $_POST["medidas"]);
-$material = utf8_decode( $_POST["material"]);
-$peso = utf8_decode( $_POST["peso"]);
 $categoria = utf8_decode( $_POST["categoria"]);
+$preco = utf8_decode( $_POST["preco"]);
+$descricao_completa = utf8_decode( $_POST["descricao_completa"]);
+
 
 //se vazio cancela operação
  if ($foto == "") {
@@ -39,7 +39,7 @@ $categoria = utf8_decode( $_POST["categoria"]);
             else {
 
            //SALVA OS DADOS NO MYSQL
-           $sql = "INSERT INTO produtos (foto, nome, medidas, material, peso, categoria, status) VALUES ('$foto', '$nome', '$medidas', '$material', '$peso', '$categoria', '1' )";
+           $sql = "INSERT INTO produtos (foto, nome, medidas, material, peso, categoria, preco, descricao_completa, status) VALUES ('$foto', '$nome', '$medidas', '$material', '$peso', '$categoria', '$preco', '$descricao_completa', '1' )";
 
               if ($conn->query($sql) === TRUE) {
               echo '<script>alert("Produto Cadastrado!");</script>';
@@ -221,21 +221,6 @@ select.campo-form{
           </div>
 
           <div class="item-formulario">
-          <p>Medidas:</p>
-          <input type="text" class="campo-form" placeholder="Medidas do produto..." required="" name="medidas">
-          </div>
-
-          <div class="item-formulario">
-          <p>Material:</p>
-          <input type="text" class="campo-form" placeholder="Material do produto..." required="" name="material">
-          </div>
-
-          <div class="item-formulario">
-          <p>Peso:</p>
-          <input type="text" class="campo-form" placeholder="Peso do produto..." required="" name="peso">
-          </div>
-
-          <div class="item-formulario">
           <p>Categoria:</p>
           <label for="categoria"></label>
           <select name="categoria" class="campo-form">
@@ -244,12 +229,24 @@ select.campo-form{
 
             <?php while($carregar_categorias = mysqli_fetch_assoc($resultado_categorias)){ ?>               
 
-              <option value="<?php echo utf8_encode ($carregar_categorias["id"]); ?>"><?php echo utf8_encode ($carregar_categorias["categoria"]); ?></option>
+              <option value="<?php echo utf8_encode ($carregar_categorias["categoria"]); ?>"><?php echo utf8_encode ($carregar_categorias["categoria"]); ?></option>
 
             <?php } ?>          
             
           </select>
           </div>
+
+          <div class="item-formulario">
+          <p>Preço:</p>
+          <input type="text" class="campo-form" placeholder="Preço do produto..." required="" name="preco">
+          </div>
+
+          <div class="item-formulario">
+          <p>Descrição:</p>
+          <input type="text" class="campo-form" placeholder="Descrição do produto..." required="" name="descricao_completa">
+          </div>
+
+          
 
           <a href="lista_produtos.php" class="button-cancelar">cancelar</a>
 

@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <title><?php echo utf8_encode ($TITULO_PAGINA)?></title> <!-- INFO 1 -->
   <meta name="description" content="<?php echo utf8_encode ($SOBRE_PAGINA)?>"> <!-- INFO 2 -->
-  <meta name="author" content="Start Page - Rafael Ferreira">
+  <meta name="author" content="Rafael Ferreira">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto:300,400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">

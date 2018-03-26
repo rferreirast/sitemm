@@ -35,8 +35,14 @@ li{
 }
 
 .menu-select{
-  background: #092a47;
+ background: #092a47;
+ color: #fff !important;
 }
+#icones-menu{
+ font-size: 20px;
+ margin-right: 5px;
+}
+
 
 </style>
 
@@ -44,11 +50,12 @@ li{
 		
          <div class="menu-itens">
 
-         	<li class="menu-item"><a href="painel_adm.php">Inicio</a></li>
-         	<li class="menu-item"><a href="lista_produtos.php">Produtos</a></li>
-          <li class="menu-item"><a href="lista_clientes.php">Clientes</a></li>
-         	<li class="menu-item"><a href="">Orçamentos</a></li>
-         	<li class="menu-item"><a href="galeria_imagens.php">Galeria</a></li>
+         	<li class="menu-item"><a href="painel_adm.php"><i class="fas fa-home" id="icones-menu"></i>Inicio</a></li>
+          <li class="menu-item"><a href=""><i class="fas fa-file-alt" id="icones-menu"></i>Pedidos</a></li>
+         	<li class="menu-item"><a href="lista_produtos.php"><i class="fas fa-cubes" id="icones-menu"></i> Produtos</a></li>
+          <li class="menu-item"><a href="lista_clientes.php"><i class="far fa-address-book" id="icones-menu"></i>Foto Clientes</a></li>
+         	<li class="menu-item"><a href="lista_newsletter.php"><i class="far fa-envelope-open" id="icones-menu"></i>Newsletter</a></li>
+         	<li class="menu-item"><a href="galeria_imagens.php"><i class="fas fa-images" id="icones-menu"></i>Galeria</a></li>
 
          </div>
 

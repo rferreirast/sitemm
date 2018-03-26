@@ -9,6 +9,10 @@ include_once("system/verifica_sessao.php");
  $status_produto[1] = "Ativo";
  $status_produto[2] = "Inativo";
 
+ //CARREGA CATEGORIAS 
+ $pesquisa_categoria = "SELECT * FROM categorias";
+ $resultado_categorias = mysqli_query($conn, $pesquisa_categoria);
+
  ?>
 
 <!DOCTYPE html>
@@ -158,6 +162,69 @@ include_once("system/verifica_sessao.php");
 }
 .button-excluir-produtos a:hover{background: #890a0a;}
 
+
+/*===========================*/
+.item a{
+ color: #014d8f;
+ font-weight: bold;
+}
+.item b{
+ font-weight: bold;
+}
+.item input{
+ display: none;
+}
+.item input:checked ~ ul{
+ height: auto;
+ max-height: 1500px;
+ transform: all;
+ padding-top: 20px;
+ padding-bottom: 25px;
+ margin-left: 10px;
+}
+
+/*MENU DROP*/
+.category_list {
+ float: left;
+ display: inline-block;
+}
+.dropbtn {
+ color: #fff;
+ font-size: 15px;
+ padding: 5px 15px;
+ font-weight: bold;
+ cursor: pointer;
+ background: #014d8f;
+ border-radius: 5px;
+ margin-bottom: 2px;
+}
+
+.dropdown-content {
+ display: none;
+ position: absolute;
+ background-color: #333;
+ min-width: 185px;
+ border-radius: 5px;
+ padding: 20px 0;
+
+}
+
+.dropdown-content a {
+ color: black;
+ color: #fff;
+ padding: 12px 16px;
+ text-decoration: none;
+ display: block;
+}
+
+.dropdown-content a:hover {background-color: #3887f5;}
+
+.category_list:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+}
 </style>
 
 </head>
@@ -179,8 +246,36 @@ include_once("system/verifica_sessao.php");
     <div class="container-m2">
 
     <div class="container-pesquisa">
-      <p>Pesquisa:</p> <input type="text" class="campo-form" placeholder="Descrição 1" required="" name="descricao1">
-    </div>  
+      <!---<p>Pesquisa:</p> <input type="text" class="campo-form" placeholder="Descrição 1" required="" name="descricao1">-->
+
+          <!--<p>Categoria:</p>
+          <label for="categoria"></label>
+          <select name="categoria" class="category_list campo-form">
+            <option class="categoy_item" value="0">Todos</option>            
+            <option class="categoy_item" value="1">Cadeiras</option>
+            <option class="categoy_item" value="2">Mesas</option> 
+            <option class="categoy_item" value="3">Banquetas</option> 
+            <option class="categoy_item" value="4">Poltronas</option>                
+          </select>--> 
+
+
+        <div class="category_list">
+          <button class="dropbtn">Filtro por Categorias <span class="icon fas fa-angle-down" id="icon"></span></button>
+          <div class="dropdown-content">
+
+            <a href="#" class="category_item" category="0">Todos</a>
+
+            <?php while($carregar_categorias = mysqli_fetch_assoc($resultado_categorias)){ ?>               
+
+                  <a href="#" class="category_item" category="<?php echo utf8_encode ($carregar_categorias["categoria"]); ?>"><?php echo utf8_encode ($carregar_categorias["categoria"]); ?></a>
+
+                <?php } ?> 
+
+          </div>
+        </div>
+
+
+      </div>      
 
     <div class="container-addProduto">
       <div class="button-add-produto"><a href="cadastrar_produto.php">+ Produto</a></div>
@@ -188,16 +283,13 @@ include_once("system/verifica_sessao.php");
 
     </div>
 
-    
-
-
     <div class="container-lista-produtos">
 
      <div class="lista-itens-produto">
 
      <?php while($listar_produtos = mysqli_fetch_assoc($resultado_listar)){ ?>
 
-       <div class="produto-item">
+       <div class="produto-item product-item" category="<?php echo utf8_encode ($listar_produtos["categoria"]); ?>">
          <div class="status-produto"><p><?php echo utf8_encode ($status_produto[$listar_produtos["status"]]); ?></p></div>
          <div class="codigo-produto"><p><?php echo utf8_encode ($listar_produtos["id"]); ?></p></div>
          <div class="imagem-item-produto"><img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($listar_produtos["foto"]); ?>" alt=""></div>
@@ -209,10 +301,7 @@ include_once("system/verifica_sessao.php");
 
        <?php } ?>
       
-     </div>
-       
-
-
+     </div>    
 
     </div>
 
@@ -223,5 +312,34 @@ include_once("system/verifica_sessao.php");
 </div>
 
 </body>
+
+<script>
+      
+      $(document).ready(function(){
+
+        //$('.category_list .categoy_item[value="0"]');
+
+        $('.category_item').click(function(){
+          var catProduct = $(this).attr('category');
+          console.log(catProduct);
+
+          //OCULTA OS PRODUTOS
+          $('.product-item').hide();
+
+          //MOTRA OS PRODUTOS
+          $('.product-item[category="'+catProduct+'"]').show();
+
+        });
+
+        $('.category_item[category="0"]').click(function(){
+          //MOTRA TODOS PRODUTOS
+          $('.product-item').show();
+        
+
+        });
+
+      });
+
+    </script>
 
 </html>

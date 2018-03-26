@@ -18,12 +18,6 @@ include_once("system/verifica_sessao.php");
  $resultado_categorias = mysqli_query($conn, $pesquisa_categoria);
  $resultado_categorias2 = mysqli_query($conn, $pesquisa_categoria);
 
-//CARREGA TODOS OS CODIGO DE CATEGORIAS E ATRIBUI VALORES DE TEXTO A ELAS
-while($converte_categoria = mysqli_fetch_assoc($resultado_categorias2) ){
-           
-  $categoria_produto[ $converte_categoria["id"] ] = $converte_categoria["categoria"];
-          
-} 
  $categoria_produto[""] = "Selecione";
  //$categoria_produto[2] = "Mesas";
 
@@ -32,28 +26,30 @@ while($converte_categoria = mysqli_fetch_assoc($resultado_categorias2) ){
 
 
 if (isset($_POST['editar-produto'])) {
+$status = utf8_decode( $_POST["status"]);
 $foto = utf8_decode( $_POST["foto"]);  
 $nome = utf8_decode( $_POST["nome"]);
-$medidas = utf8_decode( $_POST["medidas"]);
-$material = utf8_decode( $_POST["material"]);
-$peso = utf8_decode( $_POST["peso"]);
 $categoria = utf8_decode( $_POST["categoria"]);
-$status = utf8_decode( $_POST["status"]);
+$preco = utf8_decode( $_POST["preco"]);
+$descricao_completa = utf8_decode( $_POST["descricao_completa"]);
+
 
 //se vazio cancela operação
- if ($foto == "") {
+ if ($status == "") {
   exit;
-   }elseif($nome == ""){
+   }elseif($foto == ""){
     exit;
-      }elseif($medidas == ""){
+      }elseif($nome == ""){
+    exit;
+      }elseif($categoria == ""){
       exit;
-       }elseif($material == ""){
+       }elseif($preco == ""){
        exit;
-        }elseif($peso == ""){
+        }elseif($descricao_completa == ""){
         exit;
           }else{
 
-            $sql = "UPDATE produtos SET `foto`='$foto', `nome`='$nome', `medidas`='$medidas', `material`='$material', `peso`='$peso', `categoria`='$categoria', `status`='$status' WHERE id = '$id_produto' ";
+            $sql = "UPDATE produtos SET `status`='$status', `foto`='$foto', `nome`='$nome', `categoria`='$categoria', `preco`='$preco', `descricao_completa`='$descricao_completa' WHERE id = '$id_produto' ";
             $data = mysqli_query($conn, $sql);
             if ($data) {
                 header("Location: lista_produtos.php");   
@@ -280,34 +276,33 @@ select.campo-form{
           </div>
 
           <div class="item-formulario">
-          <p>Medidas:</p>
-          <input type="text" class="campo-form" value="<?php echo utf8_encode ($carregar_produto["medidas"]); ?>" required="" name="medidas">
-          </div>
-
-          <div class="item-formulario">
-          <p>Material:</p>
-          <input type="text" class="campo-form" value="<?php echo utf8_encode ($carregar_produto["material"]); ?>" required="" name="material">
-          </div>
-
-          <div class="item-formulario">
-          <p>Peso:</p>
-          <input type="text" class="campo-form" value="<?php echo utf8_encode ($carregar_produto["peso"]); ?>" required="" name="peso">
-          </div>
-
-          <div class="item-formulario">
           <p>Categoria:</p>
           <label for="categoria"></label>
           <select name="categoria" class="campo-form">
 
-            <option value=""><?php echo utf8_encode ($categoria_produto[$carregar_produto["categoria"]]); ?></option>
+            <option value="">Selecione</option>
 
             <?php while($carregar_categorias = mysqli_fetch_assoc($resultado_categorias)){ ?>               
 
-              <option value="<?php echo utf8_encode ($carregar_categorias["id"]); ?>" > <?php echo utf8_encode ($carregar_categorias["categoria"]); ?></option>
+               <option value="<?php echo utf8_encode ($carregar_categorias["categoria"]); ?>" 
+               <?php if($carregar_produto["categoria"] == $carregar_categorias["categoria"]) echo "selected"; ?> >
+
+               <?php echo utf8_encode ($carregar_categorias["categoria"]); ?></option>
 
             <?php } ?>          
             
           </select>
+          </div>
+
+          <div class="item-formulario">
+          <p>Preço:</p>
+          <input type="text" class="campo-form" value="<?php echo utf8_encode ($carregar_produto["preco"]); ?>" required="" name="preco">
+          </div>
+
+          <div class="item-formulario">
+          <p>Descrição:</p>
+
+          <input type="text" class="campo-form" value="<?php echo utf8_encode ($carregar_produto["descricao_completa"]); ?>" required="" name="descricao_completa">
           </div>
 
           <a href="lista_produtos.php" class="button-cancelar">cancelar</a>

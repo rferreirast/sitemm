@@ -1,12 +1,14 @@
 <?php 
     include_once("../system/config.php");
 
-  //$listar = mysqli_query($conn, "SELECT * FROM produtos") or print mysql_error();
-  $listar = "SELECT * FROM produtos WHERE status = '1' ";
+     //BUSCA CODIGO NA URL
+	 $categoria_pesquisa = $_GET['categoria'];
+
+	//$listar = mysqli_query($conn, "SELECT * FROM produtos") or print mysql_error();
+	$listar = "SELECT * FROM produtos WHERE categoria = '$categoria_pesquisa' AND status = '1' ";
     $resultado_listar = mysqli_query($conn, $listar);
 
  ?>
- 
  <?php include_once '../dados/page_dados.php'; ?>
  <?php include_once 'dados/dados_produtos.php'; ?>
 <!DOCTYPE html>
@@ -14,7 +16,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title><?php echo utf8_encode ($TITULO_PAGINA)?></title> <!-- INFO 1 -->
+  <title>Mestre Moveleiro | <?php echo utf8_encode ($categoria_pesquisa)?></title> <!-- INFO 1 -->
     <meta name="description" content="<?php echo utf8_encode ($SOBRE_PAGINA)?>"> <!-- INFO 2 -->
     <meta name="author" content="Rafael Ferreira">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -48,35 +50,38 @@
 <!-- MENU -->
 <?php include('../menu.php'); ?>
 
-
 <div class="container-produtos">
-  <div class="container-site">
+	<div class="container-site">
 
-  <div class="titulo-container-produtos" style="width: 100%; float: left;"><p style="font-size: 28px !important; color: #666666; margin-left: 10px; margin-right: 10px;">Nossos produtos</p></div>
-    
-    <div class="container-produtos-itens" style="width: 100%; float: left;">
+	<div class="titulo-container-produtos" style="width: 100%; float: left;"><p style="font-size: 28px !important; color: #666666; margin-left: 10px; margin-right: 10px;"><?php echo ucfirst ($categoria_pesquisa)?></p></div>
+		
+		<div class="container-produtos-itens" style="width: 100%; float: left;">
 
-      <?php while($listar_produtos = mysqli_fetch_assoc($resultado_listar)){ ?>
+			<?php while($listar_produtos = mysqli_fetch_assoc($resultado_listar)){ ?>
 
-        <!-- PRODUTO -->
-        <div class="container-slide-mobile">
-        <div class="border-item-produto"><div class="item-produto">
-        <img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($listar_produtos["foto"]); ?>" alt=""> <!-- FOTO -->
-        <p><?php echo utf8_encode ($listar_produtos["nome"]); ?></p> <!-- NOME -->
-        <p id="descricao">Medidas: <?php echo utf8_encode ($listar_produtos["medidas"]); ?> cm</p> <!-- DESCRIÇÃO 1 -->
-        <p id="descricao">Material: <?php echo utf8_encode ($listar_produtos["material"]); ?></p> <!-- DESCRIÇÃO 2 -->
-        <p id="descricao">Peso: <?php echo utf8_encode ($listar_produtos["peso"]); ?> kg</p> <!-- DESCRIÇÃO 3 -->
-        <a href="/contato" class="button-item-produto">Orçamento</a>
-        </div></div>
-        </div>
+				<!-- PRODUTO -->
+				<a href="mmp.php?produto=<?php echo utf8_encode ($listar_produtos["id"]); ?>">
+				<div class="border-item-produto">
+				<div class="item-produto">
+				<img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($listar_produtos["foto"]); ?>" alt=""> <!-- FOTO -->
+				<p><?php echo utf8_encode ($listar_produtos["nome"]); ?></p> <!-- NOME -->
+				<p id="preco">R$ 148,90</p> <!-- PREÇO 1 -->
+				</a>
 
-      <?php } ?>
+					<div class="button-sacola">
+						<a href="itens-pedido.php?addItem=<?php echo utf8_encode ($listar_produtos["id"]); ?>" class="button-item-produto">Adicionar <i class="fas fa-shopping-cart" id="icon-sacola"></i></a>
+					</div>
 
-    </div>
 
-  </div>
+				</div>
+				</div>
+
+			<?php } ?>
+
+		</div>
+
+	</div>
 </div>
-
 
 
 
