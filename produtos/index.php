@@ -59,16 +59,20 @@
       <?php while($listar_produtos = mysqli_fetch_assoc($resultado_listar)){ ?>
 
         <!-- PRODUTO -->
-        <div class="container-slide-mobile">
-        <div class="border-item-produto"><div class="item-produto">
+        <a href="mmp.php?produto=<?php echo utf8_encode ($listar_produtos["id"]); ?>">
+        <div class="border-item-produto">
+        <div class="item-produto">
         <img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($listar_produtos["foto"]); ?>" alt=""> <!-- FOTO -->
         <p><?php echo utf8_encode ($listar_produtos["nome"]); ?></p> <!-- NOME -->
-        <p id="descricao">Medidas: <?php echo utf8_encode ($listar_produtos["medidas"]); ?> cm</p> <!-- DESCRIÇÃO 1 -->
-        <p id="descricao">Material: <?php echo utf8_encode ($listar_produtos["material"]); ?></p> <!-- DESCRIÇÃO 2 -->
-        <p id="descricao">Peso: <?php echo utf8_encode ($listar_produtos["peso"]); ?> kg</p> <!-- DESCRIÇÃO 3 -->
-        <a href="/contato" class="button-item-produto">Orçamento</a>
+        <p id="preco">R$ 148,90</p> <!-- PREÇO 1 -->
+        </a>
+
+        <div class="button-sacola">
+            <a href="itens-pedido.php?addItem=<?php echo utf8_encode ($listar_produtos["id"]); ?>" class="button-item-produto">Adicionar <i class="fas fa-shopping-cart" id="icon-sacola"></i></a>
+          </div>
+
         </div></div>
-        </div>
+       
 
       <?php } ?>
 
