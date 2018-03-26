@@ -1,3 +1,13 @@
+<?php 
+
+if (isset($_POST['fazer_busca'])) {
+$pesquisar_produtos = utf8_decode( $_POST["pesquisar_produtos"]);
+ 
+ header("Location: busca.php?produto=$pesquisar_produtos");
+
+}
+
+ ?>
 <style>
 @media screen and (min-width:320px) {
 .content-topo-tarja{
@@ -27,7 +37,7 @@
  text-align: left;
 }
  input.campo-form{
- font-size: 15px;
+ font-size: 16px;
  border-radius: 3px;
  color: #343434;
  background-color: #fff;
@@ -36,9 +46,11 @@
  padding: 0px 0.4em;
  width: 250px;
  margin-left: 10px;
- border: 1px solid #c4c4c4 !important;
  margin-top: 0px;
- box-shadow: 0 1px 2px 0 rgba(0,0,0,.2);
+}
+input.button-buscar{
+ width: 30px !important;
+ margin: -25;
 }
 
 /************ MENU MOBILE ************/
@@ -150,7 +162,8 @@
    
       <form method="post">
 
-         <input type="text" class="campo-form" placeholder="Buscar Produtos..." name="pesquisa-produtos">
+         <input type="text" class="campo-form" placeholder="Buscar Produtos..." name="pesquisar_produtos">
+         <input type="submit" value="⌕" class="campo-form button-buscar" name="fazer_busca">
 
       </form>
 

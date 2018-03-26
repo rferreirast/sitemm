@@ -2,13 +2,14 @@
     include_once("../system/config.php");
 
      //BUSCA CODIGO NA URL
-	 $categoria_pesquisa = $_GET['categoria'];
+	 $item_pesquisa = $_GET['produto'];
 
 	//$listar = mysqli_query($conn, "SELECT * FROM produtos") or print mysql_error();
-	$listar = "SELECT * FROM produtos WHERE categoria = '$categoria_pesquisa' AND status = '1' ";
+	$listar = "SELECT * FROM produtos WHERE nome LIKE '%$item_pesquisa%' AND status = '1' ";
     $resultado_listar = mysqli_query($conn, $listar);
 
  ?>
+ 
  <?php include_once '../dados/page_dados.php'; ?>
  <?php include_once 'dados/dados_produtos.php'; ?>
 <!DOCTYPE html>
@@ -16,7 +17,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Mestre Moveleiro | <?php echo utf8_encode ($categoria_pesquisa)?></title> <!-- INFO 1 -->
+  <title>Mestre Moveleiro | <?php echo utf8_encode ($item_pesquisa)?></title> <!-- INFO 1 -->
     <meta name="description" content="<?php echo utf8_encode ($SOBRE_PAGINA)?>"> <!-- INFO 2 -->
     <meta name="author" content="Rafael Ferreira">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -53,7 +54,7 @@
 <div class="container-produtos">
 	<div class="container-site">
 
-	<div class="titulo-container-produtos" style="width: 100%; float: left;"><p style="font-size: 28px !important; color: #666666; margin-left: 10px; margin-right: 10px;"><?php echo ucfirst ($categoria_pesquisa)?></p></div>
+	<div class="titulo-container-produtos" style="width: 100%; float: left;"><p style="font-size: 28px !important; color: #666666; margin-left: 10px; margin-right: 10px;">Pesquisa: <?php echo ucfirst ($item_pesquisa)?></p></div>
 		
 		<div class="container-produtos-itens" style="width: 100%; float: left;">
 
