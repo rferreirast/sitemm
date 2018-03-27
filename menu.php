@@ -172,7 +172,7 @@ li{
       <li><a class="item-menu-usuarios" href="#" id="border-left">Cadastre-se</a></li>
       <li><a class="item-menu-usuarios" href="#" id="border-left">Entrar</a></li>
       <li><a class="item-menu-usuarios" href="#" id="border-left">Contato</a></li>
-      <li><a class="item-menu-usuarios" href="#"><i class="fas fa-shopping-cart" id="icon-sacola"></i></a></li>
+      <li><a class="item-menu-usuarios" href="/itens-pedido.php"><i class="fas fa-shopping-cart" id="icon-sacola"></i></a></li>
      
    </div>
   

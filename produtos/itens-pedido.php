@@ -22,27 +22,6 @@ if (isset($_GET['addItem'])) {
 }
 
 
-/*if (count($_SESSION['itens']) == 0) {
-	echo "Carrinho Vazio";
-}else{
-	foreach ($_SESSION['itens'] as $idProduto => $quantidade) {
-    
-    echo $idProduto;}
-    /*$idProduto = (int)$idProduto;
-	$listar = "SELECT * FROM produtos WHERE id=?";
-    $resultado_listar = mysqli_query($conn, $listar);
-    $resultado_listar->execute(array($idProduto));
-
-    $produtos = $resultado_listar->fetchObject();
-
-    echo $produtos->nome;
-
-    //echo $produtos[0]["nome"].'<br/>';
-
-	}
-}}*/
-
-
 ?>
 
  <?php include_once '../dados/page_dados.php'; ?>
@@ -191,45 +170,14 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 				</div>
 
 
-			<?php } }?>
+			<?php $total+= $produtos[0]["preco"] * $quantidade; }}?>
 
-			<!---<?php while($listar_produtos = mysqli_fetch_assoc($resultado_listar)){ ?>
-
-			<!-- ITEM PRODUTO -->				
-				<div class="iten-pedido">	
-
-                    
-				    <div class="cont-imgProduto">
-				    <img id="imagempedido" src="http://www.mestremoveleiro.com.br/produtos/img-produtos/produto1.jpg" alt="">
-				    </div>
-				    
-				    <div class="cont-sobreProduto">			
-					<p id="produto"><?php echo utf8_encode ($listar_produtos["nome"]); ?></p>
-					<p id="preco">199,90</p>
-
-					<p id="precoTotal">R$ 1.999,90</p>
-					<input type="text" value="🔃" class="qt_itens_atualizar" name="update">
-					<input type="text" class="qt_itens" name="quantidade">
-					
-					</div>
-
-					<div class="cont-variaveisProduto">				
-					<p id="corferro"><b>Ferragem:</b> Preta</p>
-					<p id="corassento"><b>Assento:</b> Branco</p>
-					</div>
-
-					<div class="cont-buttons">
-					<a href="#" id="button_excluirItem">✘ remover item</a>
-					</div>
-				</div>
-
-				<?php } ?>-->
 
 				<!-- FIM ITEM PEDIDO -->
 
 				<div class="cont-TotalPedido">
-				    <p id="valorTotal"><?php echo $total; ?></p>
-					<p id="textoTotal">Total:</p>
+				    <p id="valorTotal">R$ <?php echo number_format($total, 2,',','.'); ?></p>
+					<p id="textoTotal">Total do pedido:</p>
 				</div>
 
 				.<div class="obs-itensPedid">
