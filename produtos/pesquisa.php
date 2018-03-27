@@ -1,5 +1,7 @@
 <?php 
     include_once("../system/config.php");
+    
+     if (!isset($_SESSION)){session_start();}
 
      //BUSCA CODIGO NA URL
 	 $categoria_pesquisa = $_GET['categoria'];

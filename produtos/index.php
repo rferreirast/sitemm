@@ -1,9 +1,12 @@
 <?php 
     include_once("../system/config.php");
+   
+  if (!isset($_SESSION)){session_start();}
 
+ 
   //$listar = mysqli_query($conn, "SELECT * FROM produtos") or print mysql_error();
   $listar = "SELECT * FROM produtos WHERE status = '1' ";
-    $resultado_listar = mysqli_query($conn, $listar);
+  $resultado_listar = mysqli_query($conn, $listar);
 
  ?>
  

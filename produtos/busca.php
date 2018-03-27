@@ -1,6 +1,8 @@
 <?php 
     include_once("../system/config.php");
 
+     if (!isset($_SESSION)){session_start();}
+
      //BUSCA CODIGO NA URL
 	 $item_pesquisa = $_GET['produto'];
 
