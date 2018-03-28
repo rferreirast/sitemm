@@ -32,7 +32,6 @@
 				<p id="descricao">Medidas: <?php echo utf8_encode ($listar_produtos["medidas"]); ?> cm</p> <!-- DESCRIÇÃO 1 -->
 				<p id="descricao">Material: <?php echo utf8_encode ($listar_produtos["material"]); ?></p> <!-- DESCRIÇÃO 2 -->
 				<p id="descricao">Peso: <?php echo utf8_encode ($listar_produtos["peso"]); ?> kg</p> <!-- DESCRIÇÃO 3 -->
-				<a href="/contato" class="button-item-produto">Orçamento</a>
 				</div></div>
 				</div>
 

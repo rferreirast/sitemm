@@ -67,12 +67,8 @@
         <div class="item-produto">
         <img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($listar_produtos["foto"]); ?>" alt=""> <!-- FOTO -->
         <p><?php echo utf8_encode ($listar_produtos["nome"]); ?></p> <!-- NOME -->
-        <p id="preco">R$ 148,90</p> <!-- PREÇO 1 -->
+        <p id="preco">R$ <?php echo utf8_encode (number_format($listar_produtos["preco"], 2,',','.')); ?></p> <!-- PREÇO 1 -->
         </a>
-
-        <div class="button-sacola">
-            <a href="itens-pedido.php?addItem=<?php echo utf8_encode ($listar_produtos["id"]); ?>" class="button-item-produto">Adicionar <i class="fas fa-shopping-cart" id="icon-sacola"></i></a>
-          </div>
 
         </div></div>
        

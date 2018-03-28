@@ -61,7 +61,7 @@ p{
 /****** PARA O PC ******/
 @media screen and (min-width:1025px) {
 .container-site{
- width: 70% !important
+ width: 100% !important
 }
 h2{
  font-size: 40px !important;		
@@ -84,4 +84,11 @@ p{
  padding-right: 5px;
 }
 
+}
+
+/****** PARA O PC ******/
+@media screen and (min-width:1300px) {
+.container-site{
+ width: 80% !important
+}
 }

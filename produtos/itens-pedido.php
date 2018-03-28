@@ -189,7 +189,7 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 				    </div>
 				    
 				    <div class="cont-sobreProduto">			
-					<p id="produto"><?php echo utf8_encode ($produtos[0]["nome"]); ?></p>
+					<p id="produto"><a href="mmp.php?produto=<?php echo $idProduto; ?>"><?php echo utf8_encode ($produtos[0]["nome"]); ?></a></p>
 					<p id="preco">R$ <?php echo number_format($produtos[0]["preco"], 2,',','.'); ?></p>
 
 					<p id="precoTotal">R$ <?php echo number_format($produtos[0]["preco"] * $quantidade, 2,',','.'); ?></p>

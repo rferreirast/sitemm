@@ -26,7 +26,7 @@
  background: #fff;
  border-radius: 10px;
  border: 4px solid transparent;	
- padding: 30px 20px 30px 20px;
+ padding: 10px 5px 10px 5px;
  box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
  margin-bottom: 20px;	
 }
@@ -45,14 +45,11 @@
 }
 #preco{
  color: #333;
- font-size: 16px !important;
+ font-size: 22px !important;
  text-align: left;
  font-weight: bold;
  padding-bottom: 3px;
  margin-left: 15px;
-}
-.item-produto:hover{
- border: 4px solid #014d8f;	
 }
 
 .button-sacola a{
@@ -99,7 +96,7 @@
 }
 .border-item-produto{
  float: left;
- width: 25%;
+ width: 33.3333333%;
  padding: 0 10px;
 }
 .item-produto{
@@ -107,8 +104,6 @@
  width: 100%;
  background: #fff;
  border-radius: 10px;
- border: 4px solid transparent;	
- padding: 30px 20px 30px 20px;
  box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);	
 }
 .item-produto img{
@@ -132,7 +127,7 @@
  padding-bottom: 3px;
 }
 .item-produto:hover{
- border: 4px solid #014d8f;	
+ box-shadow: 2px 5px 6px 3px rgba(0,0,0,.1);
 }
 
 .button-sacola a{
@@ -178,7 +173,7 @@
  font-size: 16px !important;
 }
 #preco{
- font-size: 18px !important;
+ font-size: 22px !important;
 }
 
 }

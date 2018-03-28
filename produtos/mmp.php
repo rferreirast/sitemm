@@ -28,79 +28,148 @@
   <link rel="shortcut icon" href='../img/logo-topo.png' /> <!-- INFO 3 -->
   <link rel="stylesheet" href="css/style-produtos.css">
   <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://www.mmpschools.com/mmpcss/4/mmp.css">
 
   
   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 
 <style>
 @media screen and (min-width:320px) {
-
-
-
-}
-/* PARA PC **/
-@media screen and (min-width:1025px) {
 .container-informacoes-produto{
  float: left;
  width: 100%;
  background: #fff;
  border-radius: 20px;
+ margin-top: 30px;
+ margin-bottom: 30px;
+ box-shadow: 0px 1px 10px 0px rgba(0,0,0,.2);
 }
-.w3-img-produto{
+
+
+/*====================*/
+.mmp-do-produto {
+ float: left;
+ width: 100%;
+}
+.mmp-do-produto-margem{ width: 90%; margin: auto;}
+
+/* IMAGENS DO PRODUTO======================*/
+.mmp-img-produto{
  float: left;
  width: 60%;
  padding: 15px;
+ text-align: center;
 }
-.w3-img-produto img{
+.mmp-img-produto img{
  width: 70%;
 }
-.w3-infos-produto{
+.mmp-outrasImagens{ float: left; width: 100%; margin-top: 20px;}
+.mmp-outrasImagens-item{ float: left; width: 80px; height: 80px; margin-left: 10px; border: 1px solid #d4d4d4; border-radius: 3px; }
+.mmp-outrasImagens-item:hover{border: 1px solid #014d8f; cursor: pointer;}
+.mmp-outrasImagens-item img{width: 100%; padding: 5px;}
+/* INFORMAÇOES DO PRODUTO ==================*/
+.mmp-infos-produto{
  float: left;
  width: 40%;
  margin-top: 20px;
  padding-top: 30px;
  padding-bottom: 40px;
- border-left: 1px solid #c4c4c4;
- border-bottom: 1px solid #c4c4c4;
 }
-.w3-infos-produto-margin{
+.mmp-infos-produto-margem{
  padding: 10px;
 }
-.w3-infos-produto-nome p{
+.mmp-infos-produto-nome p{
  color: #151515;
  font-size: 30px !important;
- font-weight: normal;
+ font-weight: bold;
  margin-bottom: 20px;
 }
-.w3-infos-produto-preco p{
+.mmp-infos-produto-preco p{
  color: #151515;
  font-size: 35px !important;
- font-weight: normal;
+ font-weight: 400;
  margin-bottom: 20px;
 }
-.w3-infos-descricao-completa{
- float: left;
- width: 100%;
- margin-top: 20px;
+.mmp-infos-descricao-lateral{float: left; width: 100%; display: inline-block; padding-bottom: 20px;}
+#infoMedidas{
+ color: #014d8f;
+ font-size: 20px !important;
+ font-weight: bold;
+ margin-bottom: 10px;
+ width: 50%;
+ padding-bottom: 5px;
+ border-bottom: 5px solid #014d8f;
+}
+.mmp-infos-descricao-lateral p{ 
+ color: #555;
+ font-size: 16px !important;
+ font-weight: 300;
+ margin-bottom: 10px;
 }
 
-.w3-button-comprar a{
+.mmp-button-comprar a{
  float: left;
- width: 100%;
- font-size: 20px;
+ width: 70%;
+ font-size: 22px;
  color: #fff;
  background: #014d8f;
- padding: 8px 20px;
+ padding: 15px 20px;
  border-radius: 5px;
  font-weight: bold;
  text-decoration: none;	
  text-align: center;
  box-shadow: rgba(0, 0, 0, 0.2) 3px 4px 6px 1px;
 }
-.w3-button-comprar a:hover{
+.mmp-button-comprar a:hover{
  background: #014d8fed;
 }
+
+/*DESCRICAO DO PRODUTO ==================*/
+.mmp-descricao-produto{
+ float: left;
+ width: 100%;
+ padding: 10px 0px;	
+}
+.mmp-descricao-produto-margin{ width: 90%; margin: auto; border-bottom: 1px solid #d4d4d4; border-top: 1px solid #d4d4d4;}
+.mmp-descricao-produto h2{ 
+ color: #555;
+ font-size: 30px !important;
+ font-weight: bold;
+ margin: 0px;
+ padding: 20px 0px;
+}
+
+.mmp-infos-descricao-completa{
+ float: left;
+ width: 100%;
+ padding-top: 20px;
+ padding-bottom: 40px;
+}
+.mmp-infos-descricao-texto{
+ width: 90%;
+ margin: auto;
+ border-radius: 10px;
+ border: 1px solid #d7d7d7;
+ padding: 20px 30px;
+}
+.mmp-infos-descricao-completa p{
+ color: #a1a1a1;
+ font-size: 18px !important;
+ font-weight: 300;
+ margin-bottom: 10px;
+}
+.mmp-infos-descricao-completa h2{
+ color: #787777;
+ font-size: 21px !important;
+ font-weight: 300;
+ margin-bottom: 10px;	
+}
+
+
+}
+/* PARA PC **/
+@media screen and (min-width:1025px) {
+
 
 }
 
@@ -109,7 +178,7 @@
 
 </head>
 
-<body style="background: #e4e4e5;">
+<body style="background: #eeeeee;">
 
 <!-- ANALYTICS -->
 <?php include('../souce=analytics.php'); ?>
@@ -123,60 +192,84 @@
 <div class="container-produtos">
 	<div class="container-site">
 
-
 	  <div class="container-informacoes-produto">
+	  
+      <div class="mmp-do-produto">
+       <div class="mmp-do-produto-margem">
 
-	  <div class="w3-img-produto">
+	  <div class="mmp-img-produto">
 	  	<img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($carregar_produto["foto"]); ?>" alt="">
+
+	  	<div class="mmp-outrasImagens">
+	  		<div class="mmp-outrasImagens-item"><img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/produto4.jpg" alt=""></div>
+	  		<div class="mmp-outrasImagens-item"><img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/produto2.jpg" alt=""></div>
+	  		<div class="mmp-outrasImagens-item"><img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/produto5.jpg" alt=""></div>
+	  	</div>
 	  </div>
 
-	  <div class="w3-infos-produto">
-	    <div class="w3-infos-produto-margin">
+	  <div class="mmp-infos-produto">
+	    <div class="mmp-infos-produto-margem">
 	  	
-	  	<div class="w3-infos-produto-nome"><p><?php echo utf8_encode ($carregar_produto["nome"]); ?></p></div>
-	  	<div class="w3-infos-produto-preco"><p>R$ <?php echo utf8_encode ($carregar_produto["preco"]); ?></p></div>
+	  	<div class="mmp-infos-produto-nome"><p><?php echo utf8_encode ($carregar_produto["nome"]); ?></p></div>
+	  	<div class="mmp-infos-produto-preco"><p>R$ <?php echo utf8_encode (number_format($carregar_produto["preco"], 2,',','.')); ?></p></div>
 
-	  	<div class="w3-button-comprar"><a href="itens-pedido.php?addItem=<?php echo utf8_encode ($carregar_produto["id"]); ?>">Comprar</a></div>
+	  	<div class="mmp-infos-descricao-lateral">
+	  	    <p id="infoMedidas">Medidas</p>
+	  		<p><b><i class="fas fa-arrows-alt-v"></i> Altura:</b> 62 cm</p>
+			<p><b><i class="fas fa-arrows-alt-h"></i> Comprimento:</b> 45 cm</p>
+			<p><b><i class="fas fa-arrows-alt-h"></i> Largura:</b> 45 cm</p>
+			<p><b><i class="fas fa-cube"></i> Peso:</b> 12 kg</p>
+	  	</div>
 
-        </div>
+	  	<div class="mmp-button-comprar"><a href="itens-pedido.php?addItem=<?php echo utf8_encode ($carregar_produto["id"]); ?>">Adicionar ao pedido <i class="fas fa-shopping-cart" id="icon-sacola"></i></a></div>
+
+        </div> 
 	  </div>
 
-	  <div class="w3-infos-descricao-completa">
+	    </div>
+	  </div>
+
+     <div class="mmp-descricao-produto"><div class="mmp-descricao-produto-margin"><h2>Descrição do produto</h2></div></div>
+
+	  <div class="mmp-infos-descricao-completa">
+	     <div class="mmp-infos-descricao-texto">
 	  	
 	  	<!--<p><?php echo utf8_encode ($carregar_produto["descricao_completa"]); ?></p>-->
 
-	  	<p>
-	  	    MEDIDAS DO PRODUTO
+	  	<p></p>
+	  	    <h2><b>MEDIDAS DO PRODUTO</b></h2>
 
-			Altura: 62 cm / 57 cm / 52 cm
-			Comprimento: 45 cm / 40 cm / 35 cm
-			Largura: 45 cm / 40 cm / 35 cm
+			<p>Altura: 62 cm</p>
+			<p>Comprimento: 45 cm</p>
+			<p>Largura: 45 cm / 40 </p>
 
-			MATERIAL
+			<h2><b>MATERIAL</b></h2>
 
-			Material da base: Metalon 20x20 em aço carbono 1020, Pintura Eletrostática e Soldagem Mig/Mag.
-			Material do tampo: Madeira MDF Amarelo Citrino Brilho de 15 mm e Fita de Borda.
+			<p>Material da base: Metalon 20x20 em aço carbono 1020, Pintura Eletrostática e Soldagem Mig/Mag.</p>
+			<p>Material do tampo: Madeira MDF Amarelo Citrino Brilho de 15 mm e Fita de Borda.</p>
 
-			DETALHES DO PRODUTO
+			<h2><b>DETALHES DO PRODUTO</b></h2>
 
-			Peso do produto: 15,3 Kg
-			Peso suportado: 100 Kg
-			Garantia de 1 ano contra defeito de fabricação
+			<p>Peso do produto: 15,3 Kg</p>
+			<p>Peso suportado: 100 Kg</p>
+			<p>Garantia de 1 ano contra defeito de fabricação</p>
 
-			CUIDADOS NECESSÁRIOS
+			<h2><b>CUIDADOS NECESSÁRIOS</b></h2>
 
-			Para limpeza do produto utilize um pano seco e macio ou utilize um pano levemente umedecido e logo em seguida use um pano seco e macio para secar a peça. 
+			<p>Para limpeza do produto utilize um pano seco e macio ou utilize um pano levemente umedecido e logo em seguida use um pano seco e macio para secar a peça. </p>
 
-			O MELHOR CUSTO BENEFÍCIO DO MERCADO
+			<h2><b>O MELHOR CUSTO BENEFÍCIO DO MERCADO</b></h2>
 
-			Nossos produtos possuem uma vida útil média de +10 anos. Se for usado seguindo as nossas recomendações de cuidados e limpeza você terá um bom produto por décadas.
+			<p>Nossos produtos possuem uma vida útil média de +10 anos. Se for usado seguindo as nossas recomendações de cuidados e limpeza você terá um bom produto por décadas.</p>
 
-			GARANTIA EXCLUSIVA
+			<h2><b>GARANTIA EXCLUSIVA</b></h2>
 
-			Se em até 15 dias você não ficar satisfeito com a mercadoria, devolvemos o seu dinheiro.
-			Se você não gostar da mercadoria por qualquer motivo, você tem 15 dias para entrar em contato e cancelar a compra, você nos devolve a mercadoria e devolvemos o seu dinheiro total. Cobrimos todos os custos.
-</p>
+			<p>Se em até 15 dias você não ficar satisfeito com a mercadoria, devolvemos o seu dinheiro.</p>
+			<p>Se você não gostar da mercadoria por qualquer motivo, você tem 15 dias para entrar em contato e cancelar a compra, você nos devolve a mercadoria e devolvemos o seu dinheiro total. Cobrimos todos os custos.</p>
 
+         <p></p>
+
+        </div>
 	  </div>
 	  	
 
