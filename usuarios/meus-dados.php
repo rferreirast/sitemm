@@ -13,6 +13,51 @@ include_once("system/verifica_sessao.php");
  $carrega_dados = mysqli_fetch_assoc($resultado_pesquisa);
 
 
+if (isset($_POST['salvarDadosCadastro'])) {
+
+$nome = utf8_decode( $_POST["nome"]);  
+$email = utf8_decode( $_POST["email"]);  
+$cpf = utf8_decode( $_POST["cpf"]);  
+$data_nascimento = utf8_decode( $_POST["data_nascimento"]);  
+$telefone = utf8_decode( $_POST["telefone"]);  
+$celular = utf8_decode( $_POST["celular"]);  
+$razao_social = utf8_decode( $_POST["razao_social"]);  
+$cnpj = utf8_decode( $_POST["cnpj"]);  
+$ie = utf8_decode( $_POST["ie"]); 
+
+//se vazio cancela operação
+   if ($nome == "") {
+     exit;
+   }elseif($email == ""){
+      exit;
+    }elseif($cpf == ""){
+      exit;
+    }elseif($data_nascimento == ""){
+      exit;
+    }elseif($telefone == ""){
+      exit;
+    }elseif($celular == '' OR strlen($celular)<15){
+      $celularIncorreto = "Insira o seu numero corretamente";
+    }elseif($razao_social == ""){
+      exit;
+    }elseif($cnpj == ""){
+      exit;
+    }elseif($ie == ""){
+      exit;
+    }else{
+          
+
+           /*//SALVA OS DADOS NO MYSQL
+           $sql = "INSERT INTO clientes (foto, cliente, cidade) VALUES ('$foto', '$cliente', '$cidade')";
+
+              if ($conn->query($sql) === TRUE) {
+              echo '<script>alert("Cliente Cadastrado!");</script>';
+              header("location: lista_clientes.php");
+              }*/
+       }
+
+     }
+
  ?>
  
 <!DOCTYPE html>
@@ -35,6 +80,10 @@ include_once("system/verifica_sessao.php");
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+
 
 <style>
 @media screen and (min-width:320px) {
@@ -166,9 +215,26 @@ input.form-dados{
 
 }
 
-
-
 </style>
+
+<script>
+
+   $(document).ready(function () { 
+        var $seuCampoCpf = $("#cel");
+        $seuCampoCpf.mask('(00) 0000-0000', {reverse: true});
+    });
+
+function formatar(mascara, documento){
+  var i = documento.value.length;
+  var saida = mascara.substring(0,1);
+  var texto = mascara.substring(i)
+  
+  if (texto.substring(0,1) != saida){
+            documento.value += texto.substring(0,1);
+  }
+  
+}
+</script>
 
 </head>
 
@@ -195,7 +261,7 @@ input.form-dados{
     <div class="container-dadosUsuario">      
       <div class="formularioUsuario">
         
-        <form action="">
+        <form method="POST">
 
         <div class="textoItem"><p>Dados cadastrais</p></div>
 
@@ -206,17 +272,17 @@ input.form-dados{
 
           <div class="formularioItem">
             <p>Email*:</p>
-            <input type="text" class="form-dados" required="" value="<?php echo utf8_encode ($carrega_dados["email"]); ?>" required="" name="email">
+            <input type="email" class="form-dados" required="" value="<?php echo utf8_encode ($carrega_dados["email"]); ?>" required="" name="email">
           </div>  
 
           <div class="formularioItem">
             <p>CPF*:</p>
-            <input type="text" class="form-dados" required="" value="<?php echo utf8_encode ($carrega_dados["cpf"]); ?>" required="" name="cpf">
+            <input type="text" maxlength="14" OnKeyPress="formatar('###.###.###-##', this)" class="form-dados" required="" value="<?php echo utf8_encode ($carrega_dados["cpf"]); ?>" required="" name="cpf">
           </div> 
 
           <div class="formularioItem">
             <p>Data nascimento*:</p>
-            <input type="text" class="form-dados" required="" value="<?php echo utf8_encode ($carrega_dados["data_nascimento"]); ?>" required="" name="cpf">
+            <input type="text" maxlength="10" OnKeyPress="formatar('##/##/####', this)" class="form-dados" required="" value="<?php echo utf8_encode ($carrega_dados["data_nascimento"]); ?>" required="" name="data_nascimento">
           </div>
 
            <div class="formularioItem">
@@ -226,7 +292,8 @@ input.form-dados{
 
           <div class="formularioItem">
             <p>Celular:</p>
-            <input type="text" class="form-dados" value="<?php echo utf8_encode ($carrega_dados["celular"]); ?>" required="" name="celular">
+            <input type="text" id="cel" class="form-dados" value="<?php echo utf8_encode ($carrega_dados["celular"]); ?>" required="" name="celular">
+            <span><?php error_reporting(0); echo $celularIncorreto; ?></span>
           </div>
 
           <div class="textoItem"><p>Dados da empresa</p></div> 
@@ -238,7 +305,7 @@ input.form-dados{
 
           <div class="formularioItem">
             <p>CNPJ*:</p>
-            <input type="text" class="form-dados" required="" value="<?php echo utf8_encode ($carrega_dados["cnpj"]); ?>" required="" name="cnpj">
+            <input type="text" minlength="18" maxlength="18" OnKeyPress="formatar('##.###.###/####-##', this)" class="form-dados" required="" value="<?php echo utf8_encode ($carrega_dados["cnpj"]); ?>" required="" name="cnpj">
           </div> 
 
           <div class="formularioItem">

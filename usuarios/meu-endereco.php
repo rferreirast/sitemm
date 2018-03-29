@@ -195,13 +195,13 @@ input.form-dados{
     <div class="container-dadosUsuario">      
       <div class="formularioUsuario">
         
-        <form action="">       
+        <form method="POST">     
 
           <div class="textoItem"><p>Endereço</p></div> 
 
           <div class="formularioItem">
             <p>CEP*:</p>
-            <input type="text" class="form-dados" required="" value="<?php echo utf8_encode ($carrega_dados["cep"]); ?>" required="" name="cep">
+            <input type="text" maxlength="9" OnKeyPress="formatar('#####-###', this)" class="form-dados" required="" value="<?php echo utf8_encode ($carrega_dados["cep"]); ?>" required="" name="cep">
           </div>  
 
           <div class="formularioItem">
