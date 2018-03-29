@@ -15,7 +15,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Mestre Moveleiro | <?php echo utf8_encode ($id_produto)?></title> <!-- INFO 1 -->
+  <title>Mestre Moveleiro | <?php echo utf8_encode ($carregar_produto["nome"]); ?></title> <!-- INFO 1 -->
     <meta name="description" content="<?php echo utf8_encode ($SOBRE_PAGINA)?>"> <!-- INFO 2 -->
     <meta name="author" content="Rafael Ferreira">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">

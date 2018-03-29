@@ -15,6 +15,8 @@ if (isset($_GET['addItem'])) {
 	
 	$idProduto = $_GET['addItem'];
 
+//if (isset($_SESSION['itens'][$idProduto][0])){unset($_SESSION['itens'][0]);}
+
 	if (!isset($_SESSION['itens'][$idProduto])) {
 		
 		$_SESSION['itens'][$idProduto] = 1;
@@ -161,6 +163,8 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 	<div class="container-site">
 
 	<div class="titulo-container-produtos" style="width: 100%; float: left;"><p style="font-size: 28px !important; color: #666666; margin-left: 10px; margin-right: 10px;">Produtos do pedido</p></div>
+
+	<div class="obsPedido" style="float: left; width: 100%; background: #64c574; font-size: 16px !important; color: #fff; padding: 10px 20px; border-radius: 10px;"><i class="fas fa-lock"></i> Fique tranquilo, esse ambiente é 100% seguro. Nós não solicitamos dados de cartão de crédito ou conta bancária.</div>
 		
 		<div class="container-itens-pedido" style="width: 100%; float: left;">
 

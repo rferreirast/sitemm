@@ -19,7 +19,8 @@ $pesquisar_produtos = utf8_decode( $_POST["pesquisar_produtos"]);
 }
 .logo{
  float: left;
- width: 10%;
+ width: 25%;
+ margin-right: 10px;
 }
 .img-logo{
  float: left;
@@ -33,8 +34,9 @@ $pesquisar_produtos = utf8_decode( $_POST["pesquisar_produtos"]);
 /*=====================*/
 .container-pesquisa{
  float: left;
- width: 70%;
+ width: 55%;
  text-align: left;
+ margin-top: 6px;
 }
  input.campo-form{
  font-size: 16px;
@@ -44,13 +46,14 @@ $pesquisar_produtos = utf8_decode( $_POST["pesquisar_produtos"]);
  box-sizing: border-box;
  height: 30px;
  padding: 0px 0.4em;
- width: 250px;
- margin-left: 10px;
+ width: 170px;
+ margin-left: 0px;
  margin-top: 0px;
 }
 input.button-buscar{
  width: 30px !important;
- margin: -25;
+ margin: 5px -15px 0px;
+ height: 29.7px !important;
 }
 
 /************ MENU MOBILE ************/
@@ -141,6 +144,10 @@ input.button-buscar{
  float: left;
  width: 80%;
  text-align: left;
+ margin-top: 0;
+}
+input.button-buscar{
+ margin: -25px;
 }
  input.campo-form{
  width: 600px;
@@ -156,7 +163,7 @@ input.button-buscar{
 
 <div class="cabecalho-topo-logo-menu" style="width: 100%; float: left;">
 
- <div class="logo"><div class="img-logo"><img src="img/logo.png" alt=""></div></div> 
+ <div class="logo"><div class="img-logo"><img src="http://www.mestremoveleiro.com.br/produtos/img/logo.png" alt=""></div></div> 
 
  <div class="container-pesquisa">
    

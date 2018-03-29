@@ -1,5 +1,9 @@
 <?php 
- include_once("../system/config.php");
+
+include_once("system/connect.php");
+
+if (!isset($_SESSION)){session_start();}
+include_once("system/verifica_sessao.php");
 
 
  ?>
@@ -9,7 +13,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Mestre Moveleiro | Faça login ou crie a sua conta! </title> <!-- INFO 1 -->
+  <title>Mestre Moveleiro | Meus Pedidos</title> <!-- INFO 1 -->
     <meta name="description" content="<?php echo utf8_encode ($SOBRE_PAGINA)?>"> <!-- INFO 2 -->
     <meta name="author" content="Rafael Ferreira">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -26,15 +30,14 @@
   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 
 <style>
-
 @media screen and (min-width:320px) {
 
-.container-usuarios{float: left; width: 100%; min-height: 500px;}
-.margin-usuarios{
+.container-meus-pedidos{float: left; width: 100%; min-height: 500px;}
+.margin-meus-pedidos{
  width: 90%;
  margin: auto;
 }
-.usuario-container{
+.formulario-meus-pedidos{
  float: left;
  width: 100%;
  background: #fff;
@@ -43,63 +46,35 @@
  margin-top: 40px;
  margin-bottom: 40px;
  box-shadow: 0px 5px 15px 2px rgba(0,0,0,.2);
+ padding: 20px 20px;
 }
 
-/***/
-
-.texto-usuarios{float: left; width: 100%; text-align: center; margin-top: 20px;}
-.texto-usuarios p{
+.texto-container p{
  color: #333;
  font-size: 22px !important;
- font-weight: bold;
+ font-weight: 400;
  padding: 10px 20px;
  border-radius: 10px;
- text-align: center;
+ text-align: left;
 }
 
-/***/
-.usuario-iten {
- float: left;
- width: 100%;
- margin: 12px 0;
- text-align: center;
-}
-.usuario-iten a{ 
- width: 300px;
- padding: 10px 0;
- display: inline-block;
- font-size: 16px !important;
- font-weight: 300;
- border-radius: 5px;
- text-align: center;
-}
-#registro a{
- font-weight: bold;
- color: #fff;
- background: #014d8f;
- margin-top: 20px;
-}
-#login a{
- color: #fff;
- background: #2c3e50;
-}
-#registro a:hover{ background: #014d8fed; }
-#login a:hover{ background: #34495e; }
 
 }
 
 /* PARA PC **/
 @media screen and (min-width:1025px) {
 
-.margin-usuarios{
- width: 40%;
+.margin-meus-pedidos{
+ width: 80%;
 }
-.usuario-iten a{ 
- width: 350px;
+
+input.compo_form{
+ width: 400px;
+}
+
 }
 
 
-}
 
 </style>
 
@@ -116,19 +91,21 @@
 <!-- MENU -->
 <?php include('../menu.php'); ?>
 
-<div class="container-usuarios">
-	<div class="margin-usuarios">
+<div class="container-meus-pedidos">
+  <div class="margin-meus-pedidos">
+    
+    <div class="formulario-meus-pedidos">
 
-		<div class="usuario-container">	
+    <div class="texto-container" style="border-bottom: 1px solid #c4c4c4;"><p>Meus Pedidos</p></div>
 
-		<div class="texto-usuarios"><p>Olá, Faça login ou crie a sua conta!</p></div>
+    <?php include_once('menu_usuario.php'); ?>
+      
 
-			<div class="usuario-iten" id="registro"><a href="registro.php">Sou novo</a></div>
-			<div class="usuario-iten" id="login"><a href="login.php">Já tenho conta</a></div>
 
-		</div>
+    </div>
 
-	</div>
+
+  </div>
 </div>
 
 <!-- RODAPE -->

@@ -1,5 +1,6 @@
 <?php
-/*error_reporting(E_ALL ^ E_DEPRECATED);
+/*
+error_reporting(E_ALL ^ E_DEPRECATED);
 //Banco de dados
  define('HOSTNAME', 'bdmestre.mysql.dbaas.com.br');
  define('USERNAME', 'bdmestre');
@@ -10,7 +11,7 @@ $servername = HOSTNAME;
 $username = USERNAME;
 $password = PASSWORD;
 $dbname = DATABASE;
-s
+
 // Create connection
 
 $conn = new mysqli($servername, $username, $password, $dbname);

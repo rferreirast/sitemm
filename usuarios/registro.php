@@ -1,15 +1,11 @@
-<?php 
- include_once("../system/config.php");
-
-
- ?>
+<?php include_once("system/cadastra_cliente.php");?>
  
 <!DOCTYPE html>
 <html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Mestre Moveleiro | Faça login ou crie a sua conta! </title> <!-- INFO 1 -->
+  <title>Mestre Moveleiro | Crie a sua conta </title> <!-- INFO 1 -->
     <meta name="description" content="<?php echo utf8_encode ($SOBRE_PAGINA)?>"> <!-- INFO 2 -->
     <meta name="author" content="Rafael Ferreira">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -26,15 +22,14 @@
   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 
 <style>
-
 @media screen and (min-width:320px) {
 
-.container-usuarios{float: left; width: 100%; min-height: 500px;}
-.margin-usuarios{
+.container-registrar{float: left; width: 100%; min-height: 500px;}
+.margin-registrar{
  width: 90%;
  margin: auto;
 }
-.usuario-container{
+.formulario-registro{
  float: left;
  width: 100%;
  background: #fff;
@@ -43,61 +38,58 @@
  margin-top: 40px;
  margin-bottom: 40px;
  box-shadow: 0px 5px 15px 2px rgba(0,0,0,.2);
+ padding: 20px 20px;
 }
+.form_item{ float: left;width: 100%; text-align: center; margin-bottom: 10px; }
 
-/***/
-
-.texto-usuarios{float: left; width: 100%; text-align: center; margin-top: 20px;}
 .texto-usuarios p{
  color: #333;
  font-size: 22px !important;
- font-weight: bold;
+ font-weight: 400;
  padding: 10px 20px;
  border-radius: 10px;
  text-align: center;
 }
 
-/***/
-.usuario-iten {
- float: left;
- width: 100%;
- margin: 12px 0;
- text-align: center;
+input.compo_form{
+ font-size: 15px;
+ color: #343434;
+ background-color: #fff;
+ box-sizing: border-box;
+ height: 32px;
+ padding: 0px 0.4em;
+ width: 250px;
+ margin-left: 10px;
+ border: 0;
+ border-bottom: 1px solid #c4c4c4 !important;
 }
-.usuario-iten a{ 
- width: 300px;
- padding: 10px 0;
- display: inline-block;
- font-size: 16px !important;
- font-weight: 300;
- border-radius: 5px;
- text-align: center;
-}
-#registro a{
- font-weight: bold;
- color: #fff;
+input.compo_form:focus{ border-bottom: 3px solid #014d8f !important;}
+
+input.button_criar{
+ float: right;
+ text-align: right;
+ padding: 8px 20px;
  background: #014d8f;
- margin-top: 20px;
-}
-#login a{
  color: #fff;
- background: #2c3e50;
+ border-radius: 5px;
+ margin-top: 25px;
+ text-decoration: none;
+ margin-left: 10px;
 }
-#registro a:hover{ background: #014d8fed; }
-#login a:hover{ background: #34495e; }
+
 
 }
 
 /* PARA PC **/
 @media screen and (min-width:1025px) {
 
-.margin-usuarios{
- width: 40%;
-}
-.usuario-iten a{ 
- width: 350px;
+.margin-registrar{
+ width: 30%;
 }
 
+input.compo_form{
+ width: 400px;
+}
 
 }
 
@@ -116,25 +108,35 @@
 <!-- MENU -->
 <?php include('../menu.php'); ?>
 
-<div class="container-usuarios">
-	<div class="margin-usuarios">
+<div class="container-registrar">
+  <div class="margin-registrar">
+    
+    <div class="formulario-registro">
 
-		<div class="usuario-container">	
+    <div class="texto-usuarios"><p>Crie a sua conta</p></div>
+      
+      <form method="POST">
 
-		<div class="texto-usuarios"><p>Olá, Faça login ou crie a sua conta!</p></div>
+        <div class="form_item"><input type="text" placeholder="Nome" autofocus="" required="" class="compo_form" name="nome"></div>
+        <div class="form_item"><input type="email" placeholder="Email" required="" class="compo_form" name="email"></div>
+        <div class="form_item"><input type="password" placeholder="Senha" required="" class="compo_form" name="senha"></div>
+        <input type="submit" class="button_criar" value="Criar conta" name="create_account">
 
-			<div class="usuario-iten" id="registro"><a href="registro.php">Sou novo</a></div>
-			<div class="usuario-iten" id="login"><a href="login.php">Já tenho conta</a></div>
+      </form>
 
-		</div>
 
-	</div>
+    </div>
+
+
+  </div>
 </div>
 
 <!-- RODAPE -->
 <?php include('../souce=rodape.php'); ?>
 
 </body>
+
+
 
 </html>
 
