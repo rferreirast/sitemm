@@ -147,11 +147,11 @@ li{
       <button class="dropbtn">Produtos <span class="icon fas fa-angle-down" id="icon"></span></button>
       <div class="dropdown-content">
         <a href="/produtos">Todos</a>
-        <a href="pesquisa.php?categoria=cadeiras">Cadeiras</a>
-        <a href="pesquisa.php?categoria=Mesas">Mesas</a>
-        <a href="pesquisa.php?categoria=Banquetas">Banquetas</a>
-        <a href="pesquisa.php?categoria=Conjuntos">Conjuntos</a>
-        <a href="pesquisa.php?categoria=Infantil">Infantil</a>
+        <a href="/produtos/pesquisa.php?categoria=cadeiras">Cadeiras</a>
+        <a href="/produtos/pesquisa.php?categoria=Mesas">Mesas</a>
+        <a href="/produtos/pesquisa.php?categoria=Banquetas">Banquetas</a>
+        <a href="/produtos/pesquisa.php?categoria=Conjuntos">Conjuntos</a>
+        <a href="/produtos/pesquisa.php?categoria=Infantil">Infantil</a>
       </div>
     </div>
 
@@ -169,10 +169,10 @@ li{
   
    <div class="menu-usuarios">
 
-      <li><a class="item-menu-usuarios" href="registro.php" id="border-left">Cadastre-se</a></li>
-      <li><a class="item-menu-usuarios" href="login.php" id="border-left">Entrar</a></li>
+      <li><a class="item-menu-usuarios" href="/usuarios/registro.php" id="border-left">Cadastre-se</a></li>
+      <li><a class="item-menu-usuarios" href="/usuarios/login.php" id="border-left">Entrar</a></li>
       <li><a class="item-menu-usuarios" href="#" id="border-left">Contato</a></li>
-      <li><a class="item-menu-usuarios" href="/itens-pedido.php"><i class="fas fa-shopping-cart" id="icon-sacola"></i></a></li>
+      <li><a class="item-menu-usuarios" href="/produtos/itens-pedido.php"><i class="fas fa-shopping-cart" id="icon-sacola"></i></a></li>
      
    </div>
   
