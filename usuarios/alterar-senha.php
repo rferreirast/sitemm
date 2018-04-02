@@ -14,25 +14,23 @@ include_once("system/verifica_sessao.php");
 
 if (isset($_POST['salvarEndereco'])) {
 
-$cep = utf8_decode( $_POST["cep"]);  
-$rua = utf8_decode( $_POST["rua"]);  
-$numero_casa = utf8_decode( $_POST["numero_casa"]);  
-$complemento = utf8_decode( $_POST["complemento"]);  
-$bairro = utf8_decode( $_POST["bairro"]);  
-$cidade = utf8_decode( $_POST["cidade"]);  
-$estado = utf8_decode( $_POST["estado"]);  
+$senha_atual = utf8_decode( $_POST["senha_atual"]);  
+$nova_senha = utf8_decode( $_POST["nova_senha"]);   
 
        //SALVA OS DADOS NO MYSQL    
-       $sql = "UPDATE loja_clientes SET `cep`='$cep', `rua`='$rua', `numero_casa`='$numero_casa', `complemento`='$complemento', `bairro`='$bairro', `cidade`='$cidade', `estado`='$estado' WHERE email = '$email' ";
-          
+       $sql = "UPDATE loja_clientes SET `senha`='$nova_senha' WHERE email = '$email' AND senha = '$senha_atual' ";
+
               if ($conn->query($sql) === TRUE) {
-              header("location: meu-endereco.php");
+              echo "<script>
+               alert('Senha alterada com sucesso !!');
+               location.href='alterar-senha.php';
+               </script>";
               }
 
        else{        
         echo "<script>
        alert('Algo deu errado, tente novamente !!');
-       location.href='meu-endereco.php';
+       location.href='alterar-senha.php';
        </script>";
        }
      }
@@ -44,7 +42,7 @@ $estado = utf8_decode( $_POST["estado"]);
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Mestre Moveleiro | Meu Endereço</title> <!-- INFO 1 -->
+  <title>Mestre Moveleiro | Alterar Senha</title> <!-- INFO 1 -->
     <meta name="description" content="<?php echo utf8_encode ($SOBRE_PAGINA)?>"> <!-- INFO 2 -->
     <meta name="author" content="Rafael Ferreira">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -67,12 +65,12 @@ $estado = utf8_decode( $_POST["estado"]);
 <style>
 @media screen and (min-width:320px) {
 
-.container-meus-dados{float: left; width: 100%; min-height: 500px;}
-.margin-meus-dados{
+.container-alterar-senha{float: left; width: 100%; min-height: 500px;}
+.margin-alterar-senha{
  width: 90%;
  margin: auto;
 }
-.formulario-meus-dados{
+.formulario-alterar-senha{
  float: left;
  width: 100%;
  background: #fff;
@@ -94,7 +92,7 @@ $estado = utf8_decode( $_POST["estado"]);
 
 /*===================*/
 
-.container-dadosUsuario{
+.container-alterarSenha{
  float: left;
  width: 100%;
  padding: 20px;
@@ -107,7 +105,7 @@ $estado = utf8_decode( $_POST["estado"]);
  margin-bottom: 40px;
 }
 
-.formularioUsuario{float: left; width: 100%;}
+.formularioalterarSenha{float: left; width: 100%;}
 
 .formularioItem{float: left; width: 100%; margin-bottom: 20px;}
 
@@ -174,12 +172,12 @@ input.form-dados{
 /* PARA PC **/
 @media screen and (min-width:1025px) {
 
-.container-dadosUsuario{
+.container-alterarSenha{
  width: 83%;
  margin-left: 2%;
 }
 
-.margin-meus-dados{
+.margin-alterar-senha{
  width: 80%;
 }
 
@@ -213,57 +211,30 @@ input.form-dados{
 <!-- MENU -->
 <?php include('../menu.php'); ?>
 
-<div class="container-meus-dados">
-  <div class="margin-meus-dados">
+<div class="container-alterar-senha">
+  <div class="margin-alterar-senha">
     
-    <div class="formulario-meus-dados">
+    <div class="formulario-alterar-senha">
 
-    <div class="texto-container" style="border-bottom: 1px solid #c4c4c4;"><p>Meu Endereço</p></div>
+    <div class="texto-container" style="border-bottom: 1px solid #c4c4c4;"><p>Alterar senha</p></div>
 
     <?php include_once('menu_usuario.php'); ?>
 
-    <div class="container-dadosUsuario">      
-      <div class="formularioUsuario">
+    <div class="container-alterarSenha">      
+      <div class="formularioalterarSenha">
         
         <form method="POST">     
 
-          <div class="textoItem"><p>Endereço</p></div> 
-
-          <div class="formularioItem">
-            <p>CEP*:</p>
-            <input type="text" id="cep" minlength="9" maxlength="9" OnKeyPress="formatar('#####-###', this)" class="form-dados" required="" value="<?php echo utf8_encode ($carrega_dados["cep"]); ?>" required="" name="cep">
+          <div class="formularioItem" style="width: 100%;">
+            <p>Senha Atual*:</p>
+            <input type="password" minlength="8" class="form-dados" required="" value="" required="" name="senha_atual">
           </div>  
 
-          <div class="formularioItem">
-            <p>Nome da rua*:</p>
-            <input type="text" id="rua" class="form-dados" required="" value="<?php echo utf8_encode ($carrega_dados["rua"]); ?>" required="" name="rua">
-          </div>  
-
-          <div class="formularioItem">
-            <p>Número*:</p>
-            <input type="text" class="form-dados" required="" value="<?php echo utf8_encode ($carrega_dados["numero_casa"]); ?>" required="" name="numero_casa">
-          </div>  
-
-          <div class="formularioItem">
-            <p>Complemento:</p>
-            <input type="text" class="form-dados" value="<?php echo utf8_encode ($carrega_dados["complemento"]); ?>" name="complemento">
-          </div>
-
-          <div class="formularioItem">
-            <p>Bairro*:</p>
-            <input type="text" id="bairro" class="form-dados" required="" value="<?php echo utf8_encode ($carrega_dados["bairro"]); ?>" required="" name="bairro">
-          </div>
-
-          <div class="formularioItem">
-            <p>Cidade*:</p>
-            <input type="text" id="cidade" class="form-dados" required="" value="<?php echo utf8_encode ($carrega_dados["cidade"]); ?>" required="" name="cidade">
-          </div>
-
-          <div class="formularioItem">
-            <p>Estado*:</p>
-            <input type="text" id="uf" class="form-dados" required="" value="<?php echo utf8_encode ($carrega_dados["estado"]); ?>" required="" name="estado">
+          <div class="formularioItem" style="width: 100%;">
+            <p>Nova Senha*:</p>
+            <input type="password" minlength="8" class="form-dados" required="" value="" required="" name="nova_senha">
           </div> 
-
+          
           <input type="submit" value="Salvar" class="button-salvarDados" name="salvarEndereco">     
           
 

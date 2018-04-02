@@ -41,7 +41,7 @@ include_once("system/verifica_sessao.php");
  float: left;
  width: 100%;
  background: #fff;
- height: 300px;
+ min-height: 500px;
  border-radius: 10px;
  margin-top: 40px;
  margin-bottom: 40px;

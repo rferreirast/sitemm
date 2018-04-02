@@ -55,11 +55,10 @@
 	<div class="menuUsuario-itens">
 		
 	  <div class="menuUsuario-item"><a href="minha-conta.php">Minha conta</a></div>
+	  <div class="menuUsuario-item"><a href="meus-pedidos.php">Meus pedidos</a></div>
+	  <div class="menuUsuario-item"><a href="alterar-senha.php">Alterar Senha</a></div>
 	  <div class="menuUsuario-item"><a href="meus-dados.php">Meus dados</a></div>
 	  <div class="menuUsuario-item"><a href="meu-endereco.php">Meu endereco</a></div>
-      <div class="menuUsuario-item"><a href="meus-pedidos.php">Meus pedidos</a></div>
-      <div class="menuUsuario-item"><a href="#4">Menu</a></div>
-
 
 	</div>
 
