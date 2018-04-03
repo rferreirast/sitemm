@@ -82,7 +82,7 @@ li{
  display: block;
 }
 
-.dropdown-content a:hover {background-color: #3887f5;}
+.dropdown-content a:hover {background-color: #ffc11e;}
 
 .dropdown:hover .dropdown-content {
     display: block;

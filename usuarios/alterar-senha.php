@@ -17,22 +17,21 @@ if (isset($_POST['salvarEndereco'])) {
 $senha_atual = utf8_decode( $_POST["senha_atual"]);  
 $nova_senha = utf8_decode( $_POST["nova_senha"]);   
 
-       //SALVA OS DADOS NO MYSQL    
-       $sql = "UPDATE loja_clientes SET `senha`='$nova_senha' WHERE email = '$email' AND senha = '$senha_atual' ";
 
-              if ($conn->query($sql) === TRUE) {
-              echo "<script>
-               alert('Senha alterada com sucesso !!');
-               location.href='alterar-senha.php';
-               </script>";
-              }
+        //VERIFICA NO BANCO DE DADOS SE EMAIL E SENHA CONFEREM
+        $sql = mysqli_query($conn, "SELECT * FROM loja_clientes WHERE email = '$email' AND senha = '$senha_atual' ") or print mysql_error();          
+        if(mysqli_num_rows($sql) == FALSE)
+                    echo '<script>alert("Senhas não conferem, tente novamente !!");</script>';
+        else {
 
-       else{        
-        echo "<script>
-       alert('Algo deu errado, tente novamente !!');
-       location.href='alterar-senha.php';
-       </script>";
+        //SALVA OS DADOS NO BD
+        $sql = " UPDATE loja_clientes SET `senha`='$nova_senha' WHERE email = '$email' AND senha = '$senha_atual' ";
+
+          if ($conn->query($sql) === TRUE) {
+          echo '<script>alert("Senha alterada com sucesso !!");</script>';
+          }
        }
+
      }
 
  ?>
@@ -227,17 +226,19 @@ input.form-dados{
 
           <div class="formularioItem" style="width: 100%;">
             <p>Senha Atual*:</p>
-            <input type="password" minlength="8" class="form-dados" required="" value="" required="" name="senha_atual">
-          </div>  
+            <div id="input"><input type="password" minlength="8" class="form-dados" required="" value="" required="" name="senha_atual" style="width: 200px;">
+             <a id="eye"><i class="fas fa-eye" style="color: #c4c4c4; cursor: pointer;"></i></a>
+            </div>
+          </div>
 
           <div class="formularioItem" style="width: 100%;">
             <p>Nova Senha*:</p>
-            <input type="password" minlength="8" class="form-dados" required="" value="" required="" name="nova_senha">
-          </div> 
+            <div id="input2"><input type="password" minlength="8" class="form-dados" required="" value="" required="" name="nova_senha" style="width: 200px;">
+            <a id="eye2"><i class="fas fa-eye" style="color: #c4c4c4; cursor: pointer;"></i></a>
+            </div>
           
           <input type="submit" value="Salvar" class="button-salvarDados" name="salvarEndereco">     
           
-
 
         </form>
 
@@ -258,6 +259,23 @@ input.form-dados{
 
 </body>
 
+<script>
+ var input = document.querySelector('#input input');
+ var eye = document.querySelector('#input #eye');
+ eye.addEventListener('click', function () {
+  input.type = input.type == 'text' ? 'password' : 'text';
+});
+
+  var input2 = document.querySelector('#input2 input');
+ var eye2 = document.querySelector('#input2 #eye2');
+ eye2.addEventListener('click', function () {
+  input2.type = input2.type == 'text' ? 'password' : 'text';
+});
+</script>
+
 </html>
+
+
+
 
 
