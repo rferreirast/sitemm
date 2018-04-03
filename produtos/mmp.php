@@ -80,12 +80,12 @@
 }
 .mmp-infos-produto-nome p{
  color: #151515;
- font-size: 30px !important;
- font-weight: bold;
- margin-bottom: 20px;
+ font-size: 20px !important;
+ font-weight: normal;
+ margin-bottom: 10px;
 }
 .mmp-infos-produto-preco p{
- color: #151515;
+ color: #014d8f;
  font-size: 35px !important;
  font-weight: 400;
  margin-bottom: 20px;
@@ -109,11 +109,10 @@
 
 .mmp-button-comprar a{
  float: left;
- width: 70%;
- font-size: 22px;
+ font-size: 16px;
  color: #fff;
- background: #014d8f;
  padding: 15px 20px;
+ background: #014d8f;
  border-radius: 5px;
  font-weight: bold;
  text-decoration: none;	
@@ -211,7 +210,46 @@
 	    <div class="mmp-infos-produto-margem">
 	  	
 	  	<div class="mmp-infos-produto-nome"><p><?php echo utf8_encode ($carregar_produto["nome"]); ?></p></div>
+	  	<p style="width: 100%; float: left; color: #848484; font-size: 12px !important;">Codigo: <?php echo utf8_encode ($carregar_produto["id"]); ?></p>
 	  	<div class="mmp-infos-produto-preco"><p>R$ <?php echo utf8_encode (number_format($carregar_produto["preco"], 2,',','.')); ?></p></div>
+
+	  	<style>
+	  		.variavelProduto{float: left; width: 100%; margin-bottom: 10px;}
+            .item-variavel{float: left; width: 100%; padding-bottom: 5px;}
+            .item-variavel p{color: #151515;font-size: 14px !important; padding-bottom: 0px;}
+            .form-variavelProduto{border: 1px solid #014d8f; border-radius: 5px; width: 50%; padding: 5px 10px;}
+
+            
+	  	</style>
+
+	  	<div class="variavelProduto">
+	  		
+	  	  <div class="item-variavel">
+          <p><b>Cor da Ferragem:</b></p>
+          <label for="variavel1"></label>
+          <select name="variavel1" class="form-variavelProduto">
+            <option value="">Selecione</option>
+            <option value="Branca">Branca</option>
+            <option value="Preta">Preta</option>
+            <option value="Preta">Prata</option>  
+            <option value="Preta">Ouro Velho</option>                    
+          </select>                 
+          </select>
+          </div>
+
+          <div class="item-variavel">
+          <p><b>Cor do estofado:</b></p>
+          <label for="variavel2"></label>
+          <select name="variavel2" class="form-variavelProduto">
+            <option value="">Selecione</option>
+            <option value="Branca">Branco</option>
+            <option value="Preta">Preto</option>
+            <option value="Preta">Azul</option> 
+            <option value="Preta">Vermelho</option>                    
+          </select>
+          </div>
+
+	  	</div>	  	
 
 	  	<div class="mmp-infos-descricao-lateral">
 	  	    <p id="infoMedidas">Medidas</p>

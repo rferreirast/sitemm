@@ -149,7 +149,7 @@ include_once("system/verifica_sessao.php");
     
     <div class="formulario-meus-dados">
 
-    <div class="texto-container" style="border-bottom: 1px solid #c4c4c4;"><p>Detalhes do Pedido #01</p></div>
+    <div class="texto-container" style="border-bottom: 1px solid #c4c4c4;"><p>Detalhes do Pedido #01548454154 03/04/2018</p></div>
 
     <?php include_once('menu_usuario.php'); ?>
 
@@ -200,6 +200,8 @@ include_once("system/verifica_sessao.php");
      </table>
 
      <p class="totalPedido" style="float: right; text-align: right; width: 100%; padding-top: 20px; font-size: 18px !important; margin-right: 30px;"><b>Total: R$ 10.000,00</b></p>
+
+     <div class="fretePedido"><p>Valor do frete: R$ 1.500,00</p></div>
 
 <style>
 
