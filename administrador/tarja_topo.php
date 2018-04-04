@@ -1,7 +1,7 @@
 <?php 
 
 if (!isset($_SESSION)){session_start();}
-include_once("system/verifica_sessao.php");
+//include_once("system/verifica_sessao.php");
 
  ?>
 

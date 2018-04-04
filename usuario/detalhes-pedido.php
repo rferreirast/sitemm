@@ -1,5 +1,5 @@
 <?php 
-/*
+
 include_once("system/connect.php");
 
 if (!isset($_SESSION)){session_start();}
@@ -7,13 +7,22 @@ include_once("system/verifica_sessao.php");
 
  $email = $_SESSION['sessao_usuario'];
 
-//CARREGA PRODUTO 
+//CARREGA DADOS CLIENTE 
  $pesquisa = "SELECT * FROM loja_clientes WHERE email = '$email'";
  $resultado_pesquisa = mysqli_query($conn, $pesquisa);
  $carrega_dados = mysqli_fetch_assoc($resultado_pesquisa);
 
+ //CARREGA DADOS DO PRODUTO
 
-*/
+//BUSCA CODIGO NA URL
+ $id_pedido = intval($_GET['pedido']);
+
+ $pesquisa_produto = "SELECT * FROM loja_pedidos WHERE id = '$id_pedido'";
+ $resultado_pedido = mysqli_query($conn, $pesquisa_produto);
+ $carregar_pedido = mysqli_fetch_assoc($resultado_pedido);
+
+
+
  ?>
  
 <!DOCTYPE html>
@@ -63,7 +72,7 @@ include_once("system/verifica_sessao.php");
 }
 .texto-container p{
  color: #333;
- font-size: 22px !important;
+ font-size: 16px !important;
  font-weight: 400;
  padding: 10px 20px;
  border-radius: 10px;
@@ -85,15 +94,9 @@ include_once("system/verifica_sessao.php");
  margin-bottom: 40px;
 }
 
-. p{
- color: #014d8f;
- font-size: 22px !important;
- font-weight: 400;
- text-decoration: none;
-}
-
 /*==============================*/
- .meus-pedido{width: 100%;}
+ .meus-pedido{float: left; width: 100%;}
+ .detalhes-pedido{float: left; width: 100%;}
  .header-pedido{padding: 16px; font-size: 12px !important; font-weight: 700; text-align: center; color: #151515; border-bottom: 1px solid #c4c4c4;}
  .header-pedido p{font-size: 12px !important;}
 
@@ -101,8 +104,18 @@ include_once("system/verifica_sessao.php");
  .cell-pedido p{font-size: 12px !important;}
 
 
+/*TOTAIS DO PEDIDO=====================================*/
+.totaisPedido{float: left ;width: 100%; margin-bottom: 20px; margin-top: 10px;}
+.totaisPedido p{float: right; text-align: right; width: 100%; font-size: 16px !important; margin-right: 10px; margin-bottom: 5px;}
+
+/*DADOS DO CLIENTE NO PEDIDO ===================================*/
+
+.dadosCLiente{float: left;width: 100%;}
+.dadosCliente-Iten{float: left; width: 33.333%; margin-bottom: 20px;}
+.dadosCliente-Iten p{color: #888; font-size: 14px !important; padding: 0; margin-bottom: 5px;}
 
 }
+
 
 /*=================================================================================*/
 
@@ -149,14 +162,19 @@ include_once("system/verifica_sessao.php");
     
     <div class="formulario-meus-dados">
 
-    <div class="texto-container" style="border-bottom: 1px solid #c4c4c4;"><p>Detalhes do Pedido #01548454154 03/04/2018</p></div>
+    <div class="texto-container" style="border-bottom: 1px solid #c4c4c4;">
+    <p style="">Detalhes do Pedido #<?php echo utf8_decode($carregar_pedido["id"]) ?>
+
+    <span style="float: right; font-weight: bold; padding-left: 10px;">Data do pedido: <?php echo date('d-m-Y', strtotime($carregar_pedido["data_pedido"])); ?></span>    
+
+
 
     <?php include_once('menu_usuario.php'); ?>
 
     <div class="container-detalhesPedido">
        <div class="pedido-detalhes">  
 
-       <div class="statusPedido"><p><b>Status do pedido:</b> Solicitado</p></div>     
+       <div class="statusPedido"><p><b>Status do pedido:</b> <?php echo utf8_decode($carregar_pedido["status"]) ?></p></div>     
 
         <table class="detalhes-pedido">
 
@@ -169,7 +187,6 @@ include_once("system/verifica_sessao.php");
            <th class="header-pedido">Qtd</th>
            <th class="header-pedido">Valor</th>
            <th class="header-pedido">Subtotal</th>
-           <th class="header-pedido"></th>
          </tr>
        </thead>     
 
@@ -199,9 +216,46 @@ include_once("system/verifica_sessao.php");
 
      </table>
 
-     <p class="totalPedido" style="float: right; text-align: right; width: 100%; padding-top: 20px; font-size: 18px !important; margin-right: 30px;"><b>Total: R$ 10.000,00</b></p>
+     <div class="totaisPedido">
 
-     <div class="fretePedido"><p>Valor do frete: R$ 1.500,00</p></div>
+     <p>Total produtos: R$ <?php echo number_format($carregar_pedido["valor_total"], 2,',','.') ?></p>
+
+     <p>Valor do frete: R$ 1.500,00</p>
+
+     <p style="color: #014d8f;"><b>Total pedido: R$ 11.500,00</b></p>
+       
+     </div>
+
+
+
+     <div class="dadosCLiente">
+
+       <div class="dadosCliente-Iten">
+       <p style="font-size: 16px !important; font-weight: bold; color: #333;">Dados do cliente</p>
+       <p>Empresa: <?php echo utf8_decode($carrega_dados["razao_social"]); ?></p>
+       <p>CNPJ: <?php echo utf8_decode($carrega_dados["cnpj"]); ?></p>
+       <p>IE: <?php echo utf8_decode($carrega_dados["ie"]); ?></p>
+       <p>Representante:</b> <?php echo utf8_decode($carrega_dados["nome"]); ?></p>
+       <p>CPF: <?php echo utf8_decode($carrega_dados["cpf"]); ?></p>
+         
+       </div>
+
+       <div class="dadosCliente-Iten">
+       <p style="font-size: 16px !important; font-weight: bold; color: #333;">Endereço de entrega</p>
+       <p>Rua: <?php echo utf8_decode($carrega_dados["rua"]); ?>, <?php echo utf8_decode($carrega_dados["numero_casa"]); ?></p>
+       <p>Bairro: <?php echo utf8_decode($carrega_dados["bairro"]); ?></p>
+       <p>Cidade: <?php echo utf8_decode($carrega_dados["cidade"]); ?></p>
+       <p>Estado: <?php echo utf8_decode($carrega_dados["estado"]); ?></p>
+         
+       </div>
+
+       <div class="dadosCliente-Iten">
+         <p style="font-size: 16px !important; font-weight: bold; color: #333;">Pagamento</p>
+         <p>Forma pag.: Cartão de crédito</p>
+         <p>Parcelas: 12x</p>
+       </div>
+       
+     </div>
 
 <style>
 

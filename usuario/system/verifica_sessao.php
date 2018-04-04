@@ -9,7 +9,7 @@ require("valida_login.php");
 }*/
 
 if (!$_SESSION['sessao_usuario']) {
-	header("location:login.php");
+	header("location:typeaccount.php");
 }
 
 if($_SESSION['registro']){
@@ -21,7 +21,7 @@ if ( $segundos > $_SESSION['limite']) { //SE O TEMPO ACIMA FOR MAIOR QUE O PERMI
 	unset($_SESSION['limite']);
 	unset($_SESSION['sessao_usuario']);
 	session_destroy();
-	header("location:login.php");
+	header("location:typeaccount.php");
 }else{
 	$_SESSION['registro'] = time(); //FAZ A RENOVAÇÃO DO TEMPO
 }

@@ -1,0 +1,101 @@
+[33mcommit 49ead0af0095e4cd67bd57c3da57372715e985bd[m
+Author: Rafael Ferreira <rafael_ferreirast@hotmail.com>
+Date:   Tue Apr 3 16:29:52 2018 -0300
+
+    criacao da pagina de detalhes do pedido
+
+[33mcommit 6af22546f466150ce32bb3a5bb6d9fef4031e501[m
+Author: Rafael Ferreira <rafael_ferreirast@hotmail.com>
+Date:   Mon Apr 2 19:21:45 2018 -0300
+
+    mascara de numeros dos dados do painel cliente e botao de insercao dos dados no Bd
+
+[33mcommit d7c4f6f80384dc96756d54952c78f0d046dbc4c3[m
+Author: Rafael Ferreira <rafael_ferreirast@hotmail.com>
+Date:   Mon Apr 2 11:02:35 2018 -0300
+
+    insercao das url's do menu
+
+[33mcommit d3750cb25900ee07309282d35460f16ac89750ef[m
+Author: Rafael Ferreira <rafael_ferreirast@hotmail.com>
+Date:   Thu Mar 29 18:17:31 2018 -0300
+
+    edicoes nos forms de contato
+
+[33mcommit d2358319ba430a00cb8837649a236512d9fcf436[m
+Author: Rafael Ferreira <rafael_ferreirast@hotmail.com>
+Date:   Thu Mar 29 16:26:10 2018 -0300
+
+    criacao do painel de clientes
+
+[33mcommit ab7bac85f36da0a51cb436dc16ea06eb9cb86187[m
+Author: Rafael Ferreira <rafael_ferreirast@hotmail.com>
+Date:   Wed Mar 28 16:00:38 2018 -0300
+
+    configuracoes na pagina do produto mmp
+
+[33mcommit f4d6bb800c4e2001de131f18a08fee6201378836[m
+Author: Rafael Ferreira <rafael_ferreirast@hotmail.com>
+Date:   Wed Mar 28 11:22:15 2018 -0300
+
+    comando do botao atualiza quantidades de produtos do pedido
+
+[33mcommit 3064c1a868b7a6193996c1da6ed8a1590c67d866[m
+Author: Rafael Ferreira <rafael_ferreirast@hotmail.com>
+Date:   Tue Mar 27 18:14:54 2018 -0300
+
+    alteracoes no estilo da pagina lista pedidos
+
+[33mcommit 5c7fc425945852fcb242880c1c6c15b28bca7134[m
+Author: Rafael Ferreira <rafael_ferreirast@hotmail.com>
+Date:   Tue Mar 27 18:01:07 2018 -0300
+
+    criacao do codigo php para incluir produtos a lista de pedidos
+
+[33mcommit d9ba9d1bc056f27707cac20a4f51ac9a56ad0dd4[m
+Author: Rafael Ferreira <rafael_ferreirast@hotmail.com>
+Date:   Mon Mar 26 20:34:24 2018 -0300
+
+    alteracoes css na pagina lista pedidos
+
+[33mcommit 0018bad779a4dbefa8c18bcd93fd1c2b6bd1c0b2[m
+Author: Rafael Ferreira <rafael_ferreirast@hotmail.com>
+Date:   Mon Mar 26 17:36:26 2018 -0300
+
+    pagina lista pedido (criacao do botao adicionar itens, botao finalizar pedido e total to pedido)
+
+[33mcommit 148b02fb67c633750258d1bf2a79ce6d759d7860[m
+Author: Rafael Ferreira <rafael_ferreirast@hotmail.com>
+Date:   Mon Mar 26 16:35:06 2018 -0300
+
+    criacao da pagina itens pedido (carrinho de pedido)
+
+[33mcommit 5f2e0904d8d3ee95ed893eb3e4e84a1d4b4f51c1[m
+Author: Rafael Ferreira <rafael_ferreirast@hotmail.com>
+Date:   Mon Mar 26 14:08:33 2018 -0300
+
+    primeira configuracao produtos index (besteira)
+
+[33mcommit f5be6150da2455379e8db208df0f40b08386fe7a[m
+Author: Rafael Ferreira <rafael_ferreirast@hotmail.com>
+Date:   Mon Mar 26 14:03:54 2018 -0300
+
+    configuracao da barra de pesquisas
+
+[33mcommit dc41cc55aee10f472d4f6027ee4b1078bd5f3618[m
+Author: Rafael Ferreira <rafael_ferreirast@hotmail.com>
+Date:   Mon Mar 26 12:49:45 2018 -0300
+
+    Site versao 2.0
+
+[33mcommit 7ece2aa2b06a06ffb2b70c15c8482f6e9d2676f1[m
+Author: Rafael Ferreira <rafael_ferreirast@hotmail.com>
+Date:   Mon Mar 26 12:19:01 2018 -0300
+
+    Site Versao 1.0
+
+[33mcommit a69105209df750bd0079b3d8f97a367773fd8a75[m
+Author: rferreirast <37805716+rferreirast@users.noreply.github.com>
+Date:   Mon Mar 26 11:56:58 2018 -0300
+
+    Create README.md

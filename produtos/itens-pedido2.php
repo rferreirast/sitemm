@@ -1,13 +1,8 @@
 <?php 
 
-include_once("../usuario/system/connect.php");
-
-if (!isset($_SESSION)){session_start();}
-include_once("../usuario/system/verifica_sessao.php");
-
 include_once("system/config.php");
 
-//session_start();
+session_start();
 
 if (!isset($_SESSION['itens'])) {
 	$_SESSION['itens'] = array();
@@ -25,10 +20,8 @@ if (isset($_GET['addItem'])) {
 	if (!isset($_SESSION['itens'][$idProduto])) {
 		
 		$_SESSION['itens'][$idProduto] = 1;
-		header("Location: itens-pedido.php");
 	}else{
 		$_SESSION['itens'][$idProduto] += 1;
-		header("Location: itens-pedido.php");
 	}
 }
 
@@ -99,38 +92,33 @@ header("Location: itens-pedido.php");
  float: left;
  width: 100%;
 }
-
-/*EXIBICAO LISTA PEDIDOS=========================*/
-
- .itens-pedido{float: left; width: 100%; margin-top: 20px; border-radius: 10px; background: #fff;}
-
-.header-itensPedido{
- padding: 16px;
- font-size: 12px !important;
- font-weight: 700;
- text-align: center;
- background: #014d8f;
- color: #fff;
-}
-
-.header-itensPedido p{font-size: 12px !important;}
-
-.cell-itensPedido{
- position: relative;
- padding: 16px;
- font-size: 14px !important;
- text-align: center;
- border: 0;
- border-bottom: 1px solid #d9d9d9;
+.iten-pedido{
+ float: left;
+ width: 100%;
  background: #fff;
+ border-radius: 10px;
+ padding-top: 10px;
+ padding-bottom: 10px;
+ margin-top: 10px;
+ margin-bottom: 10px;
 }
 
-.cell-itensPedido p{font-size: 12px !important;}
+.cont-imgProduto{float: left; width: 10%;}
+.cont-sobreProduto {float: left; width: 90%;}
+.cont-variaveisProduto{float: left; width: 30%;}
+.cont-buttons {float: left; width: 70%;}
 
+#imagempedido{ float: left; width: 100px; }
+#produto{float: left; color: #151515;  margin-left: 10px; font-weight: bold; font-size: 22px !important;}
+#preco{float: left; color: #151515; margin-left: 10px; margin-top: 8px; font-weight: normal; font-size: 14px !important;}
 
 input.qt_itens{float: right; color: #151515; margin-top: 8px; margin-right: 5px; width: 45px; border: 1px solid #d4d4d4 ; font-size: 15px !important; text-align: center;}
 input.qt_itens_atualizar{float: right; color: #151515; margin-top: 8px; margin-right: 50px; width: 20px; border: 1px solid #d4d4d4 ; font-size: 15px !important; text-align: center;}
 input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointer;}
+
+#precoTotal{float: right; color: #151515; width: 20%; font-size: 25px !important;}
+#corferro{float: left; color: #151515; margin-left: 10px; font-size: 16px !important;}
+#corassento{float: left; color: #151515; margin-left: 10px; font-size: 16px !important;}
 
 #button_excluirItem{color: #e74c3c; font-weight: bold; margin-left: 10px; font-size: 16px !important;}
 #button_excluirItem:hover{color: #c0392b;}
@@ -184,24 +172,9 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 
 			<?php if (count($_SESSION['itens']) == 0) { 
 				echo "<p>Carrinho Vazio</p>";
-			}else{ ?>
-            
-            <table class="itens-pedido">
-
-				<thead>
-		         <tr>
-		           <th class="header-itensPedido" style="text-align: left;">Itens do pedido</th>
-		           <th class="header-itensPedido"></th>
-		           <th class="header-itensPedido">Ferragem</th>
-		           <th class="header-itensPedido">Assento/Tampo</th>
-		           <th class="header-itensPedido">Qtd</th>
-		           <th class="header-itensPedido">Valor</th>
-		           <th class="header-itensPedido">Subtotal</th>
-		           <th class="header-itensPedido">Remover</th>		           
-		         </tr>
-		       </thead>
+			}else{
 				
-				<?php foreach ($_SESSION['itens'] as $idProduto => $quantidade) {
+				foreach ($_SESSION['itens'] as $idProduto => $quantidade) {
                 $select = $conexao->prepare("SELECT * FROM produtos WHERE id=?");
 				$select->bindParam (1,$idProduto);
 				$select->execute();
@@ -211,39 +184,39 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 
                 ?>
 
-                <form method="post">			 		       
+                <form method="post">
 
-				     <tbody>
-				       <tr>
-				         <td class="cell-itensPedido"><img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo $produtos[0]["foto"]; ?>" alt="" style="height: 80px; width:auto;"></td>
+			    <div class="iten-pedido">	
+                    
+				    <div class="cont-imgProduto">
+				    <img id="imagempedido" src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo $produtos[0]["foto"]; ?>" alt="">
+				    </div>
+				    
+				    <div class="cont-sobreProduto">			
+					<p id="produto"><a href="mmp.php?produto=<?php echo $idProduto; ?>"><?php echo utf8_encode ($produtos[0]["nome"]); ?></a></p>
+					<p id="preco">R$ <?php echo number_format($produtos[0]["preco"], 2,',','.'); ?></p>
 
-				         <td class="cell-itensPedido" style="text-align: left;"><p><a href="mmp.php?produto=<?php echo $idProduto; ?>"><?php echo utf8_encode ($produtos[0]["nome"]); ?></a></p></td>
+					<p id="precoTotal">R$ <?php echo number_format($produtos[0]["preco"] * $quantidade, 2,',','.'); ?></p>
+					<input type="submit" value="🔃" class="qt_itens_atualizar" name="atualiza_quantidades">
+					<input type="number" value="<?php echo $quantidade; ?>" class="qt_itens" name="qtd">
+					<input type="text" value="<?php echo $idProduto; ?>" class="zero" name="idprod">
+					
+					</div>
 
-				         <td class="cell-itensPedido"><p>Branco</p></td>
-				         <td class="cell-itensPedido"><p>Vermelho</p></td>
+					<div class="cont-variaveisProduto">				
+					<p id="corferro"><b>Ferragem:</b> Preta</p>
+					<p id="corassento"><b>Assento:</b> Branco</p>
+					</div>
 
-				         <td class="cell-itensPedido">
-				         <input type="submit" value="🔃" class="qt_itens_atualizar" name="atualiza_quantidades">
-						 <input type="number" value="<?php echo $quantidade; ?>" class="qt_itens" name="qtd">
-						 <input type="text" value="<?php echo $idProduto; ?>" class="zero" name="idprod"> <!-- PEGA O ID DO PRODUTO 'INVISIVEL' PARA ATUALIZAR AS QUANTIDADES-->
-				         </td>
+					<div class="cont-buttons">
+					<a href="itens-pedido.php?removeItem=<?php echo $produtos[0]["id"]; ?>" id="button_excluirItem">✘ remover item</a>
+					</div>
+				</div>
 
-				         <td class="cell-itensPedido"><p>R$ <?php echo number_format($produtos[0]["preco"], 2,',','.'); ?></p></td>
-
-				         <td class="cell-itensPedido"><p>R$ <?php echo number_format($produtos[0]["preco"] * $quantidade, 2,',','.'); ?></p></td>
-
-				         <td class="cell-itensPedido">
-				         <div class="cont-buttons"><a href="itens-pedido.php?removeItem=<?php echo $produtos[0]["id"]; ?>" id="button_excluirItem">✘</a></td></div>
-
-				       </tr>
-				     </tbody> 
-
-				</form>			
+				</form>
 
 
 			    <?php error_reporting(0); $totalPedido += $produtos[0]["preco"] * $quantidade; }}?>
-
-			    </table> 
 
 
 				<!-- FIM ITEM PEDIDO -->
@@ -259,7 +232,7 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 
                 <div class="buttons-actionPedido">
 				<a href="#" id="finalizaPedido">Finalizar pedido</a>
-				<a href="#" id="adicionarItens">Adicionar Itens</a>
+				<a href="#" id="adicionarItens">Adicionar + Itens</a>
 				</div>
 
 
@@ -270,6 +243,10 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 	</div>
 </div>
 
+
+
+<!-- CONTATOS LEFT -->
+<?php include_once('../souce=contatos-page-left.php'); ?>
 
 <!-- RODAPE -->
 <?php include('../souce=rodape.php'); ?>

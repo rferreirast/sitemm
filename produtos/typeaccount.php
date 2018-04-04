@@ -121,7 +121,7 @@
 
 		<div class="usuario-container">	
 
-		<div class="texto-usuarios"><p>Olá, Faça login ou crie a sua conta!</p></div>
+		<div class="texto-usuarios"><p>Você precisa estar logado para inserir produtos no seu carrinho !!</p></div>
 
 			<div class="usuario-iten" id="registro"><a href="registro.php">Sou novo</a></div>
 			<div class="usuario-iten" id="login"><a href="login.php">Já tenho conta</a></div>

@@ -1,5 +1,5 @@
 <?php 
-/*
+
 include_once("system/connect.php");
 
 if (!isset($_SESSION)){session_start();}
@@ -13,7 +13,6 @@ include_once("system/verifica_sessao.php");
  $carrega_dados = mysqli_fetch_assoc($resultado_pesquisa);
 
 
-*/
  ?>
  
 <!DOCTYPE html>
@@ -196,7 +195,6 @@ include_once("system/verifica_sessao.php");
      </table>
 
     </div>
-      
 
     </div>
 

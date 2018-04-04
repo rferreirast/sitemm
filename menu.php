@@ -1,3 +1,82 @@
+<?php 
+
+if (isset($_SESSION['registro'])) {
+
+   $menu1 = '
+
+   <style>
+/*MENU DROP*/
+
+.dropd {
+ float: left;
+ display: inline-block;
+}
+.dropbtn {
+ color: #fff;
+ font-size: 15px;
+ padding: 5px 15px;
+ font-weight: bold;
+ cursor: pointer;
+ background: none;
+}
+
+.drop-minhaConta {
+ display: none;
+ position: absolute;
+ background-color: #fff;
+ min-width: 100px;
+ border-radius: 5px;
+ padding: 20px 0;
+ margin-left: 0px;
+ z-index: 999;
+}
+
+.drop-minhaConta a {
+ color: black;
+ color: #151515;
+ font-weight: bold;
+ padding: 12px 16px;
+ text-decoration: none;
+ display: block;
+}
+
+.drop-minhaConta a:hover {color: #014d8f; background-color: #fff;}
+
+.dropd:hover .drop-minhaConta {
+    display: block;
+}
+
+.dropd:hover .dropbtn {
+}
+
+#icon-drop{
+ color: #dbdbdb;
+ font-size: 12px;
+ margin-left: 5px;  
+}
+
+</style>
+
+   <div class="dropd">
+      <button class="dropbtn" id="border-left">Minha conta <span class="icon fas fa-angle-down" id="icon-drop"></span></button>
+      <div class="drop-minhaConta">
+        <a href="/usuario/meus-pedidos.php">Meus pedidos</a>
+        <a href="/usuario/meus-dados.php">Meus dados</a>
+        <a href="usuario/meu-endereco.php">Meu endereço</a>
+        <a href="#" style="color: #e74c3c;">Sair</a>
+
+      </div>
+    </div>
+
+   ';
+   $menu2 = '<a class="item-menu-usuarios" href="/usuario/meus-pedidos.php" id="border-left">Meus pedidos</a>';
+
+   }else{    
+    $menu1 = '<a class="item-menu-usuarios" href="/usuario/registro.php" id="border-left">Cadastre-se</a>';
+    $menu2 = '<a class="item-menu-usuarios" href="/usuario/login.php" id="border-left">Entrar</a>';
+   }
+
+?>
 <style>
 @media screen and (min-width:320px) {
 .content-topo-menu{
@@ -71,7 +150,8 @@ li{
  min-width: 150px;
  border-radius: 5px;
  padding: 20px 0;
- margin-left: 15px;
+ margin-left: 0px;
+ z-index: 999;
 }
 
 .dropdown-content a {
@@ -169,9 +249,9 @@ li{
   
    <div class="menu-usuarios">
 
-      <li><a class="item-menu-usuarios" href="/usuarios/registro.php" id="border-left">Cadastre-se</a></li>
-      <li><a class="item-menu-usuarios" href="/usuarios/login.php" id="border-left">Entrar</a></li>
-      <li><a class="item-menu-usuarios" href="#" id="border-left">Contato</a></li>
+      <li><?php echo $menu1 ?></li>
+      <li><?php echo $menu2 ?></li>
+      <!--<li><a class="item-menu-usuarios" href="#" id="border-left">Contato</a></li>-->
       <li><a class="item-menu-usuarios" href="/produtos/itens-pedido.php"><i class="fas fa-shopping-cart" id="icon-sacola"></i></a></li>
      
    </div>

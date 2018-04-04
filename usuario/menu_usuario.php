@@ -1,3 +1,12 @@
+<?php 
+
+include_once("system/connect.php");
+
+if (!isset($_SESSION)){session_start();}
+include_once("system/verifica_sessao.php");
+
+?>
+
 <style>
 @media screen and (min-width:320px) {
 /****** PARA O PC ******/
@@ -25,6 +34,9 @@
  text-decoration: none;
  padding-bottom: 4px;
 }
+
+#sair{color: #e74c3c;}
+#sair:hover{color: #c0392b; border: none;}
 
 .menuUsuario-item a:hover{color: #014d8f; text-decoration: none; border-bottom: 2px solid #014d8f; }
 
@@ -59,6 +71,7 @@
 	  <div class="menuUsuario-item"><a href="alterar-senha.php">Alterar Senha</a></div>
 	  <div class="menuUsuario-item"><a href="meus-dados.php">Meus dados</a></div>
 	  <div class="menuUsuario-item"><a href="meu-endereco.php">Meu endereco</a></div>
+	  <div class="menuUsuario-item"><a href="" id="sair">Sair</a></div>
 
 	</div>
 

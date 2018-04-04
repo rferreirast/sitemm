@@ -53,7 +53,6 @@ $pesquisar_produtos = utf8_decode( $_POST["pesquisar_produtos"]);
 input.button-buscar{
  width: 30px !important;
  margin: 5px -15px 0px;
- height: 29.7px !important;
 }
 
 /************ MENU MOBILE ************/
