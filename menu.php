@@ -1,6 +1,6 @@
 <?php 
 
-if (isset($_SESSION['registro'])) {
+if (isset($_SESSION['sessao_usuario'])) {
 
    $menu1 = '
 

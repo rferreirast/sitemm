@@ -178,7 +178,7 @@ include_once("system/verifica_sessao.php");
          <td class="cell">03/04/2018</td>
          <td class="cell">R$ 10.000,00</td>
          <td class="cell">Solicitado</td>
-         <td class="cell"><a href="detalhes-pedido.php?pedido=01" class="button-detalhesPedido">detalhes</a></td>
+         <td class="cell"><a href="detalhes-pedido.php?pedido=1548454154" class="button-detalhesPedido">detalhes</a></td>
        </tr>
      </tbody>
 

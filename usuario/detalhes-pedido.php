@@ -5,22 +5,39 @@ include_once("system/connect.php");
 if (!isset($_SESSION)){session_start();}
 include_once("system/verifica_sessao.php");
 
- $email = $_SESSION['sessao_usuario'];
+$email = $_SESSION['sessao_usuario'];
 
 //CARREGA DADOS CLIENTE 
  $pesquisa = "SELECT * FROM loja_clientes WHERE email = '$email'";
  $resultado_pesquisa = mysqli_query($conn, $pesquisa);
  $carrega_dados = mysqli_fetch_assoc($resultado_pesquisa);
 
- //CARREGA DADOS DO PRODUTO
+$id_cliente = utf8_decode($carrega_dados["id_cliente"]); //BUSCA O CODIGO DO CLIENTE
+$id_pedido = intval($_GET['pedido']); //BUSCA O ID DO PEDIDO NA URL
 
-//BUSCA CODIGO NA URL
- $id_pedido = intval($_GET['pedido']);
 
- $pesquisa_produto = "SELECT * FROM loja_pedidos WHERE id = '$id_pedido'";
- $resultado_pedido = mysqli_query($conn, $pesquisa_produto);
- $carregar_pedido = mysqli_fetch_assoc($resultado_pedido);
+  $verifica_pedido = mysqli_query($conn,"SELECT * FROM loja_pedidos id = '$id_pedido' AND id_cliente = '$id_cliente' ");
+  if (mysqli_num_rows($verifica_pedido) > 0) { 
 
+    //BUSCA OS DADOS DO PEDIDO NO MYSQL
+     $pesquisa_pedido = "SELECT * FROM loja_pedidos WHERE id = '$id_pedido' AND id_cliente = '$id_cliente' ";
+     $resultado_pedido = mysqli_query($conn, $pesquisa_pedido);
+     $carregar_pedido = mysqli_fetch_assoc($resultado_pedido);
+
+     //BUSCA OS PRODUTOS DO PEDIDO
+     $pesquisa_produtosPedido = "SELECT * FROM loja_produtos_pedidos WHERE id_pedido = '$id_pedido' ";
+     $resultado_listarproPedido = mysqli_query($conn, $pesquisa_produtosPedido);
+
+     //BUSCA E LISTA AS MENSAGENS DO PEDIDO
+     $pesquisa_mensagensPedido = "SELECT * FROM loja_mensagens_pedido WHERE id_pedido = '$id_pedido' ";
+     $resultado_mensagensPedido = mysqli_query($conn, $pesquisa_mensagensPedido);
+
+
+  }else{
+
+           echo "Pagina nao encontrada";
+           
+      }
 
 
  ?>
@@ -165,7 +182,7 @@ include_once("system/verifica_sessao.php");
     <div class="texto-container" style="border-bottom: 1px solid #c4c4c4;">
     <p style="">Detalhes do Pedido #<?php echo utf8_decode($carregar_pedido["id"]) ?>
 
-    <span style="float: right; font-weight: bold; padding-left: 10px;">Data do pedido: <?php echo date('d-m-Y', strtotime($carregar_pedido["data_pedido"])); ?></span>    
+    <span style="float: right; font-weight: bold; padding-left: 10px;">Data do pedido: <?php echo date('d/m/Y', strtotime($carregar_pedido["data_pedido"])); ?></span>    
 
 
 
@@ -188,41 +205,56 @@ include_once("system/verifica_sessao.php");
            <th class="header-pedido">Valor</th>
            <th class="header-pedido">Subtotal</th>
          </tr>
-       </thead>     
+       </thead>   
 
-     <tbody>
-       <tr>
-         <td class="cell-pedido"><img src="../produtos/img-produtos/produto10.jpg" alt="" style="height: 80px; width:auto;"></td>
-         <td class="cell-pedido" style="text-align: left;"><p>Conjunto de mesa com cadeiras </p></td>
-         <td class="cell-pedido"><p>Branco</p></td>
-         <td class="cell-pedido"><p>Vermelho</p></td>
-         <td class="cell-pedido"><p>100</p></td>
-         <td class="cell-pedido"><p>R$ 100,00</p></td>
-         <td class="cell-pedido"><p>R$ 10.000,00</p></td>
-       </tr>
-     </tbody>
 
-     <tbody>
+
+     
+     <?php while($listar_produtosPedido = mysqli_fetch_assoc($resultado_listarproPedido)){ ?>  
+
+     <?php 
+
+     $id_produto = $listar_produtosPedido["id_produto"];
+
+     //BUSCA OS DETALHES DOS PRODUTOS
+     $pesquisa_detalhesProduto = "SELECT * FROM loja_produtos WHERE id = '$id_produto' ";
+     $resultado_detalhesProduto  = mysqli_query($conn, $pesquisa_detalhesProduto );
+     $carrega_detalhesProduto = mysqli_fetch_assoc($resultado_detalhesProduto);  
+     ?>   
+
+      <tbody idProduto="<?php echo utf8_encode ($listar_produtosPedido["id_produto"]); ?>">
        <tr>
-         <td class="cell-pedido"><img src="../produtos/img-produtos/produto1.jpg" alt="" style="height: 80px; width:auto;"></td>
-         <td class="cell-pedido" style="text-align: left;"><p>Cadeira Tiffany Italia</p></td>
-         <td class="cell-pedido"><p>Marrom</p></td>
-         <td class="cell-pedido"><p>Branco</p></td>
-         <td class="cell-pedido"><p>100</p></td>
-         <td class="cell-pedido"><p>R$ 100,00</p></td>
-         <td class="cell-pedido"><p>R$ 10.000,00</p></td>
+         <td class="cell-pedido"><img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($carrega_detalhesProduto["foto"]); ?>" alt="" style="height: 80px; width:auto;"></td>
+
+         <td class="cell-pedido" style="text-align: left;"><p><?php echo utf8_encode ($carrega_detalhesProduto["nome"]); ?></p></td>
+         
+         <td class="cell-pedido"><p><?php echo utf8_encode ($listar_produtosPedido["variavel1"]); ?></p></td>
+         
+         <td class="cell-pedido"><p><?php echo utf8_encode ($listar_produtosPedido["variavel2"]); ?></p></td>
+         
+         <td class="cell-pedido"><p><?php echo utf8_encode ($listar_produtosPedido["quantidade"]); ?></p></td>
+         
+         <td class="cell-pedido"><p>R$ <?php echo number_format($listar_produtosPedido["valor"], 2,',','.'); ?></p></td>
+         
+         <td class="cell-pedido"><p>R$ <?php echo number_format($listar_produtosPedido["subtotal"], 2,',','.'); ?></p></td>
+
        </tr>
      </tbody>     
+
+     <?php } ?>
+   
 
      </table>
 
      <div class="totaisPedido">
 
-     <p>Total produtos: R$ <?php echo number_format($carregar_pedido["valor_total"], 2,',','.') ?></p>
+     <?php $valor_produtos = $carregar_pedido["valor_produtos"] ; $valor_frete = $carregar_pedido["valor_frete"]; ?>
 
-     <p>Valor do frete: R$ 1.500,00</p>
+     <p>Total produtos: R$ <?php echo number_format($carregar_pedido["valor_produtos"], 2,',','.') ?></p>
 
-     <p style="color: #014d8f;"><b>Total pedido: R$ 11.500,00</b></p>
+     <p>Valor do frete: R$ <?php echo number_format($carregar_pedido["valor_frete"], 2,',','.') ?></p>
+
+     <p style="color: #014d8f;"><b>Total pedido: R$ <?php echo number_format($valor_produtos + $valor_frete, 2,',','.'); ?></b></p>
        
      </div>
 
@@ -244,8 +276,7 @@ include_once("system/verifica_sessao.php");
        <p style="font-size: 16px !important; font-weight: bold; color: #333;">Endereço de entrega</p>
        <p>Rua: <?php echo utf8_decode($carrega_dados["rua"]); ?>, <?php echo utf8_decode($carrega_dados["numero_casa"]); ?></p>
        <p>Bairro: <?php echo utf8_decode($carrega_dados["bairro"]); ?></p>
-       <p>Cidade: <?php echo utf8_decode($carrega_dados["cidade"]); ?></p>
-       <p>Estado: <?php echo utf8_decode($carrega_dados["estado"]); ?></p>
+       <p>Cidade: <?php echo utf8_decode($carrega_dados["cidade"]); ?> / <?php echo utf8_decode($carrega_dados["estado"]); ?></p>
          
        </div>
 
@@ -270,8 +301,14 @@ include_once("system/verifica_sessao.php");
 .conversaPedido{float: left; width: 100%; padding-top: 20px; padding-bottom: 20px;}
 .mensagemItem{float: left; width: 100%; margin-bottom: 10px;}
 .mensagemItem p{font-size: 14px !important; margin: 0;}
-#mensagemCliente{float: right; padding: 10px 20px; background: #e3e3e3; color:#151515; max-width: 400px; border-radius: 15px 15px 0px 15px; text-align: left; }
-#mensagemAtendente{float: left; padding: 10px 20px; background: #014d8f; color:#fff; max-width: 400px; border-radius: 15px 15px 15px 0px; text-align: left}
+
+
+#mensagemCliente{float: right; padding: 10px 20px; background: #e3e3e3; max-width: 400px; border-radius: 15px 15px 0px 15px; text-align: left; }
+#mensagemCliente p{color:#565656; margin: 0; padding: 0;}
+
+#mensagemAtendente{float: left; padding: 10px 20px; background: #014d8f; max-width: 400px; border-radius: 15px 15px 15px 0px; text-align: left}
+#mensagemAtendente p{color:#fff; margin: 0; margin: 0; padding: 0;}
+
 #time{width: 100%; font-size: 9px !important; text-align: right; color: #c4c4c4;}
 
 /**/
@@ -294,13 +331,17 @@ mandar-mensagem{ float: left;width: 100%; }
 
        <div class="conversaPedido">
 
-         <div class="mensagemItem">
-           <div id="mensagemCliente">
-           <p><b>Rafael Ferreira</b></p>
-           <p>Olá, gostaria de saber mais informações sobre o envio do produto!</p>
-           <p id="time">15:30</p>
-           </div>
+         <?php while($listar_mensagensPedido = mysqli_fetch_assoc($resultado_mensagensPedido)){ ?>
+
+          <div class="mensagemItem">
+           <div id="<?php echo $listar_mensagensPedido["tipo_mensagem"];?>">
+           <p><b><?php echo utf8_decode($listar_mensagensPedido["quem_enviou"]);?></b></p>
+           <p><?php echo utf8_decode($listar_mensagensPedido["mensagem"]);?></p>
+           <p id="time"><?php echo date('h:i', strtotime($listar_mensagensPedido["data_envio"])); ?></p>
+           </div>´
          </div>
+
+         <?php } ?>
 
          <div class="mensagemItem">
            <div id="mensagemAtendente">
@@ -310,23 +351,7 @@ mandar-mensagem{ float: left;width: 100%; }
            </div>
          </div>
 
-         <div class="mensagemItem">
-           <div id="mensagemCliente">
-           <p><b>Rafael Ferreira</b></p>
-           <p>Gostaria de informações sobre o envio dele.</p>
-           <p id="time">15:32</p>
-           </div>
-         </div>
-
-         <div class="mensagemItem">
-           <div id="mensagemAtendente">
-           <p><b>Mestre Moveleiro</b></p>
-           <p>Certo, O seu prduto foi enviado pela transfortadoraX no dia 03/04/2018! O prazo de entrega é de 15 dias úteis! Ajudo em mais algo?</p>
-           <p id="time">15:33</p>
-           </div>
-         </div> 
-
-       </div>
+      </div>  
 
        <div class="mandar-mensagem">
          <textarea class="mensage-pedido" rows="1" placeholder="Mensagem..." style="overflow-x: hidden; word-wrap: break-word;"></textarea>   
