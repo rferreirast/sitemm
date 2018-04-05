@@ -66,12 +66,12 @@ include_once("system/verifica_sessao.php");
 	
 	<div class="menuUsuario-itens">
 		
-	  <div class="menuUsuario-item"><a href="minha-conta.php">Minha conta</a></div>
-	  <div class="menuUsuario-item"><a href="meus-pedidos.php">Meus pedidos</a></div>
-	  <div class="menuUsuario-item"><a href="alterar-senha.php">Alterar Senha</a></div>
-	  <div class="menuUsuario-item"><a href="meus-dados.php">Meus dados</a></div>
-	  <div class="menuUsuario-item"><a href="meu-endereco.php">Meu endereco</a></div>
-	  <div class="menuUsuario-item"><a href="/usuario/logout.php" id="sair">Sair</a></div>
+	  <div class="menuUsuario-item"><a href="minha-conta">Minha conta</a></div>
+	  <div class="menuUsuario-item"><a href="meus-pedidos">Meus pedidos</a></div>
+	  <div class="menuUsuario-item"><a href="alterar-senha">Alterar Senha</a></div>
+	  <div class="menuUsuario-item"><a href="meus-dados">Meus dados</a></div>
+	  <div class="menuUsuario-item"><a href="meu-endereco">Meu endereco</a></div>
+	  <div class="menuUsuario-item"><a href="/usuario/logout" id="sair">Sair</a></div>
 
 	</div>
 

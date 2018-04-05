@@ -3,7 +3,7 @@
 if (isset($_POST['fazer_busca'])) {
 $pesquisar_produtos = utf8_decode( $_POST["pesquisar_produtos"]);
  
- header("Location: busca.php?produto=$pesquisar_produtos");
+ header("Location: /produtos/busca?produto=$pesquisar_produtos");
 
 }
 
@@ -162,7 +162,7 @@ input.button-buscar{
 
 <div class="cabecalho-topo-logo-menu" style="width: 100%; float: left;">
 
- <div class="logo"><div class="img-logo"><img src="http://www.mestremoveleiro.com.br/produtos/img/logo.png" alt=""></div></div> 
+ <div class="logo"><div class="img-logo"><a href="/"><img src="http://www.mestremoveleiro.com.br/produtos/img/logo.png" alt=""></a></div></div> 
 
  <div class="container-pesquisa">
    

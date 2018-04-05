@@ -38,12 +38,12 @@ $ie = utf8_decode( $_POST["ie"]);
        WHERE email = '$email' ";
           
               if ($conn->query($sql) === TRUE) {
-              header("location: meus-dados.php");
+              header("location: meus-dados");
               }
        else{        
         echo "<script>
        alert('Algo deu errado, tente novamente !!');
-       location.href='meus-dados.php';
+       location.href='meus-dados';
        </script>";
        }
      }

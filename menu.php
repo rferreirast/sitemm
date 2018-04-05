@@ -60,20 +60,20 @@ if (isset($_SESSION['sessao_usuario'])) {
    <div class="dropd">
       <button class="dropbtn" id="border-left">Minha conta <span class="icon fas fa-angle-down" id="icon-drop"></span></button>
       <div class="drop-minhaConta">
-        <a href="/usuario/meus-pedidos.php">Meus pedidos</a>
-        <a href="/usuario/meus-dados.php">Meus dados</a>
-        <a href="/usuario/meu-endereco.php">Meu endereço</a>
-        <a href="/usuario/logout.php" style="color: #e74c3c;">Sair</a>
+        <a href="/usuario/meus-pedidos">Meus pedidos</a>
+        <a href="/usuario/meus-dados">Meus dados</a>
+        <a href="/usuario/meu-endereco">Meu endereço</a>
+        <a href="/usuario/logout" style="color: #e74c3c;">Sair</a>
 
       </div>
     </div>
 
    ';
-   $menu2 = '<a class="item-menu-usuarios" href="/usuario/meus-pedidos.php" id="border-left">Meus pedidos</a>';
+   $menu2 = '<a class="item-menu-usuarios" href="/usuario/meus-pedidos" id="border-left">Meus pedidos</a>';
 
    }else{    
-    $menu1 = '<a class="item-menu-usuarios" href="/usuario/registro.php" id="border-left">Cadastre-se</a>';
-    $menu2 = '<a class="item-menu-usuarios" href="/usuario/login.php" id="border-left">Entrar</a>';
+    $menu1 = '<a class="item-menu-usuarios" href="/usuario/registro" id="border-left">Cadastre-se</a>';
+    $menu2 = '<a class="item-menu-usuarios" href="/usuario/login" id="border-left">Entrar</a>';
    }
 
 ?>
@@ -227,11 +227,11 @@ li{
       <button class="dropbtn">Produtos <span class="icon fas fa-angle-down" id="icon"></span></button>
       <div class="dropdown-content">
         <a href="/produtos">Todos</a>
-        <a href="/produtos/pesquisa.php?categoria=cadeiras">Cadeiras</a>
-        <a href="/produtos/pesquisa.php?categoria=Mesas">Mesas</a>
-        <a href="/produtos/pesquisa.php?categoria=Banquetas">Banquetas</a>
-        <a href="/produtos/pesquisa.php?categoria=Conjuntos">Conjuntos</a>
-        <a href="/produtos/pesquisa.php?categoria=Infantil">Infantil</a>
+        <a href="/produtos/pesquisa?categoria=cadeiras">Cadeiras</a>
+        <a href="/produtos/pesquisa?categoria=Mesas">Mesas</a>
+        <a href="/produtos/pesquisa?categoria=Banquetas">Banquetas</a>
+        <a href="/produtos/pesquisa?categoria=Conjuntos">Conjuntos</a>
+        <a href="/produtos/pesquisa?categoria=Infantil">Infantil</a>
       </div>
     </div>
 
@@ -252,7 +252,7 @@ li{
       <li><?php echo $menu1 ?></li>
       <li><?php echo $menu2 ?></li>
       <!--<li><a class="item-menu-usuarios" href="#" id="border-left">Contato</a></li>-->
-      <li><a class="item-menu-usuarios" href="/produtos/itens-pedido.php"><i class="fas fa-shopping-cart" id="icon-sacola"></i></a></li>
+      <li><a class="item-menu-usuarios" href="/produtos/itens-pedido"><i class="fas fa-shopping-cart" id="icon-sacola"></i></a></li>
      
    </div>
   

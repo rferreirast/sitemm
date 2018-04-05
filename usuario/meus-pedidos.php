@@ -185,7 +185,7 @@ include_once("system/verifica_sessao.php");
            <td class="cell"><?php echo date('d/m/Y', strtotime($carregar_pedido["data_pedido"])); ?></td> 
            <td class="cell">R$ <?php echo number_format($carregar_pedido["valor_produtos"], 2,',','.'); ?></td>
            <td class="cell"><?php echo utf8_encode($carregar_pedido["status"]); ?></td>
-           <td class="cell"><a href="detalhes-pedido.php?pedido=<?php echo utf8_encode($carregar_pedido["id"]); ?>" class="button-detalhesPedido">detalhes</a></td>
+           <td class="cell"><a href="detalhes-pedido?pedido=<?php echo utf8_encode($carregar_pedido["id"]); ?>" class="button-detalhesPedido">detalhes</a></td>
          </tr>
        </tbody>
 

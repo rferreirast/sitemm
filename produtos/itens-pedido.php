@@ -25,10 +25,10 @@ if (isset($_GET['addItem'])) {
 	if (!isset($_SESSION['itens'][$idProduto])) {
 		
 		$_SESSION['itens'][$idProduto] = 1;
-		header("Location: itens-pedido.php");
+		header("Location: itens-pedido");
 	}else{
 		$_SESSION['itens'][$idProduto] += 1;
-		header("Location: itens-pedido.php");
+		header("Location: itens-pedido");
 	}
 }
 
@@ -37,7 +37,7 @@ if (isset($_GET['removeItem'])) {
 	$idProdutoR = $_GET['removeItem'];
 	
 	unset($_SESSION['itens'][$idProdutoR]);
-	header("Location: itens-pedido.php");
+	header("Location: itens-pedido");
 
 }
 
@@ -45,7 +45,7 @@ if (isset($_POST['atualiza_quantidades'])) {
 $qtdProduto = $_POST['qtd'];
 $idprod = $_POST['idprod'];
 
-header("Location: itens-pedido.php?atualizaItem=$idprod&qt=$qtdProduto");
+header("Location: itens-pedido?atualizaItem=$idprod&qt=$qtdProduto");
 
 if ($qtdProduto != '') {
 	$_SESSION['itens'][$idprod] = $qtdProduto;
@@ -53,12 +53,12 @@ if ($qtdProduto != '') {
 		unset($_SESSION['itens'][$idprod]);
 	}
 
-header("Location: itens-pedido.php");
+header("Location: itens-pedido");
 
    /*$produto = (int)$_POST['prod'];
    $qt = ['prod'];
 
-   header("Location: itens-pedido.php?atualizaItem=$produto&qt=$qt");
+   header("Location: itens-pedido?atualizaItem=$produto&qt=$qt");
 
    /*$idProduto = $_GET['atualizaItem'];
    $atualizaqt = $_GET['qt'];*/
@@ -218,7 +218,8 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 				       <tr>
 				         <td class="cell-itensPedido"><img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo $produtos[0]["foto"]; ?>" alt="" style="height: 80px; width:auto;"></td>
 
-				         <td class="cell-itensPedido" style="text-align: left;"><p><a href="mmp.php?produto=<?php echo $idProduto; ?>"><?php echo utf8_encode ($produtos[0]["nome"]); ?></a></p></td>
+				         <td class="cell-itensPedido" style="text-align: left;"><p><a href="mmp?<?php echo utf8_encode (str_replace (" ", "-",$produtos[0]["nome"])); ?>&produto=<?php echo $idProduto; ?>"><?php echo utf8_encode ($produtos[0]["nome"]); ?></a></p></td>
+				         
 
 				         <td class="cell-itensPedido"><p>Branco</p></td>
 				         <td class="cell-itensPedido"><p>Vermelho</p></td>
@@ -234,7 +235,7 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 				         <td class="cell-itensPedido"><p>R$ <?php echo number_format($produtos[0]["preco"] * $quantidade, 2,',','.'); ?></p></td>
 
 				         <td class="cell-itensPedido">
-				         <div class="cont-buttons"><a href="itens-pedido.php?removeItem=<?php echo $produtos[0]["id"]; ?>" id="button_excluirItem">✘</a></td></div>
+				         <div class="cont-buttons"><a href="itens-pedido?removeItem=<?php echo $produtos[0]["id"]; ?>" id="button_excluirItem">✘</a></td></div>
 
 				       </tr>
 				     </tbody> 

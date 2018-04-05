@@ -26,13 +26,13 @@ $estado = utf8_decode( $_POST["estado"]);
        $sql = "UPDATE loja_clientes SET `cep`='$cep', `rua`='$rua', `numero_casa`='$numero_casa', `complemento`='$complemento', `bairro`='$bairro', `cidade`='$cidade', `estado`='$estado' WHERE email = '$email' ";
           
               if ($conn->query($sql) === TRUE) {
-              header("location: meu-endereco.php");
+              header("location: meu-endereco");
               }
 
        else{        
         echo "<script>
        alert('Algo deu errado, tente novamente !!');
-       location.href='meu-endereco.php';
+       location.href='meu-endereco';
        </script>";
        }
      }

@@ -123,8 +123,8 @@
 
 		<div class="texto-usuarios"><p>Você precisa estar logado para fazer um pedido !!</p></div>
 
-			<div class="usuario-iten" id="registro"><a href="/usuario/registro.php">Sou novo</a></div>
-			<div class="usuario-iten" id="login"><a href="/usuario/login.php">Já tenho conta</a></div>
+			<div class="usuario-iten" id="registro"><a href="/usuario/registro">Sou novo</a></div>
+			<div class="usuario-iten" id="login"><a href="/usuario/login">Já tenho conta</a></div>
 
 		</div>
 

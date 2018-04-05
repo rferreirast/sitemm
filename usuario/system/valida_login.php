@@ -23,7 +23,7 @@ require("connect.php");
 			//CAPTURANDO EMAIL LOGIN
      		//setcookie("login", $email);   
 
-			header("location: minha-conta.php");        
+			header("location: minha-conta");        
 
 
      	}else{

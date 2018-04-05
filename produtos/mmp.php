@@ -9,7 +9,15 @@
     $resultado_listar = mysqli_query($conn, $listar);
     $carregar_produto = mysqli_fetch_assoc($resultado_listar);
 
+    //LISTA OS PRODUTOS SEMELHANTES 
+
+    $categoria = $carregar_produto["categoria"];
+
+	$listar_produtosSemelhante = "SELECT * FROM produtos WHERE id != '$id_produto' AND categoria LIKE '%$categoria%' AND status = '1' LIMIT 4";
+    $resultado_produtosSemelhante = mysqli_query($conn, $listar_produtosSemelhante);
+
  ?>
+
 <!DOCTYPE html>
 <html>
 <html lang="pt-br">
@@ -259,7 +267,7 @@
 			<p><b><i class="fas fa-cube"></i> Peso:</b> 12 kg</p>
 	  	</div>
 
-	  	<div class="mmp-button-comprar"><a href="itens-pedido.php?addItem=<?php echo utf8_encode ($carregar_produto["id"]); ?>">Adicionar ao pedido <i class="fas fa-shopping-cart" id="icon-sacola"></i></a></div>
+	  	<div class="mmp-button-comprar"><a href="itens-pedido?addItem=<?php echo utf8_encode ($carregar_produto["id"]); ?>">Adicionar ao pedido <i class="fas fa-shopping-cart" id="icon-sacola"></i></a></div>
 
         </div> 
 	  </div>
@@ -309,14 +317,53 @@
 
         </div>
 	  </div>
-	  	
-
 
 	  </div>
 
+	</div>
+</div>
 
+<style>
+@media screen and (min-width:320px) {
+.produtosSemelhantes{float: left; width: 100%;}
+.produtosSemelhantes-itens{margin: auto; width: 80%;}
+.border-item-produto{width: 100%;}
+}
+
+/* PARA PC **/
+@media screen and (min-width:1025px) {
+.border-item-produto{
+ width: 25%;
+}
+/* PARA PC **/
+@media screen and (min-width:1400px) {
+.border-item-produto{
+ width: 25%;
+}
+</style>
+
+<div class="produtosSemelhantes">
+	
+	<div class="produtosSemelhantes-itens">
+
+	 <?php while($res_produtosSemelhante = mysqli_fetch_assoc ($resultado_produtosSemelhante)){ ?>
+
+		<!-- PRODUTO -->
+        <a href="mmp?<?php echo utf8_encode (str_replace (" ", "-", $res_produtosSemelhante["nome"])); ?>&produto=<?php echo utf8_encode ($res_produtosSemelhante["id"]); ?>">
+        <div class="border-item-produto">
+        <div class="item-produto">
+        <img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($res_produtosSemelhante["foto"]); ?>" alt=""> <!-- FOTO -->
+        <p><?php echo utf8_encode ($res_produtosSemelhante["nome"]); ?></p> <!-- NOME -->
+        <p id="preco">R$ <?php echo utf8_encode (number_format($res_produtosSemelhante["preco"], 2,',','.')); ?></p> <!-- PREÇO 1 -->
+        </a>
+
+        </div></div>
+
+		<?php } ?>
 
 	</div>
+
+
 </div>
 
 

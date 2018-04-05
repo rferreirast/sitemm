@@ -60,10 +60,16 @@
 		
 		<div class="container-produtos-itens" style="width: 100%; float: left;">
 
+            <?php $Ver_resultado_listar = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$item_pesquisa%' AND status = '1' ");
+
+			if (mysqli_num_rows($Ver_resultado_listar) == 0) { 
+				echo '<p style="color: #595959; font-size: 30px !important; text-align: center; margin-top: 60px; min-height: 100px;"><i class="fas fa-search"></i> Nenhum produto encontrado. Revise a palavra buscada.</p>';
+			}else{ ?>
+				
 			<?php while($listar_produtos = mysqli_fetch_assoc ($resultado_listar)){ ?>
 
 				<!-- PRODUTO -->
-				<a href="mmp.php?produto=<?php echo utf8_encode ($listar_produtos["id"]); ?>">
+				<a href="mmp?<?php echo utf8_encode (str_replace (" ", "-",$listar_produtos["nome"])); ?>&produto=<?php echo utf8_encode ($listar_produtos["id"]); ?>">
 				<div class="border-item-produto">
 				<div class="item-produto">
 				<img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($listar_produtos["foto"]); ?>" alt=""> <!-- FOTO -->
@@ -75,6 +81,8 @@
 				</div>
 
 			<?php } ?>
+
+		<?php } ?>
 
 		</div>
 

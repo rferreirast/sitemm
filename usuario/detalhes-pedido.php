@@ -48,13 +48,13 @@ if (isset($_POST['enviar_mensagem'])) {
 
       if ($conn->query($salva_mensagem) === TRUE) {
 
-      header("location: detalhes-pedido.php?pedido=$id_pedido"); 
+      header("location: detalhes-pedido?pedido=$id_pedido"); 
 
     }else{
 
       echo "<script>
        alert('Algo deu errado, tente novamente !!');
-       location.href='detalhes-pedido.php?pedido=$id_pedido';
+       location.href='detalhes-pedido?pedido=$id_pedido';
        </script>";
 
     }
