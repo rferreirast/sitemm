@@ -70,7 +70,7 @@ if (isset($_POST['enviar_mensagem'])) {
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Mestre Moveleiro | Detalhes do Pedido #01</title> <!-- INFO 1 -->
+  <title>Mestre Moveleiro | Detalhes do Pedido #<?php echo utf8_encode($carregar_pedido["id"]) ?></title> <!-- INFO 1 -->
     <meta name="description" content="<?php echo utf8_encode ($SOBRE_PAGINA)?>"> <!-- INFO 2 -->
     <meta name="author" content="Rafael Ferreira">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">

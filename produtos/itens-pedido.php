@@ -95,6 +95,7 @@ header("Location: itens-pedido.php");
 
 <style>
 
+.container-produtos{width: 100%; float: left; min-height: 480px;}
 .lista-itens-pedido{
  float: left;
  width: 100%;
@@ -183,7 +184,7 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 			<div class="lista-itens-pedido">
 
 			<?php if (count($_SESSION['itens']) == 0) { 
-				echo "<p>Carrinho Vazio</p>";
+				echo '<p style="color: #595959; font-size: 30px !important; text-align: center; margin-top: 60px; min-height: 100px;"><i class="fas fa-shopping-cart"></i> Carrinho Vazio</p>';
 			}else{ ?>
             
             <table class="itens-pedido">

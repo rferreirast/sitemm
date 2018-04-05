@@ -62,8 +62,8 @@ if (isset($_SESSION['sessao_usuario'])) {
       <div class="drop-minhaConta">
         <a href="/usuario/meus-pedidos.php">Meus pedidos</a>
         <a href="/usuario/meus-dados.php">Meus dados</a>
-        <a href="usuario/meu-endereco.php">Meu endereço</a>
-        <a href="#" style="color: #e74c3c;">Sair</a>
+        <a href="/usuario/meu-endereco.php">Meu endereço</a>
+        <a href="/usuario/logout.php" style="color: #e74c3c;">Sair</a>
 
       </div>
     </div>
@@ -235,9 +235,9 @@ li{
       </div>
     </div>
 
-    <li><a class="item-menu-container" href="#">Sobre Produtos</a></li>
-    <li><a class="item-menu-container" href="#">Sobre Frete</a></li>
-    <li><a class="item-menu-container" href="#">Sobre Pagamento</a></li>
+    <li><a class="item-menu-container" href="#">Novidades</a></li>
+    <li><a class="item-menu-container" href="#">Destaques</a></li>
+    <li><a class="item-menu-container" href="#">Em promoção</a></li>
     <li><a class="item-menu-container" href="/clientes">Nossos Clientes</a></li>
 
 

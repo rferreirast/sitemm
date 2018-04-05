@@ -71,7 +71,7 @@ include_once("system/verifica_sessao.php");
 	  <div class="menuUsuario-item"><a href="alterar-senha.php">Alterar Senha</a></div>
 	  <div class="menuUsuario-item"><a href="meus-dados.php">Meus dados</a></div>
 	  <div class="menuUsuario-item"><a href="meu-endereco.php">Meu endereco</a></div>
-	  <div class="menuUsuario-item"><a href="" id="sair">Sair</a></div>
+	  <div class="menuUsuario-item"><a href="/usuario/logout.php" id="sair">Sair</a></div>
 
 	</div>
 
