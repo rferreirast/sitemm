@@ -12,17 +12,19 @@ $email = $_SESSION['sessao_usuario'];
  $resultado_pesquisa = mysqli_query($conn, $pesquisa);
  $carrega_dados = mysqli_fetch_assoc($resultado_pesquisa);
 
-$id_cliente = utf8_decode($carrega_dados["id_cliente"]); //BUSCA O CODIGO DO CLIENTE
-$id_pedido = intval($_GET['pedido']); //BUSCA O ID DO PEDIDO NA URL
-
-
-  $verifica_pedido = mysqli_query($conn,"SELECT * FROM loja_pedidos id = '$id_pedido' AND id_cliente = '$id_cliente' ");
-  if (mysqli_num_rows($verifica_pedido) > 0) { 
+error_reporting(0);
+$id_cliente = utf8_encode($carrega_dados["id_cliente"]); //BUSCA O CODIGO DO CLIENTE
+$id_pedido = intval($_GET['pedido']);  //BUSCA O ID DO PEDIDO NA URL
+$nome = utf8_encode($carrega_dados["nome"]);
 
     //BUSCA OS DADOS DO PEDIDO NO MYSQL
-     $pesquisa_pedido = "SELECT * FROM loja_pedidos WHERE id = '$id_pedido' AND id_cliente = '$id_cliente' ";
+     $pesquisa_pedido = "SELECT * FROM loja_pedidos WHERE id = '$id_pedido' ";
      $resultado_pedido = mysqli_query($conn, $pesquisa_pedido);
      $carregar_pedido = mysqli_fetch_assoc($resultado_pedido);
+
+     date_default_timezone_set('America/Sao_Paulo');
+     $data_atual = date('Y/m/d H:i');           
+     $data_pedido = date('d/m/Y'); 
 
      //BUSCA OS PRODUTOS DO PEDIDO
      $pesquisa_produtosPedido = "SELECT * FROM loja_produtos_pedidos WHERE id_pedido = '$id_pedido' ";
@@ -33,11 +35,33 @@ $id_pedido = intval($_GET['pedido']); //BUSCA O ID DO PEDIDO NA URL
      $resultado_mensagensPedido = mysqli_query($conn, $pesquisa_mensagensPedido);
 
 
-  }else{
+if (isset($_POST['enviar_mensagem'])) {
+  $mensagem = utf8_decode($_POST["mensagem"]);
 
-           echo "Pagina nao encontrada";
-           
-      }
+  //se vazio cancela operação
+  if ($mensagem == "") {
+     echo "<script>alert('Escreva a sua mensagem !!');</script>";
+    }else{
+
+      $salva_mensagem = "INSERT INTO loja_mensagens_pedido (id_pedido, quem_enviou, tipo_mensagem, mensagem, data_envio) VALUES ('$id_pedido', '$nome', 'mensagemCliente', '$mensagem', '$data_atual')";
+
+      echo $salva_mensagem;
+
+      if ($conn->query($salva_mensagem) === TRUE) {
+
+      header("location: detalhes-pedido.php?pedido=$id_pedido"); 
+
+    }else{
+
+      echo "<script>
+       alert('Algo deu errado, tente novamente !!');
+       location.href='detalhes-pedido.php?pedido=$id_pedido';
+       </script>";
+
+    }
+ }
+
+}
 
 
  ?>
@@ -180,9 +204,11 @@ $id_pedido = intval($_GET['pedido']); //BUSCA O ID DO PEDIDO NA URL
     <div class="formulario-meus-dados">
 
     <div class="texto-container" style="border-bottom: 1px solid #c4c4c4;">
-    <p style="">Detalhes do Pedido #<?php echo utf8_decode($carregar_pedido["id"]) ?>
+    <p style="">Detalhes do Pedido #<?php echo utf8_encode($carregar_pedido["id"]) ?>
 
-    <span style="float: right; font-weight: bold; padding-left: 10px;">Data do pedido: <?php echo date('d/m/Y', strtotime($carregar_pedido["data_pedido"])); ?></span>    
+    <?php $data_pedido = $carregar_pedido["data_pedido"]; ?>
+
+    <span style="float: right; font-weight: bold; padding-left: 10px;">Data do pedido: <?php echo date('d/m/Y', strtotime($data_pedido)); ?></span>    
 
 
 
@@ -191,7 +217,10 @@ $id_pedido = intval($_GET['pedido']); //BUSCA O ID DO PEDIDO NA URL
     <div class="container-detalhesPedido">
        <div class="pedido-detalhes">  
 
-       <div class="statusPedido"><p><b>Status do pedido:</b> <?php echo utf8_decode($carregar_pedido["status"]) ?></p></div>     
+       <?php $verifica_pedido = mysqli_query($conn,"SELECT * FROM loja_pedidos WHERE id = '$id_pedido' AND id_cliente = '$id_cliente' ");
+  if (mysqli_num_rows($verifica_pedido) > 0) { ?>
+
+       <div class="statusPedido"><p><b>Status do pedido:</b> <?php echo utf8_encode($carregar_pedido["status"]) ?></p></div>     
 
         <table class="detalhes-pedido">
 
@@ -264,19 +293,19 @@ $id_pedido = intval($_GET['pedido']); //BUSCA O ID DO PEDIDO NA URL
 
        <div class="dadosCliente-Iten">
        <p style="font-size: 16px !important; font-weight: bold; color: #333;">Dados do cliente</p>
-       <p>Empresa: <?php echo utf8_decode($carrega_dados["razao_social"]); ?></p>
-       <p>CNPJ: <?php echo utf8_decode($carrega_dados["cnpj"]); ?></p>
-       <p>IE: <?php echo utf8_decode($carrega_dados["ie"]); ?></p>
-       <p>Representante:</b> <?php echo utf8_decode($carrega_dados["nome"]); ?></p>
-       <p>CPF: <?php echo utf8_decode($carrega_dados["cpf"]); ?></p>
+       <p>Empresa: <?php echo utf8_encode($carrega_dados["razao_social"]); ?></p>
+       <p>CNPJ: <?php echo utf8_encode($carrega_dados["cnpj"]); ?></p>
+       <p>IE: <?php echo utf8_encode($carrega_dados["ie"]); ?></p>
+       <p>Representante:</b> <?php echo utf8_encode($carrega_dados["nome"]); ?></p>
+       <p>CPF: <?php echo utf8_encode($carrega_dados["cpf"]); ?></p>
          
        </div>
 
        <div class="dadosCliente-Iten">
        <p style="font-size: 16px !important; font-weight: bold; color: #333;">Endereço de entrega</p>
-       <p>Rua: <?php echo utf8_decode($carrega_dados["rua"]); ?>, <?php echo utf8_decode($carrega_dados["numero_casa"]); ?></p>
-       <p>Bairro: <?php echo utf8_decode($carrega_dados["bairro"]); ?></p>
-       <p>Cidade: <?php echo utf8_decode($carrega_dados["cidade"]); ?> / <?php echo utf8_decode($carrega_dados["estado"]); ?></p>
+       <p>Rua: <?php echo utf8_encode($carrega_dados["rua"]); ?>, <?php echo utf8_encode($carrega_dados["numero_casa"]); ?></p>
+       <p>Bairro: <?php echo utf8_encode($carrega_dados["bairro"]); ?></p>
+       <p>Cidade: <?php echo utf8_encode($carrega_dados["cidade"]); ?> / <?php echo utf8_encode($carrega_dados["estado"]); ?></p>
          
        </div>
 
@@ -335,34 +364,36 @@ mandar-mensagem{ float: left;width: 100%; }
 
           <div class="mensagemItem">
            <div id="<?php echo $listar_mensagensPedido["tipo_mensagem"];?>">
-           <p><b><?php echo utf8_decode($listar_mensagensPedido["quem_enviou"]);?></b></p>
-           <p><?php echo utf8_decode($listar_mensagensPedido["mensagem"]);?></p>
-           <p id="time"><?php echo date('h:i', strtotime($listar_mensagensPedido["data_envio"])); ?></p>
+           <p><b><?php echo utf8_encode($listar_mensagensPedido["quem_enviou"]);?></b></p>
+           <p><?php echo utf8_encode($listar_mensagensPedido["mensagem"]);?></p>
+           <p id="time"><?php echo date('H:i', strtotime($listar_mensagensPedido["data_envio"])); ?></p>
            </div>´
          </div>
 
          <?php } ?>
 
-         <div class="mensagemItem">
-           <div id="mensagemAtendente">
-           <p><b>Mestre Moveleiro</b></p>
-           <p>Como possso te ajudar, quais informações são necessárias?</p>
-           <p id="time">15:31</p>
-           </div>
-         </div>
+      </div> 
 
-      </div>  
+      <form method="POST"> 
 
        <div class="mandar-mensagem">
-         <textarea class="mensage-pedido" rows="1" placeholder="Mensagem..." style="overflow-x: hidden; word-wrap: break-word;"></textarea>   
+         <textarea type="text" name="mensagem" class="mensage-pedido" rows="1" placeholder="Mensagem..." style="overflow-x: hidden; word-wrap: break-word;"></textarea>   
 
-         <input type="submit" class="button-enviarMensagem" value="enviar">
+         <input type="submit" class="button-enviarMensagem" value="enviar" name="enviar_mensagem">
        </div>
 
+       </form>
+
+            <?php }else{
+
+           echo '<p style="color: #555; font-size: 25px !important; text-align: center; margin-top: 60px;"><i class="fas fa-exclamation-triangle"></i> Pagina não encontrada</p>';
+
+      }?>
+
      </div>
 
-
      </div>
+
     </div>
       
 
