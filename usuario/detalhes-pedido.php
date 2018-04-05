@@ -22,10 +22,6 @@ $nome = utf8_encode($carrega_dados["nome"]);
      $resultado_pedido = mysqli_query($conn, $pesquisa_pedido);
      $carregar_pedido = mysqli_fetch_assoc($resultado_pedido);
 
-     date_default_timezone_set('America/Sao_Paulo');
-     $data_atual = date('Y/m/d H:i');           
-     $data_pedido = date('d/m/Y'); 
-
      //BUSCA OS PRODUTOS DO PEDIDO
      $pesquisa_produtosPedido = "SELECT * FROM loja_produtos_pedidos WHERE id_pedido = '$id_pedido' ";
      $resultado_listarproPedido = mysqli_query($conn, $pesquisa_produtosPedido);
@@ -34,6 +30,9 @@ $nome = utf8_encode($carrega_dados["nome"]);
      $pesquisa_mensagensPedido = "SELECT * FROM loja_mensagens_pedido WHERE id_pedido = '$id_pedido' ";
      $resultado_mensagensPedido = mysqli_query($conn, $pesquisa_mensagensPedido);
 
+//DATA E HORA DO ENVIO DA MENSAGEM
+date_default_timezone_set('America/Sao_Paulo');
+ $data_atual = date('Y/m/d H:i');           
 
 if (isset($_POST['enviar_mensagem'])) {
   $mensagem = utf8_decode($_POST["mensagem"]);

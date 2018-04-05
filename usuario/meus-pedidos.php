@@ -12,6 +12,11 @@ include_once("system/verifica_sessao.php");
  $resultado_pesquisa = mysqli_query($conn, $pesquisa);
  $carrega_dados = mysqli_fetch_assoc($resultado_pesquisa);
 
+ $id_cliente = utf8_encode($carrega_dados["id_cliente"]); //BUSCA O CODIGO DO CLIENTE
+
+//BUSCA OS DADOS DO PEDIDO NO MYSQL
+ $pesquisa_pedido = "SELECT * FROM loja_pedidos WHERE id_cliente = '$id_cliente' ";
+ $resultado_pedido = mysqli_query($conn, $pesquisa_pedido);
 
  ?>
  
@@ -172,25 +177,20 @@ include_once("system/verifica_sessao.php");
          </tr>
        </thead>     
 
-     <tbody>
-       <tr>
-         <td class="cell">01</td>
-         <td class="cell">03/04/2018</td>
-         <td class="cell">R$ 10.000,00</td>
-         <td class="cell">Solicitado</td>
-         <td class="cell"><a href="detalhes-pedido.php?pedido=1548454154" class="button-detalhesPedido">detalhes</a></td>
-       </tr>
-     </tbody>
+     <?php while($carregar_pedido = mysqli_fetch_assoc($resultado_pedido)){ ?>
 
-     <tbody>
-       <tr>
-         <td class="cell">02</td>
-         <td class="cell">03/04/2018</td>
-         <td class="cell">R$ 15.000,00</td>
-         <td class="cell">Solicitado</td>
-         <td class="cell"><a href="" class="button-detalhesPedido">detalhes</a></td>
-       </tr>
-     </tbody>
+       <tbody>
+         <tr>
+           <td class="cell"><?php echo utf8_encode($carregar_pedido["id"]); ?></td>
+           <td class="cell"><?php echo date('d/m/Y', strtotime($carregar_pedido["data_pedido"])); ?></td> 
+           <td class="cell">R$ <?php echo number_format($carregar_pedido["valor_produtos"], 2,',','.'); ?></td>
+           <td class="cell"><?php echo utf8_encode($carregar_pedido["status"]); ?></td>
+           <td class="cell"><a href="detalhes-pedido.php?pedido=<?php echo utf8_encode($carregar_pedido["id"]); ?>" class="button-detalhesPedido">detalhes</a></td>
+         </tr>
+       </tbody>
+
+     <?php } ?>
+
 
      </table>
 

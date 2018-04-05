@@ -7,30 +7,14 @@
  padding-top: 20px;
  padding-bottom: 5px;
 }
+.container-footer{margin: auto; width: 80%;}
 .dados-contato{
  float: left;
  width: 100%;
  margin-bottom: 20px;
 }
-
-.endereco, .telefone, .atendimento{ float: left;width: 100%;}
-.endereco p{font-size: 15px !important; color: #fff;}
-.telefone p{font-size: 15px !important; color: #fff;}
-.atendimento p{font-size: 15px !important; color: #fff;}
-
-
-.dados-newsletter{
- float: left;
- width: 100%;
- margin-bottom: 20px;	
-}
-.dados-redes-sociais{
- float: left;
- width: 100%;
- margin-bottom: 20px;
- text-align: center;	
-}
-
+.dados-contato p{float: left; padding: 0 10px ; font-size: 15px !important; color: #797979; font-weight: bold;}
+.dados-contato p:hover{color: #014d8f;}
 /*foooter*/  
 .copyright{
  float: left;
@@ -49,13 +33,7 @@
 /****** PARA O PC ******/
 @media screen and (min-width:1025px) {
 .dados-contato{
- width: 45%;
-}
-.dados-newsletter{
- width: 30%;
-}
-.dados-redes-sociais{
- width: 25%;
+ width: 100%;
 }
 
 </style>
@@ -65,24 +43,24 @@
 <body>
 
 <div class="footer">
- <div class="container">
+ <div class="container-footer">
 
   <div class="dados-contato">
-     <div class="endereco"><p>Rua Benedita Silveira Leme - Mogi Guaçu-SP</p></div>
-  	 <div class="telefone"><p>(19) 3818-8942</p></div>
-  	 <div class="atendimento"><p>Seg - Sex: 08:00 as 18:00</p></div>
+     <a href="#"><p>Sobre a Empresa</p></a>
+     <a href="#"><p>Sobre produtos</p></a>
+  	 <a href="#"><p>Sobre o Frete</p></a>
+  	 <a href="#"><p>Formas de Pagamento</p></a>
   </div>
 
   <div class="dados-newsletter">
-  	<?php include('souce=newsletter.php'); ?>
+  	
   </div>
 
   <div class="dados-redes-sociais">
-  	<?php include('souce=redes-sociais.php'); ?>
+  	
   </div>
 
 </div>
-
         <!-- FOOTER -->
         <div class="copyright">
           <div class="container-site">
