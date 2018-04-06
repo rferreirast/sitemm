@@ -1,4 +1,10 @@
 @media screen and (min-width:320px) {
+a{
+ text-decoration: none;
+}
+a:hover{
+ text-decoration: none;
+}
 
 .container-produtos{
  display: block;
@@ -51,7 +57,10 @@
  padding-bottom: 3px;
  margin-left: 15px;
 }
-
+#nomeProduto{
+ color:#949595;
+ font-size: 14px !important;	
+}
 .button-sacola a{
  float: left;
  width: 100%;
@@ -67,6 +76,7 @@
 }
 .button-sacola a:hover{
  background: #014d8fed;
+ text-decoration: none;
 }
 
 /********************************/

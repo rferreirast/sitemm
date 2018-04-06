@@ -4,16 +4,21 @@
      //BUSCA CODIGO NA URL
 	 $id_produto = $_GET['produto'];
 
+	//LISTA OS DADOS DO PRODUTO DO BANCO DE DADOS
 	//$listar = mysqli_query($conn, "SELECT * FROM produtos") or print mysql_error();
-	$listar = "SELECT * FROM produtos WHERE id = '$id_produto' AND status = '1' ";
+	$listar = "SELECT * FROM loja_produtos WHERE id = '$id_produto' AND status = 'ativo' ";
     $resultado_listar = mysqli_query($conn, $listar);
     $carregar_produto = mysqli_fetch_assoc($resultado_listar);
+
+    //LISTA AS FOTOS DO PRODUTO
+    $listar_fotos = "SELECT * FROM loja_fotos_produtos WHERE id_produto = '$id_produto'";
+    $resultado_fotos = mysqli_query($conn, $listar_fotos);
 
     //LISTA OS PRODUTOS SEMELHANTES 
 
     $categoria = $carregar_produto["categoria"];
 
-	$listar_produtosSemelhante = "SELECT * FROM produtos WHERE id != '$id_produto' AND categoria LIKE '%$categoria%' AND status = '1' LIMIT 4";
+	$listar_produtosSemelhante = "SELECT * FROM loja_produtos WHERE id != '$id_produto' AND categoria LIKE '%$categoria%' AND status = 'ativo' LIMIT 4";
     $resultado_produtosSemelhante = mysqli_query($conn, $listar_produtosSemelhante);
 
  ?>
@@ -208,9 +213,13 @@
 	  	<img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($carregar_produto["foto"]); ?>" alt="">
 
 	  	<div class="mmp-outrasImagens">
-	  		<div class="mmp-outrasImagens-item"><img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/produto4.jpg" alt=""></div>
-	  		<div class="mmp-outrasImagens-item"><img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/produto2.jpg" alt=""></div>
-	  		<div class="mmp-outrasImagens-item"><img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/produto5.jpg" alt=""></div>
+
+	  		<?php while($resultado_listarFotos = mysqli_fetch_assoc ($resultado_fotos)){ ?>
+
+	  		<div class="mmp-outrasImagens-item"><img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo($resultado_listarFotos["outras_fotos"]) ?>" alt=""></div>
+
+            <?php } ?>
+	  	
 	  	</div>
 	  </div>
 
@@ -218,52 +227,15 @@
 	    <div class="mmp-infos-produto-margem">
 	  	
 	  	<div class="mmp-infos-produto-nome"><p><?php echo utf8_encode ($carregar_produto["nome"]); ?></p></div>
-	  	<p style="width: 100%; float: left; color: #848484; font-size: 12px !important;">Codigo produto: <?php echo utf8_encode ($carregar_produto["id"]); ?></p>
-	  	<div class="mmp-infos-produto-preco"><p>R$ <?php echo utf8_encode (number_format($carregar_produto["preco"], 2,',','.')); ?></p></div>
-
-	  	<style>
-	  		.variavelProduto{float: left; width: 100%; margin-bottom: 10px;}
-            .item-variavel{float: left; width: 100%; padding-bottom: 5px;}
-            .item-variavel p{color: #151515;font-size: 14px !important; padding-bottom: 0px;}
-            .form-variavelProduto{border: 1px solid #014d8f; border-radius: 5px; width: 50%; padding: 5px 10px;}
-
-            
-	  	</style>
-
-	  	<div class="variavelProduto">
-	  		
-	  	  <div class="item-variavel">
-          <p><b>Cor da Ferragem:</b></p>
-          <label for="variavel1"></label>
-          <select name="variavel1" class="form-variavelProduto">
-            <option value="">Selecione</option>
-            <option value="Branca">Branca</option>
-            <option value="Preta">Preta</option>
-            <option value="Preta">Prata</option>  
-            <option value="Preta">Ouro Velho</option>                    
-          </select>                 
-          </select>
-          </div>
-
-          <div class="item-variavel">
-          <p><b>Cor do estofado:</b></p>
-          <label for="variavel2"></label>
-          <select name="variavel2" class="form-variavelProduto">
-            <option value="">Selecione</option>
-            <option value="Branca">Branco</option>
-            <option value="Preta">Preto</option>
-            <option value="Preta">Azul</option> 
-            <option value="Preta">Vermelho</option>                    
-          </select>
-          </div>
-
-	  	</div>	  	
+	  	<p style="width: 100%; float: left; color: #848484; font-size: 12px !important;">Código produto: <?php echo utf8_encode ($carregar_produto["id"]); ?></p>
+	  	<div class="mmp-infos-produto-preco"><p>R$ <?php echo utf8_encode (number_format($carregar_produto["preco"], 2,',','.')); ?></p></div> 
+	  	<p style="width: 100%; float: left; color: #848484; font-size: 14px !important; margin-bottom: 20px;"><i class="fas fa-paint-brush"></i> Veja a tabela de cores disponíveis para esse produto <a href="#">clicando aqui</a></p>	
 
 	  	<div class="mmp-infos-descricao-lateral">
 	  	    <p id="infoMedidas">Medidas</p>
-	  		<p><b><i class="fas fa-arrows-alt-v"></i> Altura:</b> 62 cm</p>
-			<p><b><i class="fas fa-arrows-alt-h"></i> Comprimento:</b> 45 cm</p>
-			<p><b><i class="fas fa-arrows-alt-h"></i> Largura:</b> 45 cm</p>
+	  		<p><b><i class="fas fa-arrows-alt-v"></i> Altura:</b> <?php echo utf8_encode ($carregar_produto["altura"]); ?></p>
+			<p><b><i class="fas fa-arrows-alt-h"></i> Comprimento:</b> <?php echo utf8_encode ($carregar_produto["comprimento"]); ?></p>
+			<p><b><i class="fas fa-arrows-alt-h"></i> Largura:</b> <?php echo utf8_encode ($carregar_produto["largura"]); ?></p>
 			<p><b><i class="fas fa-cube"></i> Peso:</b> 12 kg</p>
 	  	</div>
 
@@ -279,41 +251,8 @@
 
 	  <div class="mmp-infos-descricao-completa">
 	     <div class="mmp-infos-descricao-texto">
-	  	
-	  	<!--<p><?php echo utf8_encode ($carregar_produto["descricao_completa"]); ?></p>-->
 
-	  	<p></p>
-	  	    <h2><b>MEDIDAS DO PRODUTO</b></h2>
-
-			<p>Altura: 62 cm</p>
-			<p>Comprimento: 45 cm</p>
-			<p>Largura: 45 cm / 40 </p>
-
-			<h2><b>MATERIAL</b></h2>
-
-			<p>Material da base: Metalon 20x20 em aço carbono 1020, Pintura Eletrostática e Soldagem Mig/Mag.</p>
-			<p>Material do tampo: Madeira MDF Amarelo Citrino Brilho de 15 mm e Fita de Borda.</p>
-
-			<h2><b>DETALHES DO PRODUTO</b></h2>
-
-			<p>Peso do produto: 15,3 Kg</p>
-			<p>Peso suportado: 100 Kg</p>
-			<p>Garantia de 1 ano contra defeito de fabricação</p>
-
-			<h2><b>CUIDADOS NECESSÁRIOS</b></h2>
-
-			<p>Para limpeza do produto utilize um pano seco e macio ou utilize um pano levemente umedecido e logo em seguida use um pano seco e macio para secar a peça. </p>
-
-			<h2><b>O MELHOR CUSTO BENEFÍCIO DO MERCADO</b></h2>
-
-			<p>Nossos produtos possuem uma vida útil média de +10 anos. Se for usado seguindo as nossas recomendações de cuidados e limpeza você terá um bom produto por décadas.</p>
-
-			<h2><b>GARANTIA EXCLUSIVA</b></h2>
-
-			<p>Se em até 15 dias você não ficar satisfeito com a mercadoria, devolvemos o seu dinheiro.</p>
-			<p>Se você não gostar da mercadoria por qualquer motivo, você tem 15 dias para entrar em contato e cancelar a compra, você nos devolve a mercadoria e devolvemos o seu dinheiro total. Cobrimos todos os custos.</p>
-
-         <p></p>
+	  	    <p><?php echo utf8_encode ($carregar_produto["descricao_completa"]); ?></p>
 
         </div>
 	  </div>

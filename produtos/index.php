@@ -5,7 +5,7 @@
 
  
   //$listar = mysqli_query($conn, "SELECT * FROM produtos") or print mysql_error();
-  $listar = "SELECT * FROM produtos WHERE status = '1' ";
+  $listar = "SELECT * FROM loja_produtos WHERE status = 'ativo' ORDER BY preco ASC";
   $resultado_listar = mysqli_query($conn, $listar);
 
  ?>
@@ -66,8 +66,9 @@
         <div class="border-item-produto">
         <div class="item-produto">
         <img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($listar_produtos["foto"]); ?>" alt=""> <!-- FOTO -->
-        <p><?php echo utf8_encode ($listar_produtos["nome"]); ?></p> <!-- NOME -->
+        
         <p id="preco">R$ <?php echo utf8_encode (number_format($listar_produtos["preco"], 2,',','.')); ?></p> <!-- PREÇO 1 -->
+        <p id="nomeProduto"><?php echo utf8_encode ($listar_produtos["nome"]); ?></p> <!-- NOME -->
         </a>
 
         </div></div>

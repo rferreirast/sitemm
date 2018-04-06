@@ -276,13 +276,15 @@ if (isset($_POST['enviar_mensagem'])) {
 
      <div class="totaisPedido">
 
-     <?php $valor_produtos = $carregar_pedido["valor_produtos"] ; $valor_frete = $carregar_pedido["valor_frete"]; ?>
+     <?php $valor_produtos = $carregar_pedido["valor_produtos"] ; $valor_frete = $carregar_pedido["valor_frete"]; $valor_desconto = $carregar_pedido["valor_desconto"]; ?>
 
      <p>Total produtos: R$ <?php echo number_format($carregar_pedido["valor_produtos"], 2,',','.') ?></p>
 
      <p>Valor do frete: R$ <?php echo number_format($carregar_pedido["valor_frete"], 2,',','.') ?></p>
 
-     <p style="color: #014d8f;"><b>Total pedido: R$ <?php echo number_format($valor_produtos + $valor_frete, 2,',','.'); ?></b></p>
+     <p style="color: #e74c3c;">Desconto: R$ - <?php echo number_format($carregar_pedido["valor_desconto"], 2,',','.') ?></p>
+
+     <p style="color: #014d8f;"><b>Total pedido: R$ <?php echo number_format($valor_produtos + $valor_frete - $valor_desconto, 2,',','.'); ?></b></p>
        
      </div>
 

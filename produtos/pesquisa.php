@@ -7,7 +7,7 @@
 	 $categoria_pesquisa = $_GET['categoria'];
 
 	//$listar = mysqli_query($conn, "SELECT * FROM produtos") or print mysql_error();
-	$listar = "SELECT * FROM produtos WHERE categoria = '$categoria_pesquisa' AND status = '1' ";
+	$listar = "SELECT * FROM loja_produtos WHERE categoria = '$categoria_pesquisa' AND status = 'ativo' ORDER BY preco ASC";
     $resultado_listar = mysqli_query($conn, $listar);
 
  ?>
@@ -65,9 +65,9 @@
 				<a href="mmp?<?php echo utf8_encode (str_replace (" ", "-",$listar_produtos["nome"])); ?>&produto=<?php echo utf8_encode ($listar_produtos["id"]); ?>">
 				<div class="border-item-produto">
 				<div class="item-produto">
-				<img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($listar_produtos["foto"]); ?>" alt=""> <!-- FOTO -->
-				<p><?php echo utf8_encode ($listar_produtos["nome"]); ?></p> <!-- NOME -->
+				<img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($listar_produtos["foto"]); ?>" alt=""> <!-- FOTO -->				
 				<p id="preco">R$ <?php echo utf8_encode (number_format($listar_produtos["preco"], 2,',','.')); ?></p> <!-- PREÇO 1 -->
+				<p id="nomeProduto" ><?php echo utf8_encode ($listar_produtos["nome"]); ?></p> <!-- NOME -->
 				</a>
 
 				</div>

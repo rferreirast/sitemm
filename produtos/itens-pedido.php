@@ -65,6 +65,76 @@ header("Location: itens-pedido");
 
 }
 
+if (isset($_POST['finalizar_pedido'])) {
+$valor_produtos = $_POST['totalPedido'];
+
+//FAZ A BUSCA DO ULTIMO ID DE PEDIDO E SOMA MAIS 1;
+$busca_ultimoId = mysqli_query($conn, "SELECT MAX(id) FROM loja_pedidos") or print mysql_error();
+$ultimo_id = mysqli_fetch_array($busca_ultimoId);
+$numero_pedido = $ultimo_id[0] + 1;
+
+//DADOS CLIENTE
+$email = $_SESSION['sessao_usuario']; //PESQUISA O EMAIL LOGADO
+ 
+$pesquisa_dadosCliente = "SELECT * FROM loja_clientes WHERE email = '$email'"; // FAZ A BUSCA NO MYSQL
+$resultado_cliente = mysqli_query($conn, $pesquisa_dadosCliente);
+$carrega_dados = mysqli_fetch_assoc($resultado_cliente);
+
+$id_cliente = utf8_encode($carrega_dados["id_cliente"]); //RETORNA O CODIGO DO CLIENTE
+
+date_default_timezone_set('America/Sao_Paulo'); //DATA E HORA DO PEDIDO
+$data_atual = date('Y/m/d H:i');  
+
+
+//DALVA OS DADOS DO PEDIDO NA TABELA
+
+$salva_pedido = "INSERT INTO loja_pedidos (id, id_cliente, valor_produtos, status, data_pedido) VALUES ('$numero_pedido', '$id_cliente', '$valor_produtos', 'Solicitado', '$data_atual')";
+
+if ($conn->query($salva_pedido) === TRUE) {
+
+//SALVA OS PRODUTOS DO PEDIDO
+echo "<script>alert('OK !!');</script>";
+
+//header("location: meus-pedidos");
+
+else{
+
+	echo "<script>alert('Algo deu errado, tente novamente !!');</script>";
+}
+
+}*/
+
+/*//DADOS PRODUTO
+$valor_pedido = ;
+$status_pedido = ['solicitado'];
+$data_pedido = [''];
+
+//LISTA DOS PRODUTOS DO PEDIDO
+$id_produto = $_POST[''];
+$quantidade_produtos = $_POST[''];
+$valor = $_POST[''];
+$subtotal = $_POST[''];
+
+
+
+
+//SALVA EM loja_pedidos
+
+//SALVA EM loja_produtos_pedidos
+
+
+foreach ($_SESSION['itens'] as $idProduto => $quantidade){
+$preco = $produtos[0]["preco"];
+
+$sql = "INSERT INTO loja_produtos_pedidos (nome, email, senha) VALUES ('$idProduto', '$quantidade', '$preco')";
+if ($conn->query($sql) === TRUE) {
+
+}
+
+}*/
+
+}
+
 
 ?>
 
@@ -193,8 +263,6 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 		         <tr>
 		           <th class="header-itensPedido" style="text-align: left;">Itens do pedido</th>
 		           <th class="header-itensPedido"></th>
-		           <th class="header-itensPedido">Ferragem</th>
-		           <th class="header-itensPedido">Assento/Tampo</th>
 		           <th class="header-itensPedido">Qtd</th>
 		           <th class="header-itensPedido">Valor</th>
 		           <th class="header-itensPedido">Subtotal</th>
@@ -218,11 +286,12 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 				       <tr>
 				         <td class="cell-itensPedido"><img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo $produtos[0]["foto"]; ?>" alt="" style="height: 80px; width:auto;"></td>
 
-				         <td class="cell-itensPedido" style="text-align: left;"><p><a href="mmp?<?php echo utf8_encode (str_replace (" ", "-",$produtos[0]["nome"])); ?>&produto=<?php echo $idProduto; ?>"><?php echo utf8_encode ($produtos[0]["nome"]); ?></a></p></td>
+				         <td class="cell-itensPedido" style="text-align: left;">
+				         	<p><a href="mmp?<?php echo utf8_encode (str_replace (" ", "-",$produtos[0]["nome"])); ?>&produto=<?php echo $idProduto; ?>"><?php echo utf8_encode ($produtos[0]["nome"]); ?></a></p>
+				         	<p style="color: #acacac">Codigo: <?php echo $idProduto; ?></p>
+				         	<p style="color: #acacac">Cores: A escolher</p>
+				         </td>
 				         
-
-				         <td class="cell-itensPedido"><p>Branco</p></td>
-				         <td class="cell-itensPedido"><p>Vermelho</p></td>
 
 				         <td class="cell-itensPedido">
 				         <input type="submit" value="🔃" class="qt_itens_atualizar" name="atualiza_quantidades">
@@ -239,9 +308,7 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 
 				       </tr>
 				     </tbody> 
-
-				</form>			
-
+						
 
 			    <?php error_reporting(0); $totalPedido += $produtos[0]["preco"] * $quantidade; }}?>
 
@@ -251,8 +318,12 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 				<!-- FIM ITEM PEDIDO -->
 
 				<div class="cont-TotalPedido">
-				    <p id="valorTotal">R$ <?php error_reporting(0); echo number_format($totalPedido, 2,',','.'); ?> </p>
-					<p id="textoTotal">Total do pedido:</p>
+
+					<input type="text" value="<?php echo number_format($totalPedido, 2,'.',''); ?>" name="totalPedido" style="width: 0; height: 0;">
+
+					<p id="valorTotal">R$<?php echo number_format($totalPedido, 2,',','.'); ?></p>
+					
+					<p id="textoTotal">Total do pedido: </p>
 				</div>
 
 				<div class="obs-itensPedid">
@@ -260,9 +331,11 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 				</div>
 
                 <div class="buttons-actionPedido">
-				<a href="#" id="finalizaPedido">Finalizar pedido</a>
+                <input type="submit" id="finalizaPedido" value="Finalizar pedido" class="" name="finalizar_pedido">
 				<a href="#" id="adicionarItens">Adicionar Itens</a>
 				</div>
+
+				</form>	
 
 
 			</div>

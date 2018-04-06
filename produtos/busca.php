@@ -6,11 +6,9 @@
      //BUSCA CODIGO NA URL
 	 $item_pesquisa = $_GET['produto'];
 
-	 //echo" <script>document.location.href='/produtos/busca?produto=$item_pesquisa'</script>";
-
-	//$listar = mysqli_query($conn, "SELECT * FROM produtos") or print mysql_error();
-	$listar = "SELECT * FROM produtos WHERE nome LIKE '%$item_pesquisa%' AND status = '1' ";
-    $resultado_listar = mysqli_query($conn, $listar);
+	//REALIZA BUSCA NO BANCO DE DADOS COM A PALAVRA DIGITADA
+	/*$listar = "SELECT * FROM loja_produtos WHERE nome LIKE '$item_pesquisa%' AND status = 'ativo' ORDER BY preco desc ";
+    $resultado_listar = mysqli_query($conn, $listar);*/
 
  ?>
  
@@ -62,21 +60,22 @@
 		
 		<div class="container-produtos-itens" style="width: 100%; float: left;">
 
-            <?php $Ver_resultado_listar = mysqli_query($conn, "SELECT * FROM produtos WHERE nome LIKE '%$item_pesquisa%' AND status = '1' ");
+            <?php $Ver_resultado_listar = mysqli_query($conn, "SELECT * FROM loja_produtos WHERE nome LIKE '%$item_pesquisa%' AND status = 'ativo' ORDER BY preco ASC");
 
 			if (mysqli_num_rows($Ver_resultado_listar) == 0) { 
 				echo '<p style="color: #595959; font-size: 30px !important; text-align: center; margin-top: 60px; min-height: 100px;"><i class="fas fa-search"></i> Nenhum produto encontrado. Revise a palavra buscada.</p>';
 			}else{ ?>
 				
-			<?php while($listar_produtos = mysqli_fetch_assoc ($resultado_listar)){ ?>
+			<?php while($listar_produtos = mysqli_fetch_assoc ($Ver_resultado_listar)){ ?>
 
 				<!-- PRODUTO -->
 				<a href="mmp?<?php echo utf8_encode (str_replace (" ", "-",$listar_produtos["nome"])); ?>&produto=<?php echo utf8_encode ($listar_produtos["id"]); ?>">
 				<div class="border-item-produto">
 				<div class="item-produto">
 				<img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($listar_produtos["foto"]); ?>" alt=""> <!-- FOTO -->
-				<p><?php echo utf8_encode ($listar_produtos["nome"]); ?></p> <!-- NOME -->
+				
 				<p id="preco">R$ <?php echo utf8_encode (number_format($listar_produtos["preco"], 2,',','.')); ?></p> <!-- PREÇO 1 -->
+				<p id="nomeProduto"><?php echo utf8_encode ($listar_produtos["nome"]); ?></p> <!-- NOME -->
 				</a>				
 
 				</div>
