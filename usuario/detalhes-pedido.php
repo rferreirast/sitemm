@@ -217,7 +217,7 @@ if (isset($_POST['enviar_mensagem'])) {
        <div class="pedido-detalhes">  
 
        <?php $verifica_pedido = mysqli_query($conn,"SELECT * FROM loja_pedidos WHERE id = '$id_pedido' AND id_cliente = '$id_cliente' ");
-  if (mysqli_num_rows($verifica_pedido) > 0) { ?>
+        if (mysqli_num_rows($verifica_pedido) > 0) { ?>
 
        <div class="statusPedido"><p><b>Status do pedido:</b> <?php echo utf8_encode($carregar_pedido["status"]) ?></p></div>     
 

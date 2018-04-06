@@ -1,13 +1,13 @@
 <?php 
 
 if (isset($_POST['fazer_busca'])) {
-$pesquisar_produtos = utf8_decode( $_POST["pesquisar_produtos"]);
+$pesquisar_produtos = $_POST["pesquisar_produtos"];
  
- header("Location: /produtos/busca?produto=$pesquisar_produtos");
-
+ //header("Location: /produtos/busca.php?produto=$pesquisar_produtos");
+echo" <script>document.location.href='/produtos/busca.php?produto=$pesquisar_produtos'</script>";
 }
 
- ?>
+?>
 <style>
 @media screen and (min-width:320px) {
 .content-topo-tarja{

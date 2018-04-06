@@ -218,7 +218,7 @@
 	    <div class="mmp-infos-produto-margem">
 	  	
 	  	<div class="mmp-infos-produto-nome"><p><?php echo utf8_encode ($carregar_produto["nome"]); ?></p></div>
-	  	<p style="width: 100%; float: left; color: #848484; font-size: 12px !important;">Codigo: <?php echo utf8_encode ($carregar_produto["id"]); ?></p>
+	  	<p style="width: 100%; float: left; color: #848484; font-size: 12px !important;">Codigo produto: <?php echo utf8_encode ($carregar_produto["id"]); ?></p>
 	  	<div class="mmp-infos-produto-preco"><p>R$ <?php echo utf8_encode (number_format($carregar_produto["preco"], 2,',','.')); ?></p></div>
 
 	  	<style>
@@ -345,6 +345,8 @@
 <div class="produtosSemelhantes">
 	
 	<div class="produtosSemelhantes-itens">
+
+		<div class="texto-produtosSemelhantes" style="float: left; width: 100%; margin-bottom: 10px;"><p style="font-size: 22px !important; font-weight: bold; color: #8f8e8e;">Produtos que você também pode se interessar</p></div>
 
 	 <?php while($res_produtosSemelhante = mysqli_fetch_assoc ($resultado_produtosSemelhante)){ ?>
 

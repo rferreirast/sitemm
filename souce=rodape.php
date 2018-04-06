@@ -13,7 +13,7 @@
  width: 100%;
  margin-bottom: 20px;
 }
-.dados-contato p{float: left; padding: 0 10px ; font-size: 15px !important; color: #797979; font-weight: bold;}
+.dados-contato p{width: 100%; float: left; padding: 0 10px ; font-size: 15px !important; color: #797979; font-weight: bold;}
 .dados-contato p:hover{color: #014d8f;}
 /*foooter*/  
 .copyright{
@@ -35,6 +35,7 @@
 .dados-contato{
  width: 100%;
 }
+.dados-contato p{width: auto;}
 
 </style>
 
