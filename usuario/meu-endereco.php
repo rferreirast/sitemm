@@ -5,7 +5,7 @@ include_once("system/connect.php");
 if (!isset($_SESSION)){session_start();}
 include_once("system/verifica_sessao.php");
 
- $email = $_SESSION['sessao_usuario'];
+$email = $_SESSION['sessao_usuario'];
 
 //CARREGA PRODUTO 
  $pesquisa = "SELECT * FROM loja_clientes WHERE email = '$email'";
@@ -36,6 +36,61 @@ $estado = utf8_decode( $_POST["estado"]);
        </script>";
        }
      }
+
+//===================================================================
+
+if (isset($_POST['finalizar_pedido'])) {
+$valor_produtos = $_POST['totalPedido'];
+
+//FAZ A BUSCA DO ULTIMO ID DE PEDIDO E SOMA MAIS 1;
+$busca_ultimoId = mysqli_query($conn, "SELECT MAX(id) FROM loja_pedidos") or print mysql_error();
+$ultimo_id = mysqli_fetch_array($busca_ultimoId);
+$numero_pedido = $ultimo_id[0] + 1;
+
+//DADOS CLIENTE
+$email = $_SESSION['sessao_usuario']; //PESQUISA O EMAIL LOGADO
+ 
+$pesquisa_dadosCliente = "SELECT * FROM loja_clientes WHERE email = '$email'"; // FAZ A BUSCA NO MYSQL
+$resultado_cliente = mysqli_query($conn, $pesquisa_dadosCliente);
+$carrega_dados = mysqli_fetch_assoc($resultado_cliente);
+
+$id_cliente = utf8_encode($carrega_dados["id_cliente"]); //RETORNA O CODIGO DO CLIENTE
+
+date_default_timezone_set('America/Sao_Paulo'); //DATA E HORA DO PEDIDO
+$data_atual = date('Y/m/d H:i');  
+
+
+//DALVA OS DADOS DO PEDIDO NA TABELA
+$salva_pedido = "INSERT INTO loja_pedidos (id, id_cliente, valor_produtos, status, data_pedido) VALUES ('$numero_pedido', '$id_cliente', '$valor_produtos', 'Solicitado', '$data_atual')";
+
+if ($conn->query($salva_pedido) === TRUE) {
+
+//SALVA OS PRODUTOS DO PEDIDO
+foreach ($_SESSION['itens'] as $idProduto => $quantidade){
+$preco = '10';
+$subtotal = $preco * $quantidade;
+
+$salva_produtosPedido = "INSERT INTO loja_produtos_pedidos (id_pedido, id_produto, quantidade, valor, subtotal) VALUES ('$numero_pedido', '$idProduto', '$quantidade', '$preco', '$subtotal')";
+
+//echo "Pedido: $numero_pedido / id produto: $idProduto / quantidade: $quantidade / Preço: $preco / subtotal: $subtotal </br>";
+
+}
+
+if ($conn->query($salva_produtosPedido) === TRUE) {
+
+echo "<script>alert('OK !!');</script>";
+//header("location: meus-pedidos");}
+
+}
+
+}
+
+else{
+
+  echo "<script>alert('Algo deu errado, tente novamente !!');</script>";
+  }
+
+}     
 
  ?>
  

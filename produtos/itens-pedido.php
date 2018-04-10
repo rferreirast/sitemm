@@ -87,53 +87,42 @@ $data_atual = date('Y/m/d H:i');
 
 
 //DALVA OS DADOS DO PEDIDO NA TABELA
-
 $salva_pedido = "INSERT INTO loja_pedidos (id, id_cliente, valor_produtos, status, data_pedido) VALUES ('$numero_pedido', '$id_cliente', '$valor_produtos', 'Solicitado', '$data_atual')";
-
 if ($conn->query($salva_pedido) === TRUE) {
 
-//SALVA OS PRODUTOS DO PEDIDO
-echo "<script>alert('OK !!');</script>";
+	//SALVA OS PRODUTOS DO PEDIDO
+	foreach ($_SESSION['itens'] as $idProduto => $quantidade){
+	$select = $conexao->prepare("SELECT * FROM produtos WHERE id=?");
+	$select->bindParam (1,$idProduto);
+	$select->execute();
+	$produtos = $select->fetchAll();
 
-//header("location: meus-pedidos");
+	$preco = $produtos[0]["preco"];
+	$subtotal = $preco * $quantidade;
 
-else{
+	$salva_produtosPedido = "INSERT INTO loja_produtos_pedidos (id_pedido, id_produto, quantidade, valor, subtotal) VALUES (?, ?, ?, ?, ?)";
+	$salva = $conexao->prepare($salva_produtosPedido);
+	$salva->execute(array($numero_pedido, $idProduto, $quantidade, $preco, $subtotal));
 
-	echo "<script>alert('Algo deu errado, tente novamente !!');</script>";
+	//echo "Pedido: $numero_pedido / id cliente: $id_cliente / valor pedido: $valor_produtos / data: $data_atual </br>";
+
 }
+//echo "Pedido: $numero_pedido / id produto: $idProduto / quantidade: $quantidade / Preço: $preco / subtotal: $subtotal </br>";
 
-}*/
+unset($_SESSION['itens']);
 
-/*//DADOS PRODUTO
-$valor_pedido = ;
-$status_pedido = ['solicitado'];
-$data_pedido = [''];
-
-//LISTA DOS PRODUTOS DO PEDIDO
-$id_produto = $_POST[''];
-$quantidade_produtos = $_POST[''];
-$valor = $_POST[''];
-$subtotal = $_POST[''];
+header("location: meus-pedidos");
 
 
+}else{
 
-
-//SALVA EM loja_pedidos
-
-//SALVA EM loja_produtos_pedidos
-
-
-foreach ($_SESSION['itens'] as $idProduto => $quantidade){
-$preco = $produtos[0]["preco"];
-
-$sql = "INSERT INTO loja_produtos_pedidos (nome, email, senha) VALUES ('$idProduto', '$quantidade', '$preco')";
-if ($conn->query($sql) === TRUE) {
+	echo '<script>alert("Algo deu errado, tente novamente !");</script>';
 
 }
 
-}*/
 
 }
+
 
 
 ?>
@@ -278,9 +267,8 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 
 				//$totalIten = number_format($produtos[0]["preco"] * $quantidade, 2,',','.');
 
-                ?>
-
-                <form method="post">			 		       
+                ?>                			 		       
+				    <form method="post">
 
 				     <tbody>
 				       <tr>
@@ -292,7 +280,6 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 				         	<p style="color: #acacac">Cores: A escolher</p>
 				         </td>
 				         
-
 				         <td class="cell-itensPedido">
 				         <input type="submit" value="🔃" class="qt_itens_atualizar" name="atualiza_quantidades">
 						 <input type="number" value="<?php echo $quantidade; ?>" class="qt_itens" name="qtd">
@@ -307,10 +294,17 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 				         <div class="cont-buttons"><a href="itens-pedido?removeItem=<?php echo $produtos[0]["id"]; ?>" id="button_excluirItem">✘</a></td></div>
 
 				       </tr>
-				     </tbody> 
-						
+				     </tbody>
 
-			    <?php error_reporting(0); $totalPedido += $produtos[0]["preco"] * $quantidade; }}?>
+				     <input type="submit" id="finalizaPedido" value="Finalizar pedido" class="" name="finalizar_pedido"> 
+
+				     <?php error_reporting(0); $totalPedido += $produtos[0]["preco"] * $quantidade; ?>
+
+				     <input type="text" class="zero" value="<?php echo number_format($totalPedido, 2,'.',''); ?>" name="totalPedido">
+
+				     </form>				    
+
+			    <?php }}?>
 
 			    </table> 
 
@@ -319,9 +313,9 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 
 				<div class="cont-TotalPedido">
 
-					<input type="text" value="<?php echo number_format($totalPedido, 2,'.',''); ?>" name="totalPedido" style="width: 0; height: 0;">
+					
 
-					<p id="valorTotal">R$<?php echo number_format($totalPedido, 2,',','.'); ?></p>
+					<p id="valorTotal">R$ <?php error_reporting(0); echo number_format($totalPedido, 2,',','.'); ?></p>
 					
 					<p id="textoTotal">Total do pedido: </p>
 				</div>
@@ -334,9 +328,6 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
                 <input type="submit" id="finalizaPedido" value="Finalizar pedido" class="" name="finalizar_pedido">
 				<a href="#" id="adicionarItens">Adicionar Itens</a>
 				</div>
-
-				</form>	
-
 
 			</div>
 
