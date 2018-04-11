@@ -45,7 +45,7 @@ if (isset($_POST['atualiza_quantidades'])) {
 $qtdProduto = $_POST['qtd'];
 $idprod = $_POST['idprod'];
 
-header("Location: itens-pedido?atualizaItem=$idprod&qt=$qtdProduto");
+//header("Location: itens-pedido?atualizaItem=$idprod&qt=$qtdProduto");
 
 if ($qtdProduto != '') {
 	$_SESSION['itens'][$idprod] = $qtdProduto;
@@ -111,7 +111,7 @@ if ($conn->query($salva_pedido) === TRUE) {
 
 unset($_SESSION['itens']);
 
-header("location: meus-pedidos");
+header("location: /usuario/detalhes-pedido?pedido=$numero_pedido");
 
 
 }else{
@@ -258,7 +258,8 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 		           <th class="header-itensPedido">Remover</th>		           
 		         </tr>
 		       </thead>
-				
+
+		      
 				<?php foreach ($_SESSION['itens'] as $idProduto => $quantidade) {
                 $select = $conexao->prepare("SELECT * FROM produtos WHERE id=?");
 				$select->bindParam (1,$idProduto);
@@ -267,8 +268,9 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 
 				//$totalIten = number_format($produtos[0]["preco"] * $quantidade, 2,',','.');
 
-                ?>                			 		       
-				    <form method="post">
+                ?>    
+
+                <form method="post">            			 		       
 
 				     <tbody>
 				       <tr>
@@ -296,27 +298,22 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 				       </tr>
 				     </tbody>
 
-				     <input type="submit" id="finalizaPedido" value="Finalizar pedido" class="" name="finalizar_pedido"> 
+				     <?php error_reporting(0); $totalPedido += $produtos[0]["preco"] * $quantidade; ?>	
 
-				     <?php error_reporting(0); $totalPedido += $produtos[0]["preco"] * $quantidade; ?>
-
-				     <input type="text" class="zero" value="<?php echo number_format($totalPedido, 2,'.',''); ?>" name="totalPedido">
-
-				     </form>				    
+				     </form>			     				    
 
 			    <?php }}?>
 
 			    </table> 
 
-
 				<!-- FIM ITEM PEDIDO -->
+
+				<form method="post">
 
 				<div class="cont-TotalPedido">
 
-					
-
 					<p id="valorTotal">R$ <?php error_reporting(0); echo number_format($totalPedido, 2,',','.'); ?></p>
-					
+					<input type="text" class="zero" value="<?php echo number_format($totalPedido, 2,'.',''); ?>" name="totalPedido">
 					<p id="textoTotal">Total do pedido: </p>
 				</div>
 
@@ -324,10 +321,14 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 					<p>Após a finalização do pedido a nossa equipe de atendimento vai entrar em contato para confirmar as quantidades, cores e detalhes do produto. Informaremos também o valor do frete para a entrega das quantidades informadas e o prosseguimento com a forma de pagamento.</p>
 				</div>
 
+                
+
                 <div class="buttons-actionPedido">
                 <input type="submit" id="finalizaPedido" value="Finalizar pedido" class="" name="finalizar_pedido">
 				<a href="#" id="adicionarItens">Adicionar Itens</a>
 				</div>
+
+				</form>
 
 			</div>
 

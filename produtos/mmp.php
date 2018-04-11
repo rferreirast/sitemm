@@ -38,12 +38,13 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script> <!-- ICONES -->
   <meta name=viewport content="width=device-width, initial-scale=1">
+  
   <link rel="shortcut icon" href='../img/logo-topo.png' /> <!-- INFO 3 -->
   <link rel="stylesheet" href="css/style-produtos.css">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="https://www.mmpschools.com/mmpcss/4/mmp.css">
 
-  
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 
 <style>
@@ -52,10 +53,10 @@
  float: left;
  width: 100%;
  background: #fff;
- border-radius: 20px;
+ border-radius: 2px;
  margin-top: 30px;
  margin-bottom: 30px;
- box-shadow: 0px 1px 10px 0px rgba(0,0,0,.2);
+ /*box-shadow: 0px 1px 10px 0px rgba(0,0,0,.2);*/
 }
 
 
@@ -77,9 +78,8 @@
  width: 70%;
 }
 .mmp-outrasImagens{ float: left; width: 100%; margin-top: 20px;}
-.mmp-outrasImagens-item{ float: left; width: 80px; height: 80px; margin-left: 10px; border: 1px solid #d4d4d4; border-radius: 3px; }
-.mmp-outrasImagens-item:hover{border: 1px solid #014d8f; cursor: pointer;}
-.mmp-outrasImagens-item img{width: 100%; padding: 5px;}
+img.mmp-outrasImagens-item{ float: left; width: 80px; height: 80px; margin-left: 10px; border: 1px solid #b9b9b9; border-radius: 3px; }
+img.mmp-outrasImagens-item:hover{border: 1.15px solid #949494; cursor: pointer;}
 /* INFORMAÇOES DO PRODUTO ==================*/
 .mmp-infos-produto{
  float: left;
@@ -160,7 +160,7 @@
 .mmp-infos-descricao-texto{
  width: 90%;
  margin: auto;
- border-radius: 10px;
+ border-radius: 5px;
  border: 1px solid #d7d7d7;
  padding: 20px 30px;
 }
@@ -209,14 +209,37 @@
       <div class="mmp-do-produto">
        <div class="mmp-do-produto-margem">
 
-	  <div class="mmp-img-produto">
-	  	<img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($carregar_produto["foto"]); ?>" alt="">
+	  <style>
 
-	  	<div class="mmp-outrasImagens">
+	  /* Fade in animation */
+		@keyframes fadeIn {
+		  to {
+		    opacity: 1;
+		  }
+		}
+
+		.fade-in {
+		  opacity: 0;
+		  animation: fadeIn 0.5s ease-in 1 forwards;
+		}
+
+		.mmp-outrasImagens-item:select{border: 1px solid #014d8f;}
+		
+	 </style>
+
+
+	  <div class="mmp-img-produto">
+
+	  	<img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($carregar_produto["foto"]); ?>" id="Fotoprincipal">
+
+	  	<div class="mmp_outrasImagens">
+
+	  		<img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($carregar_produto["foto"]); ?>" alt="" class="mmp-outrasImagens-item">
 
 	  		<?php while($resultado_listarFotos = mysqli_fetch_assoc ($resultado_fotos)){ ?>
 
-	  		<div class="mmp-outrasImagens-item"><img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo($resultado_listarFotos["outras_fotos"]) ?>" alt=""></div>
+	  		 <img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo($resultado_listarFotos["outras_fotos"]) ?>" alt="" class="mmp-outrasImagens-item">
+	  		
 
             <?php } ?>
 	  	
@@ -316,6 +339,38 @@
 <?php include('../souce=rodape.php'); ?>
 
 </body>
+
+<script>
+const Fotoprincipal = document.querySelector("#Fotoprincipal");
+const mmp_outrasImagens = document.querySelectorAll(".mmp_outrasImagens img");
+const opacity = 0.6;
+
+// Set first img opacity
+mmp_outrasImagens[0].style.opacity = opacity;
+
+mmp_outrasImagens.forEach(img => img.addEventListener("click", imgClick));
+
+function imgClick(e) {
+  // Reset the opacity
+  mmp_outrasImagens.forEach(img => (img.style.opacity = 1));
+
+  // Change Fotoprincipal image to src of clicked image
+  Fotoprincipal.src = e.target.src;
+
+  // Add fade in class
+  Fotoprincipal.classList.add("fade-in");
+
+  // Remove fade-in class after .5 seconds
+  setTimeout(() => Fotoprincipal.classList.remove("fade-in"), 500);
+
+  // Change the opacity to opacity var
+  e.target.style.opacity = opacity;
+}
+
+
+
+
+</script>
 
 </html>
 

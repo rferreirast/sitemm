@@ -106,7 +106,7 @@ if (isset($_POST['enviar_mensagem'])) {
  min-height: 500px;
  border-radius: 10px;
  margin-top: 40px;
- margin-bottom: 40px;
+ margin-bottom: 20px;
  box-shadow: 0px 5px 15px 2px rgba(0,0,0,.2);
  padding: 20px 20px;
 }
@@ -131,7 +131,7 @@ if (isset($_POST['enviar_mensagem'])) {
  border-bottom: 1px solid #c4c4c4;
  border-left: 1px solid #c4c4c4;
  border-right: 1px solid #c4c4c4;
- margin-bottom: 40px;
+ margin-bottom: 20px;
 }
 
 /*==============================*/
@@ -203,13 +203,8 @@ if (isset($_POST['enviar_mensagem'])) {
     <div class="formulario-meus-dados">
 
     <div class="texto-container" style="border-bottom: 1px solid #c4c4c4;">
-    <p style="">Detalhes do Pedido #<?php echo utf8_encode($carregar_pedido["id"]) ?>
 
-    <?php $data_pedido = $carregar_pedido["data_pedido"]; ?>
-
-    <span style="float: right; font-weight: bold; padding-left: 10px;">Data do pedido: <?php echo date('d/m/Y', strtotime($data_pedido)); ?></span>    
-
-
+      <p style="color: #151515; font-size: 16px !important;">Detalhes do Pedido</p>
 
     <?php include_once('menu_usuario.php'); ?>
 
@@ -219,7 +214,10 @@ if (isset($_POST['enviar_mensagem'])) {
        <?php $verifica_pedido = mysqli_query($conn,"SELECT * FROM loja_pedidos WHERE id = '$id_pedido' AND id_cliente = '$id_cliente' ");
         if (mysqli_num_rows($verifica_pedido) > 0) { ?>
 
-       <div class="statusPedido"><p><b>Status do pedido:</b> <?php echo utf8_encode($carregar_pedido["status"]) ?></p></div>     
+       <div class="statusPedido" style="float: left; width: 100%;">
+        <p style="float: left;"><b>Status do pedido:</b> <?php echo utf8_encode($carregar_pedido["status"]) ?></p>
+        <p style="text-align: right;">Data do pedido: <?php echo date('d/m/Y', strtotime($carregar_pedido["data_pedido"])); ?></p>
+       </div>     
 
         <table class="detalhes-pedido">
 
@@ -312,20 +310,26 @@ if (isset($_POST['enviar_mensagem'])) {
 
        <div class="dadosCliente-Iten">
          <p style="font-size: 16px !important; font-weight: bold; color: #333;">Pagamento</p>
-         <p>Forma pag.: Cartão de crédito</p>
-         <p>Parcelas: 12x</p>
+         <p>Forma pag.: <?php echo utf8_encode($carregar_pedido["forma_pagamento"]); ?></p>
+         <p>Parcelas: <?php echo utf8_encode($carregar_pedido["parcelas_pagamento"]); ?></p>
        </div>
        
      </div>
 
+    </div>
+
+</div>
+
+
 <style>
 
 /*MENSAGENS ================*/
-
+@media screen and (min-width:320px) {
+ .container-mensagens{ width: 100%;}
 /**/
-.mensagens{float: left; width: 100%;border: 1px solid #dfdfdf; margin-top: 60px; padding: 20px; border-radius: 5px;}
+.mensagens{float: left; width: 100%;border: 1px solid #dfdfdf; margin-top: 20px; padding: 20px; border-radius: 5px;}
 .textMensagens{float: left; width: 100%;}
-.textMensagens p{font-size: 16px !important; color: #888;}
+.textMensagens p{font-size: 16px !important; color: #333; font-weight: bold;}
 
 /**/
 .conversaPedido{float: left; width: 100%; padding-top: 20px; padding-bottom: 20px;}
@@ -342,7 +346,7 @@ if (isset($_POST['enviar_mensagem'])) {
 #time{width: 100%; font-size: 9px !important; text-align: right; color: #c4c4c4;}
 
 /**/
-mandar-mensagem{ float: left;width: 100%; }
+.mandar-mensagem{ float: left;width: 100%; }
 
 .mensage-pedido{float: left; width: 85%; border: 1px solid #ccc; padding: 5px 10px; border-radius: 5px;
  margin-bottom: 0; padding: 9px 17px; font-size: 14px; min-height: 90px; max-height: 100px; resize: none!important;}
@@ -351,15 +355,44 @@ mandar-mensagem{ float: left;width: 100%; }
 
 .button-enviarMensagem{float: left; width: 14%; margin-left: 1%;}
 
-.button-enviarMensagem{ width: 14%; margin-left: 1%; font-size: 16px !important; padding: 8px 20px; background: #014d8f; color: #fff; border-radius: 5px; text-decoration: none;}
+.button-enviarMensagem{ width: 14%; margin-left: 1%; font-size: 16px !important; padding: 8px 20px; background: #014d8f; color: #fff; border-radius: 5px; text-decoration: none; margin-top: 25px;}
 .button-enviarMensagem:hover{ color: #fefefe; background: #014d8f;}
+
+}
+
+@media screen and (min-width:768px) {
+
+}
+
+/* PARA PC **/
+@media screen and (min-width:1025px) {
+ .container-mensagens{ width: 83%; margin-left: 2%; float: right;}
+
+}
 
 </style>
 
+     <div class="container-mensagens">
      <div class="mensagens">
-       <div class="textMensagens"><p>Menssagens do pedido #01548454154</p></div>
+       <div class="textMensagens"><p>Menssagens do pedido #<?php echo utf8_encode($carregar_pedido["id"]); ?></p></div>
 
        <div class="conversaPedido">
+
+        <div class="mensagemItem">
+           <div id="mensagemAtendente">
+           <p><b>Mestre moveleiro</b></p>
+           <p>Seja bem vindo! Caso tenha alguma dúvida sobre o seu pedido você pode estar entrando em contato conosco por aqui.</p>
+           <p id="time"></p>
+           </div>
+         </div>
+
+         <div class="mensagemItem">
+           <div id="mensagemAtendente">
+           <p><b>Mestre moveleiro</b></p>
+           <p>Para concluir o seu pedido preencha o seu endereço em <b>"meu endereço"</b> no menu para calcularmos o frete dessa entrega. Após isso precisamos combinar o prazo da entrega e a forma de pagamento.</p>
+           <p id="time"></p>
+           </div>
+         </div>
 
          <?php while($listar_mensagensPedido = mysqli_fetch_assoc($resultado_mensagensPedido)){ ?>
 
@@ -368,7 +401,7 @@ mandar-mensagem{ float: left;width: 100%; }
            <p><b><?php echo utf8_encode($listar_mensagensPedido["quem_enviou"]);?></b></p>
            <p><?php echo utf8_encode($listar_mensagensPedido["mensagem"]);?></p>
            <p id="time"><?php echo date('H:i', strtotime($listar_mensagensPedido["data_envio"])); ?></p>
-           </div>´
+           </div>
          </div>
 
          <?php } ?>
@@ -394,12 +427,7 @@ mandar-mensagem{ float: left;width: 100%; }
      </div>
 
      </div>
-
-    </div>
-      
-
-    </div>
-
+ </div>
 
   </div>
 </div>
