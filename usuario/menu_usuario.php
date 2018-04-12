@@ -7,6 +7,8 @@ include_once("system/verifica_sessao.php");
 
 ?>
 
+<link rel="stylesheet" href="css/style-usuario.css">
+
 <style>
 @media screen and (min-width:320px) {
 /****** PARA O PC ******/

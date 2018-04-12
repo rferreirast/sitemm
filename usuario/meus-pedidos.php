@@ -35,9 +35,12 @@ include_once("system/verifica_sessao.php");
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script> <!-- ICONES -->
   <meta name=viewport content="width=device-width, initial-scale=1">
+
   <link rel="shortcut icon" href='../img/logo-topo.png' /> <!-- INFO 3 -->
   <link rel="stylesheet" href="css/style-produtos.css">
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="css/style-usuario.css">
+
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
   <script src="js/mascara_numeros.js" type="text/javascript"></script>
@@ -54,17 +57,7 @@ include_once("system/verifica_sessao.php");
  width: 90%;
  margin: auto;
 }
-.formulario-meus-dados{
- float: left;
- width: 100%;
- background: #fff;
- min-height: 500px;
- border-radius: 10px;
- margin-top: 40px;
- margin-bottom: 40px;
- box-shadow: 0px 5px 15px 2px rgba(0,0,0,.2);
- padding: 20px 20px;
-}
+
 .texto-container p{
  color: #333;
  font-size: 22px !important;
@@ -126,10 +119,7 @@ include_once("system/verifica_sessao.php");
 /* PARA PC **/
 @media screen and (min-width:1025px) {
 
-.container-meusPedidos{
- width: 83%;
- margin-left: 2%;
-}
+
 
 .margin-meus-pedidos{
  width: 80%;
@@ -157,13 +147,13 @@ include_once("system/verifica_sessao.php");
 <div class="container-meus-dados">
   <div class="margin-meus-pedidos">
     
-    <div class="formulario-meus-dados">
+    <div class="ct-geral">
 
     <div class="texto-container" style="border-bottom: 1px solid #c4c4c4;"><p>Meus Pedidos</p></div>
 
     <?php include_once('menu_usuario.php'); ?>
 
-    <div class="container-meusPedidos"> 
+    <div class="container-dados"> 
 
     <table class="meus-pedidos">
 

@@ -26,6 +26,8 @@ include_once("system/verifica_sessao.php");
   <link rel="shortcut icon" href='../img/logo-topo.png' /> <!-- INFO 3 -->
   <link rel="stylesheet" href="css/style-produtos.css">
   <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="css/style-usuario.css">
+
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 
@@ -36,17 +38,6 @@ include_once("system/verifica_sessao.php");
 .margin-minha-conta{
  width: 90%;
  margin: auto;
-}
-.formulario-minha-conta{
- float: left;
- width: 100%;
- background: #fff;
- min-height: 500px;
- border-radius: 10px;
- margin-top: 40px;
- margin-bottom: 40px;
- box-shadow: 0px 5px 15px 2px rgba(0,0,0,.2);
- padding: 20px 20px;
 }
 
 .texto-container p{
@@ -94,7 +85,7 @@ input.compo_form{
 <div class="container-minha-conta">
   <div class="margin-minha-conta">
     
-    <div class="formulario-minha-conta">
+    <div class="ct-geral">
 
     <div class="texto-container" style="border-bottom: 1px solid #c4c4c4;"><p>Minha conta</p></div>
       

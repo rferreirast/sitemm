@@ -154,6 +154,8 @@ header("location: /usuario/detalhes-pedido?pedido=$numero_pedido");
 
 <style>
 
+@media screen and (min-width:320px) {
+
 .container-produtos{width: 100%; float: left; min-height: 480px;}
 .lista-itens-pedido{
  float: left;
@@ -162,7 +164,7 @@ header("location: /usuario/detalhes-pedido?pedido=$numero_pedido");
 
 /*EXIBICAO LISTA PEDIDOS=========================*/
 
- .itens-pedido{float: left; width: 100%; margin-top: 20px; border-radius: 10px; background: #fff;}
+.itens-pedido{float: left; width: 100%; margin-top: 20px; border-radius: 10px; background: #fff;}
 
 .header-itensPedido{
  padding: 16px;
@@ -199,8 +201,8 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 
 .buttons-actionPedido{ float: left; width: 100%; text-align: left; padding: 20px 0;}
 
-#finalizaPedido{float: right; color: #fff; background: #16a085; border-radius: 5px; padding: 10px 20px; width: 20%; font-size: 18px !important; margin: 0 10px; text-align: center;}
-#adicionarItens{float: right; color: #fff; background: #014d8f; border-radius: 5px; padding: 10px 20px; width: 20%; font-size: 18px !important; margin: 0 10px; text-align: center;}
+#finalizaPedido{float: right; color: #fff; background: #16a085; border-radius: 5px; padding: 10px 20px; width: auto; font-size: 18px !important; margin: 0 10px; text-align: center; margin-bottom: 10px;}
+#adicionarItens{float: right; color: #fff; background: #014d8f; border-radius: 5px; padding: 10px 20px; width: auto; font-size: 18px !important; margin: 0 10px; text-align: center; margin-bottom: 10px;}
 
 .zero{width: 0px; height: 0px;}
 
@@ -215,6 +217,24 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 .cont-TotalPedido{float: right; width: 100%; padding: 15px 0;}
 #textoTotal{float: right;color: #151515; font-size: 18px !important; text-align: right; margin-right: 10px;}
 #valorTotal{float: right;color: #151515; font-size: 18px !important; text-align: right; }
+
+}
+
+/*=================================================================================*/
+
+@media screen and (min-width:768px) {
+
+}
+
+/*=================================================================================*/
+
+/* PARA PC **/
+@media screen and (min-width:1025px) {
+
+#finalizaPedido{width: 20%;}
+#adicionarItens{width: 20%;}
+
+}
 
 </style>
 

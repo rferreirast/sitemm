@@ -13,14 +13,15 @@ echo" <script>document.location.href='/produtos/busca.php?produto=$pesquisar_pro
 .content-topo-tarja{
  float: left;
  width: 100%;
- padding-top: 20px;
- padding-bottom: 20px;
+ padding-top: 8px;
+ padding-bottom: 8px;
  background: #014d8f;
 }
 .logo{
  float: left;
- width: 25%;
+ width: 18%;
  margin-right: 10px;
+ margin-top: 10px;
 }
 .img-logo{
  float: left;
@@ -73,10 +74,12 @@ input.button-buscar{
  display: block;
  width: auto;
  float: right;
+ display: flex;
 }
 .item-mobile{
  float: right;
  width: 30px;
+ margin-top: 2px;
 }
 .item-mobile label{
  color: #fff;
@@ -115,6 +118,16 @@ input.button-buscar{
  transform: all;
  padding: 0;
  margin: 0;
+}
+
+/*=============*/
+#icon-carrinho{
+ float: right;
+ width: 20px;
+ height: auto;
+ color: #fff;
+ margin-top: 17px;
+ margin-left: 10px; 
 }
 
 }
@@ -188,16 +201,15 @@ input.button-buscar{
       <ul>
 
        <li><a class="item-mobile" href="/">inicio</a></li>
-       
        <li><a class="item-mobile" href="/produtos">produtos</a></li>
-
-       <li><a class="item-mobile" href="/clientes">clientes</a></li>       
-       <li><a class="item-mobile" href="/contato">contato</a></li>
+       <li><a class="item-mobile" href="/usuario/minha-conta">minha conta</a></li>       
         
       </ul>
     </div>         
 
         </nav>
+
+        <span><a href="/produtos/itens-pedido"><i class="fas fa-shopping-cart" id="icon-carrinho"></i></a></span>
 
 </div>
 

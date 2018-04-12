@@ -43,7 +43,7 @@ $senha = utf8_decode( $_POST["senha"]);
                   //CAPTURANDO EMAIL LOGIN
                     //setcookie("login", $email);   
 
-                  header("location: minha-conta");        
+                  header("location: meus-dados");        
 
 
                   }

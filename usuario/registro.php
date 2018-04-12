@@ -29,17 +29,7 @@
  width: 90%;
  margin: auto;
 }
-.formulario-registro{
- float: left;
- width: 100%;
- background: #fff;
- height: 300px;
- border-radius: 10px;
- margin-top: 40px;
- margin-bottom: 40px;
- box-shadow: 0px 5px 15px 2px rgba(0,0,0,.2);
- padding: 20px 20px;
-}
+
 .form_item{ float: left;width: 100%; text-align: center; margin-bottom: 10px; }
 
 .texto-usuarios p{
@@ -88,7 +78,17 @@ input.button_criar{
 }
 
 input.compo_form{
- width: 400px;
+ max-width: 300px;
+}
+
+}
+
+/****** PARA O PC ******/
+@media screen and (min-width:1300px) {
+
+input.compo_form{
+ min-width: 350px; 
+ max-width: 400px;
 }
 
 }
@@ -111,13 +111,13 @@ input.compo_form{
 <div class="container-registrar">
   <div class="margin-registrar">
     
-    <div class="formulario-registro">
+    <div class="ct-geral">
 
     <div class="texto-usuarios"><p>Crie a sua conta</p></div>
       
       <form method="POST">
 
-        <div class="form_item"><input type="text" placeholder="Nome" autofocus="" required="" class="compo_form" name="nome"></div>
+        <div class="form_item"><input type="text" placeholder="Nome" autofocus="" required="" class="compo_form" name="nome" selected></div>
         <div class="form_item"><input type="email" placeholder="Email" required="" class="compo_form" name="email"></div>
         <div class="form_item"><input type="password" placeholder="Senha" required="" class="compo_form" name="senha"></div>
         <input type="submit" class="button_criar" value="Criar conta" name="create_account">

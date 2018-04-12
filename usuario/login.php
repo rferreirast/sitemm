@@ -5,22 +5,22 @@
 <html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Mestre Moveleiro | Informe os seus dados</title> <!-- INFO 1 -->
-    <meta name="description" content="<?php echo utf8_encode ($SOBRE_PAGINA)?>"> <!-- INFO 2 -->
-    <meta name="author" content="Rafael Ferreira">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto:300,400,700" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script> <!-- ICONES -->
-  <meta name=viewport content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href='../img/logo-topo.png' /> <!-- INFO 3 -->
-  <link rel="stylesheet" href="css/style-produtos.css">
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<meta charset="UTF-8">
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<title>Mestre Moveleiro | Informe os seus dados</title> <!-- INFO 1 -->
+<meta name="description" content="<?php echo utf8_encode ($SOBRE_PAGINA)?>"> <!-- INFO 2 -->
+<meta name="author" content="Rafael Ferreira">
+
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto:300,400,700" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script> <!-- ICONES -->
+
+<link rel="shortcut icon" href='../img/logo-topo.png' /> <!-- INFO 3 -->
+<link rel="stylesheet" href="css/style-produtos.css">
+<link rel="stylesheet" href="../css/style.css">
+
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 
 <style>
 @media screen and (min-width:320px) {
@@ -34,11 +34,11 @@
  float: left;
  width: 100%;
  background: #fff;
- height: 300px;
+ min-height: 250px;
  border-radius: 10px;
  margin-top: 40px;
  margin-bottom: 40px;
- box-shadow: 0px 5px 15px 2px rgba(0,0,0,.2);
+ border: 1px solid #c4c4c4;
  padding: 20px 20px;
 }
 .form_item{ float: left;width: 100%; text-align: center; margin-bottom: 10px; }
@@ -105,7 +105,17 @@ a.forget-senha:hover{ color: #014d8f;}
 }
 
 input.compo_form{
- width: 400px;
+ max-width: 300px;
+}
+
+}
+
+/****** PARA O PC ******/
+@media screen and (min-width:1300px) {
+
+input.compo_form{
+ min-width: 350px; 
+ max-width: 400px;
 }
 
 }
@@ -136,7 +146,7 @@ input.compo_form{
       
       <form method="POST">
 
-        <div class="form_item"><input type="email" placeholder="Email" required="" autofocus class="compo_form" name="email"></div>
+        <div class="form_item"><input type="email" placeholder="Email" required="" autofocus class="compo_form" name="email" selected></div>
         <div class="form_item"><input type="password" placeholder="Senha" required="" class="compo_form" name="senha"></div>
         <span id="dadosIncorretos"><p><?php error_reporting(0); echo $dadosIncorretos; ?></p></span>
         <input type="submit" class="button_login" value="Entrar" name="entrar">

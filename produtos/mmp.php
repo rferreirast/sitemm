@@ -1,5 +1,9 @@
 <?php 
+include_once("../system/config.php");
+
     include_once("../system/config.php");
+
+     if (!isset($_SESSION)){session_start();}
 
      //BUSCA CODIGO NA URL
 	 $id_produto = $_GET['produto'];
@@ -49,16 +53,19 @@
 
 <style>
 @media screen and (min-width:320px) {
+
+.container-produtos{margin: 0; padding: 0;}
+
 .container-informacoes-produto{
  float: left;
  width: 100%;
  background: #fff;
  border-radius: 2px;
- margin-top: 30px;
+ margin-top: 0px;
+ padding-top: 20px;
  margin-bottom: 30px;
  /*box-shadow: 0px 1px 10px 0px rgba(0,0,0,.2);*/
 }
-
 
 /*====================*/
 .mmp-do-produto {
@@ -70,20 +77,20 @@
 /* IMAGENS DO PRODUTO======================*/
 .mmp-img-produto{
  float: left;
- width: 60%;
- padding: 15px;
+ width: 100%;
+ padding: 5px;
  text-align: center;
 }
-.mmp-img-produto img{
- width: 70%;
+.img-principal img{
+ width: 100%;
 }
-.mmp-outrasImagens{ float: left; width: 100%; margin-top: 20px;}
-img.mmp-outrasImagens-item{ float: left; width: 80px; height: 80px; margin-left: 10px; border: 1px solid #b9b9b9; border-radius: 3px; }
-img.mmp-outrasImagens-item:hover{border: 1.15px solid #949494; cursor: pointer;}
+.mmp_outrasImagens{ float: left; width: 100%; margin-top: 20px;}
+img.mmp-outrasImagens-item{ float: left; width: 80px; height: 80px; margin-left: 10px; border: 1px solid #b9b9b9; border-radius: 3px; margin-bottom: 10px; }
+img.mmp-outrasImagens-item:hover{border: 1.15px solid #014d8f; cursor: pointer;}
 /* INFORMAÇOES DO PRODUTO ==================*/
 .mmp-infos-produto{
  float: left;
- width: 40%;
+ width: 100%;
  margin-top: 20px;
  padding-top: 30px;
  padding-bottom: 40px;
@@ -119,9 +126,14 @@ img.mmp-outrasImagens-item:hover{border: 1.15px solid #949494; cursor: pointer;}
  font-weight: 300;
  margin-bottom: 10px;
 }
-
+.mmp-button-comprar{
+ float: left;
+ width: 100%;
+ text-align: center;
+}
 .mmp-button-comprar a{
  float: left;
+ width: 100%;
  font-size: 16px;
  color: #fff;
  padding: 15px 20px;
@@ -130,8 +142,8 @@ img.mmp-outrasImagens-item:hover{border: 1.15px solid #949494; cursor: pointer;}
  font-weight: bold;
  text-decoration: none;	
  text-align: center;
- box-shadow: rgba(0, 0, 0, 0.2) 3px 4px 6px 1px;
 }
+
 .mmp-button-comprar a:hover{
  background: #014d8fed;
 }
@@ -158,11 +170,8 @@ img.mmp-outrasImagens-item:hover{border: 1.15px solid #949494; cursor: pointer;}
  padding-bottom: 40px;
 }
 .mmp-infos-descricao-texto{
- width: 90%;
- margin: auto;
- border-radius: 5px;
- border: 1px solid #d7d7d7;
- padding: 20px 30px;
+ width: 100%;
+ padding: 10px 20px;
 }
 .mmp-infos-descricao-completa p{
  color: #a1a1a1;
@@ -177,11 +186,45 @@ img.mmp-outrasImagens-item:hover{border: 1.15px solid #949494; cursor: pointer;}
  margin-bottom: 10px;	
 }
 
+.container-siteP{
+ width: 100%;	
+}
 
 }
 /* PARA PC **/
 @media screen and (min-width:1025px) {
 
+.container-siteP{
+ width: 80%;
+ margin: auto;
+}
+.container-informacoes-produto{
+ margin-top: 30px;
+}
+
+.mmp-img-produto{
+ width: 60%;
+ padding: 15px;
+}
+.img-principal img{
+ width: 70%;
+}
+
+.mmp-infos-produto{
+ width: 40%;
+}
+
+.mmp-button-comprar a{
+ width: auto;
+}
+
+.mmp-infos-descricao-texto{
+ width: 90%;
+ margin: auto;
+ border-radius: 5px;
+ border: 1px solid #d7d7d7;
+ padding: 20px 30px;
+}
 
 }
 
@@ -202,7 +245,7 @@ img.mmp-outrasImagens-item:hover{border: 1.15px solid #949494; cursor: pointer;}
 <?php include('../menu.php'); ?>
 
 <div class="container-produtos">
-	<div class="container-site">
+	<div class="container-siteP">
 
 	  <div class="container-informacoes-produto">
 	  
@@ -230,7 +273,7 @@ img.mmp-outrasImagens-item:hover{border: 1.15px solid #949494; cursor: pointer;}
 
 	  <div class="mmp-img-produto">
 
-	  	<img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($carregar_produto["foto"]); ?>" id="Fotoprincipal">
+	  	<div class="img-principal"><img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($carregar_produto["foto"]); ?>" id="Fotoprincipal"></div>
 
 	  	<div class="mmp_outrasImagens">
 
@@ -341,6 +384,7 @@ img.mmp-outrasImagens-item:hover{border: 1.15px solid #949494; cursor: pointer;}
 </body>
 
 <script>
+// SLIDE DAS FOTOS DOS OUTROS PRODUTOS
 const Fotoprincipal = document.querySelector("#Fotoprincipal");
 const mmp_outrasImagens = document.querySelectorAll(".mmp_outrasImagens img");
 const opacity = 0.6;

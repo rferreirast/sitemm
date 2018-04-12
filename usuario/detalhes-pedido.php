@@ -95,21 +95,12 @@ if (isset($_POST['enviar_mensagem'])) {
 @media screen and (min-width:320px) {
 
 .container-meus-dados{float: left; width: 100%; min-height: 500px;}
+
 .margin-meus-pedidos{
  width: 90%;
  margin: auto;
 }
-.formulario-meus-dados{
- float: left;
- width: 100%;
- background: #fff;
- min-height: 500px;
- border-radius: 10px;
- margin-top: 40px;
- margin-bottom: 20px;
- box-shadow: 0px 5px 15px 2px rgba(0,0,0,.2);
- padding: 20px 20px;
-}
+
 .texto-container p{
  color: #333;
  font-size: 16px !important;
@@ -117,21 +108,6 @@ if (isset($_POST['enviar_mensagem'])) {
  padding: 10px 20px;
  border-radius: 10px;
  text-align: left;
-}
-
-/*===================*/
-
-.container-detalhesPedido{
- float: left;
- width: 100%;
- padding: 20px;
- margin-top: 10px;
- min-height: 300px;
- border-radius: 5px;
- border-bottom: 1px solid #c4c4c4;
- border-left: 1px solid #c4c4c4;
- border-right: 1px solid #c4c4c4;
- margin-bottom: 20px;
 }
 
 /*==============================*/
@@ -146,12 +122,12 @@ if (isset($_POST['enviar_mensagem'])) {
 
 /*TOTAIS DO PEDIDO=====================================*/
 .totaisPedido{float: left ;width: 100%; margin-bottom: 20px; margin-top: 10px;}
-.totaisPedido p{float: right; text-align: right; width: 100%; font-size: 16px !important; margin-right: 10px; margin-bottom: 5px;}
+.totaisPedido p{float: right; text-align: right; width: 100%; font-size: 16px !important; margin-right: 0px; margin-bottom: 5px; padding: 10px 0;}
 
 /*DADOS DO CLIENTE NO PEDIDO ===================================*/
 
 .dadosCLiente{float: left;width: 100%;}
-.dadosCliente-Iten{float: left; width: 33.333%; margin-bottom: 20px;}
+.dadosCliente-Iten{float: left; width: 100%; margin-bottom: 20px;}
 .dadosCliente-Iten p{color: #888; font-size: 14px !important; padding: 0; margin-bottom: 5px;}
 
 }
@@ -169,14 +145,14 @@ if (isset($_POST['enviar_mensagem'])) {
 /* PARA PC **/
 @media screen and (min-width:1025px) {
 
-.container-detalhesPedido{
- width: 83%;
- margin-left: 2%;
-}
+/*TOTAIS DO PEDIDO=====================================*/
+.totaisPedido p{ margin-right: 10px;}
 
 .margin-meus-pedidos{
  width: 80%;
 }
+
+.dadosCliente-Iten{ width: 33.333%}
 
 
 }
@@ -200,7 +176,7 @@ if (isset($_POST['enviar_mensagem'])) {
 <div class="container-meus-dados">
   <div class="margin-meus-pedidos">
     
-    <div class="formulario-meus-dados">
+    <div class="ct-geral">
 
     <div class="texto-container" style="border-bottom: 1px solid #c4c4c4;">
 
@@ -208,7 +184,7 @@ if (isset($_POST['enviar_mensagem'])) {
 
     <?php include_once('menu_usuario.php'); ?>
 
-    <div class="container-detalhesPedido">
+    <div class="container-dados">
        <div class="pedido-detalhes">  
 
        <?php $verifica_pedido = mysqli_query($conn,"SELECT * FROM loja_pedidos WHERE id = '$id_pedido' AND id_cliente = '$id_cliente' ");
@@ -327,7 +303,7 @@ if (isset($_POST['enviar_mensagem'])) {
 @media screen and (min-width:320px) {
  .container-mensagens{ width: 100%;}
 /**/
-.mensagens{float: left; width: 100%;border: 1px solid #dfdfdf; margin-top: 20px; padding: 20px; border-radius: 5px;}
+.mensagens{float: left; width: 100%; margin-top: 20px; padding: 0px; border-radius: 5px;}
 .textMensagens{float: left; width: 100%;}
 .textMensagens p{font-size: 16px !important; color: #333; font-weight: bold;}
 
@@ -348,14 +324,12 @@ if (isset($_POST['enviar_mensagem'])) {
 /**/
 .mandar-mensagem{ float: left;width: 100%; }
 
-.mensage-pedido{float: left; width: 85%; border: 1px solid #ccc; padding: 5px 10px; border-radius: 5px;
+.mensage-pedido{float: left; width: 100%; border: 1px solid #ccc; padding: 5px 10px; border-radius: 5px;
  margin-bottom: 0; padding: 9px 17px; font-size: 14px; min-height: 90px; max-height: 100px; resize: none!important;}
 
 .mensage-pedido:focus{border: 1px solid #014d8f;}
 
-.button-enviarMensagem{float: left; width: 14%; margin-left: 1%;}
-
-.button-enviarMensagem{ width: 14%; margin-left: 1%; font-size: 16px !important; padding: 8px 20px; background: #014d8f; color: #fff; border-radius: 5px; text-decoration: none; margin-top: 25px;}
+.button-enviarMensagem{float: left; width: auto; margin-left: 1%; font-size: 16px !important; padding: 8px 20px; background: #014d8f; color: #fff; border-radius: 5px; text-decoration: none; margin-top: 25px;}
 .button-enviarMensagem:hover{ color: #fefefe; background: #014d8f;}
 
 }
@@ -366,7 +340,13 @@ if (isset($_POST['enviar_mensagem'])) {
 
 /* PARA PC **/
 @media screen and (min-width:1025px) {
- .container-mensagens{ width: 83%; margin-left: 2%; float: right;}
+
+.mensagens{ border: 1px solid #dfdfdf; padding: 20px;} 
+
+.mensage-pedido{width: 85%; }
+.button-enviarMensagem{width: 14%;}
+
+.container-mensagens{ width: 83%; margin-left: 2%; float: right;}
 
 }
 
