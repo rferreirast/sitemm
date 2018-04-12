@@ -156,6 +156,10 @@ header("location: /usuario/detalhes-pedido?pedido=$numero_pedido");
 
 @media screen and (min-width:320px) {
 
+.mobile{display: block;}
+.desktop{display: none;}
+
+
 .container-produtos{width: 100%; float: left; min-height: 480px;}
 .lista-itens-pedido{
  float: left;
@@ -231,6 +235,9 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 /* PARA PC **/
 @media screen and (min-width:1025px) {
 
+.mobile{display: none;}
+.desktop{display: block;}
+
 #finalizaPedido{width: 20%;}
 #adicionarItens{width: 20%;}
 
@@ -266,7 +273,9 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 				echo '<p style="color: #595959; font-size: 30px !important; text-align: center; margin-top: 60px; min-height: 100px;"><i class="fas fa-shopping-cart"></i> Carrinho Vazio</p>';
 			}else{ ?>
             
-            <table class="itens-pedido">
+            <div class="desktop">
+             <table class="itens-pedido">
+            
 
 				<thead>
 		         <tr>
@@ -324,7 +333,11 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 
 			    <?php }}?>
 
-			    </table> 
+			      
+			     </table> 
+			    </div>
+
+			    <?php include("itens-pedidoMobile.php"); ?>
 
 				<!-- FIM ITEM PEDIDO -->
 

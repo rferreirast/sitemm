@@ -168,7 +168,7 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 		
 		<div class="container-itens-pedido" style="width: 100%; float: left;">
 
-			<div class="lista-itens-pedido">
+			<div class="lista-itens-pedido mobile">
 
 			<?php if (count($_SESSION['itens']) == 0) { 
 				echo "<p>Carrinho Vazio</p>";
