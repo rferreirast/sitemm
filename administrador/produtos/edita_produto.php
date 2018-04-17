@@ -21,8 +21,6 @@ include_once("../system/verifica_sessao.php");
  $categoria_produto[""] = "Selecione";
  //$categoria_produto[2] = "Mesas";
 
-
-
 //LISTA AS FOTOS DO PRODUTO
 $listar_fotos = "SELECT * FROM loja_fotos_produtos WHERE id_produto = '$id_produto'";
 $resultado_fotos = mysqli_query($conn, $listar_fotos);
@@ -127,9 +125,66 @@ if (isset($_POST['excluir-produto'])) {
        location.href='lista_produtos.php';
        </script>";
 
-       }
+}
 
- ?>
+mysqli_close($conn);
+
+
+//===============================================================================================
+
+ini_set('max_execution_time', 300); //300 seconds = 5 minutes
+
+//SALVAR IMAGEM
+ if (isset($_FILES['imagem'])) {
+
+  $servidor = 'ftp.mestremoveleiro.com.br';
+  $caminho_absoluto = 'web/produtos/img-produtos/';
+  $arquivo = $_FILES['imagem'];
+
+  if($arquivo['name'] == "")      
+     echo '<script>alert("Insira uma arquivo!");</script>';
+
+  else { 
+
+  $con_id = ftp_connect($servidor) or die( 'Não conectou em: '.$servidor );
+  ftp_login( $con_id, 'mestremoveleiro', 'ieASmo03' );
+
+  ftp_put( $con_id, $caminho_absoluto.$arquivo['name'], $arquivo['tmp_name'], FTP_BINARY );
+
+  $caminhoImagemMais = $arquivo['name'];
+
+//=====================
+
+// Create connection
+$connect = new mysqli('bdmestre.mysql.dbaas.com.br', 'bdmestre', 'ieASmo03', 'bdmestre');
+// Check connection
+if ($connect->connect_error) {
+    die("Connection failed: " . $connect->connect_error);
+} 
+
+//=================
+
+ //SALVA arquivo NO BD
+
+  $salvaFoto ="INSERT INTO loja_fotos_produtos (id_produto, outras_fotos) VALUES ('$id_produto', '$caminhoImagemMais') ";
+
+ // $sql = mysqli_query($conn, "DELETE FROM produtos WHERE id = '$id_produto' ") or print mysql_error();
+
+  if (mysqli_query($connect, $salvaFoto)) {
+   //header("location: edita_produto.php?codigo=$id_produto");
+   echo" <script>document.location.href='edita_produto.php?codigo=$id_produto'</script>";
+  } else {
+    echo '<script>alert("Algo deu errado, tente novamente !!");</script>';
+  }
+
+  mysqli_close($connect);
+
+}
+
+}
+
+
+?>
 
 
 <!DOCTYPE html>
@@ -326,7 +381,49 @@ input.campo-form:focus{border: 1px solid #014d8f !important;}
 
         <h2 style="float: left; width: 100%; color: #fff; background: #014c8f; padding: 10px 20px; margin: 5px 10px;">Adicionar mais imagens</h2>
 
-        <?php include("inserir_img_Adicionalproduto.php"); ?>
+        <!-- ===================================================================== -->
+
+<style>
+
+.container-formulario, .container-arquivo-formulario, .container-caminho-arquivo{
+  float: left;
+  width: 100%;   
+  margin-left: 10px;    
+}
+
+input.enviar_arquivo_form{
+ float: left;
+ margin-bottom: 20px;
+ 
+}
+input.enviar_arquivo_button{
+ float: left;
+ margin-left: 20px;
+ width: 150px;
+ height: 30px;
+ border-radius: 10px;
+ background: #014d8f;
+ color: #fff;
+ margin-bottom: 20px;
+}
+input.form_caminhoImg{
+ float: left;
+ margin-bottom: 20px; 
+ width: 150px;
+ height: 30px; 
+ border: 1px solid #c4c4c4;    
+}
+        
+</style>
+
+<div class="container-formulario">  
+
+<form action="" method="post" enctype="multipart/form-data">             
+  <input type="file" class="enviar_arquivo_form" name="imagem" />
+  <input type="submit" class="enviar_arquivo_button" name="enviar" value="Inserir arquivo" />
+</form>
+
+</div> 
 
         <?php while($resultado_listarFotos = mysqli_fetch_assoc ($resultado_fotos)){ ?>
          
