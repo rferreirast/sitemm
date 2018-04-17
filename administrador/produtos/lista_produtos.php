@@ -1,13 +1,10 @@
 <?php 
 
 if (!isset($_SESSION)){session_start();}
-include_once("system/verifica_sessao.php");
+include_once("../system/verifica_sessao.php");
 
- $listar = "SELECT * FROM produtos";
+ $listar = "SELECT * FROM loja_produtos";
  $resultado_listar = mysqli_query($conn, $listar);
-
- $status_produto[1] = "Ativo";
- $status_produto[2] = "Inativo";
 
  //CARREGA CATEGORIAS 
  $pesquisa_categoria = "SELECT * FROM categorias";
@@ -29,10 +26,12 @@ include_once("system/verifica_sessao.php");
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script> <!-- ICONES -->
   <meta name=viewport content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href='../img/logo-topo.png' /> <!-- INFO 3 -->
-  <link rel="stylesheet" href="css/style-painel_adm.css">
+  <link rel="shortcut icon" href='../../img/logo-topo.png' /> <!-- INFO 3 -->
+  <link rel="stylesheet" href="../css/style-painel_adm.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+  <meta name="robots" content="noindex, nofollow">
 
 <style>
 
@@ -229,12 +228,12 @@ include_once("system/verifica_sessao.php");
 
 </head>
 
-<?php include('tarja_topo.php') ?>
+<?php include('../tarja_topo.php') ?>
 
 <div class="container-area-administrador">
 
 <!-- MENU LATERAL -->
-<?php include('menu_lateral.php'); ?>
+<?php include('../menu_lateral.php'); ?>
 
 
 <div class="conteudo-principal"> 
@@ -290,7 +289,7 @@ include_once("system/verifica_sessao.php");
      <?php while($listar_produtos = mysqli_fetch_assoc($resultado_listar)){ ?>
 
        <div class="produto-item product-item" category="<?php echo utf8_encode ($listar_produtos["categoria"]); ?>">
-         <div class="status-produto"><p><?php echo utf8_encode ($status_produto[$listar_produtos["status"]]); ?></p></div>
+         <div class="status-produto"><p><?php echo utf8_encode ($listar_produtos["status"]); ?></p></div>
          <div class="codigo-produto"><p><?php echo utf8_encode ($listar_produtos["id"]); ?></p></div>
          <div class="imagem-item-produto"><img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($listar_produtos["foto"]); ?>" alt=""></div>
          <div class="descricao-produto"><p><?php echo utf8_encode ($listar_produtos["nome"]); ?></p></div>

@@ -1,0 +1,3 @@
+user-agent:*
+dissalow:/usuario
+sitemap:http://www.mestremoveleiro.com.br/sitemap.xml

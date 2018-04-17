@@ -16,7 +16,7 @@
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script> <!-- ICONES -->
   <meta name=viewport content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" href='../img/logo-topo.png' /> <!-- INFO 3 -->
-  <link rel="stylesheet" href="css/style-produtos.css">
+  <link rel="stylesheet" href="css/style-usuarios.css">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
@@ -28,6 +28,18 @@
 .margin-registrar{
  width: 90%;
  margin: auto;
+}
+
+.formulario-registro{
+ float: left;
+ width: 100%;
+ background: #fff;
+ min-height: 250px;
+ border-radius: 10px;
+ margin-top: 40px;
+ margin-bottom: 40px;
+ border: 1px solid #c4c4c4;
+ padding: 20px 20px;
 }
 
 .form_item{ float: left;width: 100%; text-align: center; margin-bottom: 10px; }
@@ -111,7 +123,7 @@ input.compo_form{
 <div class="container-registrar">
   <div class="margin-registrar">
     
-    <div class="ct-geral">
+    <div class="formulario-registro">
 
     <div class="texto-usuarios"><p>Crie a sua conta</p></div>
       
