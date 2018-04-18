@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto:300,400,700" rel="stylesheet">
 
+    <meta name="robots" content="noindex, nofollow">
+
 <style type="text/css">
 *{font-family: 'Roboto', cursive; text-decoration: none; margin: 0; padding: 0;}
 

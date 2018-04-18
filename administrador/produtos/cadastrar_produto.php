@@ -492,7 +492,7 @@ input.campo-form:focus{border: 1px solid #014d8f !important;}
 
           <a href="lista_produtos.php" class="button-cancelar">cancelar</a>
 
-          <input type="submit" value="cadastrar" class="button-cadastrar" name="cadastrar_produto">    
+          <input type="submit" value="Salvar Produto" class="button-cadastrar" name="cadastrar_produto">    
 
 
           </form>

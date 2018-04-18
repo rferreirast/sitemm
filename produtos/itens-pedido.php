@@ -92,7 +92,7 @@ if ($conn->query($salva_pedido) === TRUE) {
 
 	//SALVA OS PRODUTOS DO PEDIDO
 	foreach ($_SESSION['itens'] as $idProduto => $quantidade){
-	$select = $conexao->prepare("SELECT * FROM produtos WHERE id=?");
+	$select = $conexao->prepare("SELECT * FROM loja_produtos WHERE id=?");
 	$select->bindParam (1,$idProduto);
 	$select->execute();
 	$produtos = $select->fetchAll();
@@ -290,7 +290,7 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 
 		      
 				<?php foreach ($_SESSION['itens'] as $idProduto => $quantidade) {
-                $select = $conexao->prepare("SELECT * FROM produtos WHERE id=?");
+                $select = $conexao->prepare("SELECT * FROM loja_produtos WHERE id=?");
 				$select->bindParam (1,$idProduto);
 				$select->execute();
 				$produtos = $select->fetchAll();

@@ -354,7 +354,7 @@ if (isset($_POST['enviar_mensagem'])) {
 
      <div class="container-mensagens">
      <div class="mensagens">
-       <div class="textMensagens"><p>Menssagens do pedido #<?php echo utf8_encode($carregar_pedido["id"]); ?></p></div>
+       <div class="textMensagens"><p>Mensagens do pedido #<?php echo utf8_encode($carregar_pedido["id"]); ?></p></div>
 
        <div class="conversaPedido">
 

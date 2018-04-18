@@ -24,6 +24,8 @@ include_once("system/verifica_sessao.php");
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 
+  <meta name="robots" content="noindex, nofollow">
+
 <style>
 
 .container-painel-adm{
