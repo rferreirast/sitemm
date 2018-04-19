@@ -145,7 +145,6 @@ $keywords = utf8_decode($_POST["keywords"]);
 .container-editar-produto{
  float: left;
  width: 100%;
- border: 1px solid #c4c4c4;
  margin-bottom: 50px;
 }
 .titulo-container-produto h2{

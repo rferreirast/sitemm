@@ -8,8 +8,8 @@ require("valida_login.php");
   header("Location: index.php");
 }*/
 
-if (!$_SESSION['sessao_usuario']) {
-	header("location:index.php");
+if (!$_SESSION['sessao_administrador']) {
+	header("location: /administrador");
 }
 
 if($_SESSION['registro']){
@@ -19,9 +19,9 @@ if($_SESSION['registro']){
 if ( $segundos > $_SESSION['limite']) { //SE O TEMPO ACIMA FOR MAIOR QUE O PERMITIDO, DESFAZ A CONEXÃO
 	unset($_SESSION['registro']);
 	unset($_SESSION['limite']);
-	unset($_SESSION['sessao_usuario']);
+	unset($_SESSION['sessao_administrador']);
 	session_destroy();
-	header("location:index.php");
+	header("location:/administrador");
 }else{
 	$_SESSION['registro'] = time(); //FAZ A RENOVAÇÃO DO TEMPO
 }

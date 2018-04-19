@@ -1,5 +1,9 @@
 <?php 
 
+if (!isset($_SESSION)){session_start();}
+include_once("system/verifica_sessao.php");
+
+
 // Create connection
 $connct = new mysqli('bdmestre.mysql.dbaas.com.br', 'bdmestre', 'ieASmo03', 'bdmestre');
 // Check connection

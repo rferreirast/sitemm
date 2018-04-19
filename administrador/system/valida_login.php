@@ -16,7 +16,7 @@ require("config.php");
 			$_SESSION['registro'] = time();
 			$_SESSION['limite'] = $tempolimite; 
 
-			$_SESSION['sessao_usuario'] = $email;
+			$_SESSION['sessao_administrador'] = $email;
 
 			//CAPTURANDO EMAIL LOGIN
      		//setcookie("login", $email);   

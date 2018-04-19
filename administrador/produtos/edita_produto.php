@@ -213,7 +213,6 @@ if ($connect->connect_error) {
 .container-editar-produto{
  float: left;
  width: 100%;
- border: 1px solid #c4c4c4;
  margin-bottom: 50px;
 }
 .titulo-container-produto h2{
@@ -531,6 +530,38 @@ input.form_caminhoImg{
           <div class="caixa">
           <p style="color: #27ae60;">Preço:</p>
           <input type="text" class="campo-form" required="" name="preco" value="<?php echo utf8_encode ($carregar_produto["preco"]); ?>" style="width: 120px;">
+          </div>
+
+          <div class="caixa">
+
+<?php 
+
+ $lucro = 0;
+
+if (isset($_POST['calculoLucro'])) {
+
+ $precoVenda = $_POST['preco'];
+ $custo = $_POST['custo'];
+
+ $imposto = ($precoVenda * 0.1);
+ $txCartao = ($precoVenda * 0.08);
+ $txContribuicao = ($precoVenda * 0.4);
+
+ //echo "$custo // $imposto // $txCartao // $txContribuicao";
+
+ $somaDespesas = $custo + $imposto + $txCartao + $txContribuicao; 
+
+ $valorLucro = $somaDespesas - $precoVenda;
+
+ $lucro = (-($valorLucro / $precoVenda)*100);
+
+}
+
+?>
+
+          <p style="color: #3498db;">Lucro:</p>
+          <input type="text" class="campo-form" name="lucro" value="<?php echo number_format($lucro, 2); ?>%" style="width: 120px;">
+          <input type="submit" value="Calcular Lucro" name="calculoLucro" style="background: #27ae60; color: #fff; height: 30px; font-size: 15px; margin-left: 10px; padding: 0px 10px;">
           </div>
           
           </div>

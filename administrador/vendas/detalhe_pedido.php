@@ -164,7 +164,7 @@ $id_pedido = intval($_GET['pedido']);  //BUSCA O ID DO PEDIDO NA URL
 
        </div>     
 
-        <table class="detalhes-pedido">
+      <table class="detalhes-pedido">
 
        <thead>
          <tr>

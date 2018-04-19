@@ -128,8 +128,8 @@ li{
               <label for="check2"><div class="texto-menu-adm"><span class="icon fas fa-shopping-cart"></span><p>Vendas</p><span class="icon fas fa-angle-right"></span></div></label>
                <ul>
 
-              <li><a class="item-menu" href="lista_pedidos.php">Pedidos</a></li>
-              <li><a class="item-menu" href="lista_clientes.php">Clientes</a></li>
+              <li><a class="item-menu" href="/administrador/vendas/lista_pedidos.php">Pedidos</a></li>
+              <li><a class="item-menu" href="/administrador/vendas/lista_clientes.php">Clientes</a></li>
               <li><a class="item-menu" href="#">Incluir Pedido</a></li>
               <li><a class="item-menu" href="#">Incluir Cliente</a></li>              
                   
@@ -149,7 +149,7 @@ li{
               <label for="check3"><div class="texto-menu-adm"><span class="icon fas fa-cubes"></span><p>Produtos</p><span class="icon fas fa-angle-right"></span></div></label>
                <ul>
 
-              <li><a class="item-menu" href="lista_produtos.php">Produtos Cadastrados</a></li>
+              <li><a class="item-menu" href="/administrador/produtos/lista_produtos.php">Produtos Cadastrados</a></li>
               <li><a class="item-menu" href="#">Categorias</a></li>
                   
                </ul>

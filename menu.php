@@ -1,5 +1,12 @@
 <?php 
 
+include_once("system/config.php");
+
+//CARREGA CATEGORIAS 
+ $pesquisa_categoria = "SELECT * FROM categorias";
+ $resultado_categorias = mysqli_query($conn, $pesquisa_categoria);
+
+
 if (isset($_SESSION['sessao_usuario'])) {
 
    $menu1 = '
@@ -227,11 +234,13 @@ li{
       <button class="dropbtn">Produtos <span class="icon fas fa-angle-down" id="icon"></span></button>
       <div class="dropdown-content">
         <a href="/produtos">Todos</a>
-        <a href="/produtos/pesquisa?categoria=cadeiras">Cadeiras</a>
-        <a href="/produtos/pesquisa?categoria=Mesas">Mesas</a>
-        <a href="/produtos/pesquisa?categoria=Banquetas">Banquetas</a>
-        <a href="/produtos/pesquisa?categoria=Conjuntos">Conjuntos</a>
-        <a href="/produtos/pesquisa?categoria=Infantil">Infantil</a>
+
+        <?php while($carregar_categorias = mysqli_fetch_assoc($resultado_categorias)){ ?>
+
+        <a href="/produtos/pesquisa?categoria=<?php echo utf8_encode ($carregar_categorias["categoria"]); ?>"><?php echo utf8_encode ($carregar_categorias["categoria"]); ?></a>
+              
+        <?php } ?>  
+
       </div>
     </div>
 
