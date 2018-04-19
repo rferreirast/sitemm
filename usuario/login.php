@@ -1,4 +1,10 @@
-<?php include_once("system/valida_login.php");?>
+<?php
+
+include_once("../system/config.php");
+
+include_once("system/valida_login.php");
+
+?>
 
  
 <!DOCTYPE html>
@@ -8,9 +14,8 @@
 <meta charset="UTF-8">
 <meta name=viewport content="width=device-width, initial-scale=1">
 
-<title>Mestre Moveleiro | Informe os seus dados</title> <!-- INFO 1 -->
-<meta name="description" content="<?php echo utf8_encode ($SOBRE_PAGINA)?>"> <!-- INFO 2 -->
-<meta name="author" content="Rafael Ferreira">
+<title><?php echo utf8_encode ($carrega_dadosEmpresa['nome'])?> | Informe os seus dados</title> <!-- INFO 1 -->
+<meta name="author" content="Rafael Ferreira - Mestre Moveleiro">
 
 <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto:300,400,700" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -21,6 +26,8 @@
 <link rel="stylesheet" href="../css/style.css">
 
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+
+<meta name="robots" content="noindex, nofollow">
 
 <style>
 @media screen and (min-width:320px) {

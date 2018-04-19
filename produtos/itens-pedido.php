@@ -127,27 +127,33 @@ header("location: /usuario/detalhes-pedido?pedido=$numero_pedido");
 
 ?>
 
- <?php include_once '../dados/page_dados.php'; ?>
- <?php include_once 'dados/dados_produtos.php'; ?>
 <!DOCTYPE html>
 <html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Mestre Moveleiro | Itens do pedido</title> <!-- INFO 1 -->
-    <meta name="description" content="<?php echo utf8_encode ($SOBRE_PAGINA)?>"> <!-- INFO 2 -->
-    <meta name="author" content="Rafael Ferreira">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto:300,400,700" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script> <!-- ICONES -->
-  <meta name=viewport content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href='../img/logo-topo.png' /> <!-- INFO 3 -->
-  <link rel="stylesheet" href="css/style-produtos.css">
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<meta charset="UTF-8">
+<title><?php echo utf8_encode ($carrega_dadosEmpresa['nome'])?> | Itens do pedido</title>
+<meta name="description" content="<?php echo utf8_encode ($carrega_dadosEmpresa['sobre_empresa'])?>">
+<meta name="author" content="Rafael Ferreira - Mestre Moveleiro">
+
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="<?php echo utf8_encode ($carrega_dadosEmpresa['nome'])?> | Itens do pedido" />
+<meta property="og:description" content="<?php echo utf8_encode ($carrega_dadosEmpresa['sobre_empresa'])?>" />
+<meta property="og:url" content="http://www.mestremoveleiro.com.br/produtos/itens-pedido" />
+<meta property="og:site_name" content="<?php echo utf8_encode ($carrega_dadosEmpresa['nome'])?>" />
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto:300,400,700" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script> <!-- ICONES -->
+<meta name=viewport content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href='../img/logo-topo.png' /> <!-- INFO 3 -->
+<link rel="stylesheet" href="css/style-produtos.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
   
   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
@@ -311,9 +317,9 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 				         	<p style="color: #acacac">Cores: A escolher</p>
 				         </td>
 				         
-				         <td class="cell-itensPedido">
-				         <input type="submit" value="🔃" class="qt_itens_atualizar" name="atualiza_quantidades">
+				         <td class="cell-itensPedido" style="max-width: 60px;">				         
 						 <input type="number" value="<?php echo $quantidade; ?>" class="qt_itens" name="qtd">
+						 <input type="submit" value="🔃" class="qt_itens_atualizar" name="atualiza_quantidades">
 						 <input type="text" value="<?php echo $idProduto; ?>" class="zero" name="idprod"> <!-- PEGA O ID DO PRODUTO 'INVISIVEL' PARA ATUALIZAR AS QUANTIDADES-->
 				         </td>
 

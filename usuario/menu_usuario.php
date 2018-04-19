@@ -1,5 +1,7 @@
 <?php 
 
+include_once("../system/config.php");
+
 include_once("system/connect.php");
 
 if (!isset($_SESSION)){session_start();}
@@ -8,6 +10,7 @@ include_once("system/verifica_sessao.php");
 ?>
 
 <link rel="stylesheet" href="css/style-usuario.css">
+<meta name="robots" content="noindex, nofollow">
 
 <style>
 @media screen and (min-width:320px) {

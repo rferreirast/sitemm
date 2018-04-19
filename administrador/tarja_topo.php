@@ -107,7 +107,7 @@ if (!isset($_SESSION)){session_start();}
        <ul>
 
       <li><a class="item-menu-adm" href="#">Perfil</a></li>
-	    <li><a class="item-menu-adm" href="#">Sair</a></li>
+	    <li><a class="item-menu-adm" href="/administrador/logout.php">Sair</a></li>
 	        
        </ul>
     </div>         

@@ -277,7 +277,7 @@ include_once("../system/verifica_sessao.php");
       </div>      
 
     <div class="container-addProduto">
-      <div class="button-add-produto"><a href="cadastrar_produto.php">+ Produto</a></div>
+      <div class="button-add-produto"><a href="cadastrar_produto.php">Cadastrar Produto</a></div>
     </div>  
 
     </div>

@@ -1,5 +1,7 @@
 <?php 
 
+include_once("../system/config.php");
+
 include_once("system/connect.php");
 
 if (!isset($_SESSION)){session_start();}
@@ -69,29 +71,92 @@ if (isset($_POST['enviar_mensagem'])) {
 <html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Mestre Moveleiro | Detalhes do Pedido #<?php echo utf8_encode($carregar_pedido["id"]) ?></title> <!-- INFO 1 -->
-    <meta name="description" content="<?php echo utf8_encode ($SOBRE_PAGINA)?>"> <!-- INFO 2 -->
-    <meta name="author" content="Rafael Ferreira">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto:300,400,700" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script> <!-- ICONES -->
-  <meta name=viewport content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href='../img/logo-topo.png' /> <!-- INFO 3 -->
-  <link rel="stylesheet" href="css/style-produtos.css">
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-  <script src="js/mascara_numeros.js" type="text/javascript"></script>
+<meta charset="UTF-8">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+<title><?php echo utf8_encode ($carrega_dadosEmpresa['nome'])?> | Detalhes do Pedido #<?php echo utf8_encode($carregar_pedido["id"]) ?></title>
+<meta name="author" content="Rafael Ferreira - Mestre Moveleiro">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto:300,400,700" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script> <!-- ICONES -->
+<meta name=viewport content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href='../img/logo-topo.png' /> <!-- INFO 3 -->
+<link rel="stylesheet" href="css/style-produtos.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="js/mascara_numeros.js" type="text/javascript"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+
+<meta name="robots" content="noindex, nofollow">
 
 
 <style>
+
+@media print{
+    .content-topo-tarja{display:none;}
+    .content-topo-menu{display:none;} 
+    .imprimirPedido{display: none}
+    #texto-topo{display: none;}   
+    .container-menuUsuario{display:none;}  
+    .mandar-mensagem{display: none;}  
+    .footer{display:none;}
+
+    .container-mensagens{display:block;}  
+
+/*===============================================*/
+    .cabecalho_impressao{      
+    display: block !important;
+    float: left;
+    width: 100%;
+    border: 1px solid #c4c4c4;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: left;
+    }
+    .imagem_cabecalho_impressao{float: left;}
+    .imagem_cabecalho_impressao img{float: left; width: 300px; margin-top: 28px; margin-left: -40px;}
+    .dados_cabecalho_impressao{float: left; margin-top: 10px;}
+    .dados_cabecalho_impressao p{color: #151515; font-size: 12px !important;}
+
+/*===============================================*/
+
+    .container-dados{display:block; border-bottom: 1px solid #c4c4c4; margin-bottom: 20px;}
+
+    .statusPedido{border-bottom: 1px solid #c4c4c4; margin-bottom: 20px;}
+    .statusPedido p{color: #151515; font-size: 14px !important;}
+
+    .header-pedido {
+    padding: 16px;
+    font-size: 12px !important;
+    font-weight: 700;
+    text-align: center;
+    color: #151515;
+    border-bottom: 1px solid #c4c4c4;
+    }
+    .cell-pedido{
+    position: relative;
+    padding: 16px;
+    font-size: 14px !important;
+    text-align: center;
+    border: 0;
+    border-bottom: 1px solid #c4c4c4;
+    margin-bottom: 10px;
+  }
+
+  .totaisPedido{margin-bottom: 20px; margin-top: 20px;}
+  .totaisPedido p{text-align: right; }
+
+  .dadosCLiente{float: left; width: 100%; margin-bottom: 20px; margin-top: 10px; border-bottom: 1px solid #c4c4c4;}
+  .dadosCliente-Iten{float: left; width: 33.3333%; }
+    
+}
+
 @media screen and (min-width:320px) {
 
 .container-meus-dados{float: left; width: 100%; min-height: 500px;}
@@ -105,7 +170,7 @@ if (isset($_POST['enviar_mensagem'])) {
  color: #333;
  font-size: 16px !important;
  font-weight: 400;
- padding: 10px 20px;
+ margin-left: 10px;
  border-radius: 10px;
  text-align: left;
 }
@@ -180,7 +245,7 @@ if (isset($_POST['enviar_mensagem'])) {
 
     <div class="texto-container" style="border-bottom: 1px solid #c4c4c4;">
 
-      <p style="color: #151515; font-size: 16px !important;">Detalhes do Pedido</p>
+      <p style="color: #151515; font-size: 16px !important;" id="texto-topo">Detalhes do Pedido</p>
 
     <?php include_once('menu_usuario.php'); ?>
 
@@ -190,9 +255,32 @@ if (isset($_POST['enviar_mensagem'])) {
        <?php $verifica_pedido = mysqli_query($conn,"SELECT * FROM loja_pedidos WHERE id = '$id_pedido' AND id_cliente = '$id_cliente' ");
         if (mysqli_num_rows($verifica_pedido) > 0) { ?>
 
+        <style>
+          .imprimirPedido{float: left; width: 100%; text-align: right; margin-bottom: 10px;}
+          .imprimirPedido a{ color: #014d8f; font-size: 16px !important; }
+        </style>
+
+        <div class="imprimirPedido">
+          <a href="#" onclick="window.print();" alt="Imprimir tela" title="Imprimir Pedido"><i class="fas fa-print"></i> <b>Imprimir Pedido</b></a>
+        </div>
+
+        <div class="cabecalho_impressao" style="display: none; float: left; width: 100%;">
+         <div class="imagem_cabecalho_impressao">
+         <img src="../img/logo2.png" alt="">         
+         </div>
+         <div class="dados_cabecalho_impressao">
+         <p><b><?php echo utf8_encode ($carrega_dadosEmpresa['razao_social'])?></b></p>
+         <p><?php echo utf8_encode ($carrega_dadosEmpresa['endereco'])?> | <?php echo utf8_encode ($carrega_dadosEmpresa['cidade'])?></p>
+         <p>CNPJ: <?php echo utf8_encode ($carrega_dadosEmpresa['cnpj'])?> </p>
+         <p style="float: left; margin-right: 10px;">Telefone: <?php echo utf8_encode ($carrega_dadosEmpresa['telefone'])?> |</p>
+         <p style="float: left;">Whatsapp:<?php echo utf8_encode ($carrega_dadosEmpresa['whatsapp'])?></p>
+         </div>
+        </div>
+
        <div class="statusPedido" style="float: left; width: 100%;">
-        <p style="float: left;"><b>Status do pedido:</b> <?php echo utf8_encode($carregar_pedido["status"]) ?></p>
-        <p style="text-align: right;">Data do pedido: <?php echo date('d/m/Y', strtotime($carregar_pedido["data_pedido"])); ?></p>
+        <p style="float: left; color: #151515; font-size: 14px !important;"><b>Pedido:</b> <?php echo utf8_encode($carregar_pedido["id"]) ?> |</p>
+        <p style="float: left; color: #151515; font-size: 14px !important;"><b>Status do pedido:</b> <?php echo utf8_encode($carregar_pedido["status"]) ?> |</p>
+        <p style="float: left; color: #151515; font-size: 14px !important;"><b>Data do pedido:</b> <?php echo date('d/m/Y', strtotime($carregar_pedido["data_pedido"])); ?></p>
        </div>     
 
         <table class="detalhes-pedido">
@@ -208,9 +296,6 @@ if (isset($_POST['enviar_mensagem'])) {
            <th class="header-pedido">Subtotal</th>
          </tr>
        </thead>   
-
-
-
      
      <?php while($listar_produtosPedido = mysqli_fetch_assoc($resultado_listarproPedido)){ ?>  
 

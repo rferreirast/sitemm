@@ -1,5 +1,7 @@
 <?php 
 
+include_once("../system/config.php");
+
 include_once("system/connect.php");
 
 if (!isset($_SESSION)){session_start();}
@@ -54,29 +56,31 @@ $ie = utf8_decode( $_POST["ie"]);
 <html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Mestre Moveleiro | Meus dados</title> <!-- INFO 1 -->
-    <meta name="description" content="<?php echo utf8_encode ($SOBRE_PAGINA)?>"> <!-- INFO 2 -->
-    <meta name="author" content="Rafael Ferreira">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto:300,400,700" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script> <!-- ICONES -->
-  <meta name=viewport content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title><?php echo utf8_encode ($carrega_dadosEmpresa['nome'])?> | Meus Dados</title>
+<meta name="author" content="Rafael Ferreira - Mestre Moveleiro">
 
-  <link rel="shortcut icon" href='../img/logo-topo.png' /> <!-- INFO 3 -->
-  <link rel="stylesheet" href="css/style-produtos.css">
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="css/style-usuario.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto:300,400,700" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script> <!-- ICONES -->
+<meta name=viewport content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-  <script src="js/mascara_numeros.js" type="text/javascript"></script>
+<link rel="shortcut icon" href='../img/logo-topo.png' /> <!-- INFO 3 -->
+<link rel="stylesheet" href="css/style-produtos.css">
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="css/style-usuario.css">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<script src="js/mascara_numeros.js" type="text/javascript"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+
+<meta name="robots" content="noindex, nofollow">
 
 
 <style>
@@ -238,11 +242,11 @@ input.form-dados{
 
            <div class="formularioItem">
             <p>Telefone:</p>
-            <input type="text" minlength="12" maxlength="12" OnKeyPress="formatar('## ####-####', this)" class="form-dados" value="<?php echo utf8_encode ($carrega_dados["telefone"]); ?>" required="" name="telefone">
+            <input type="text" minlength="12" maxlength="12" OnKeyPress="formatar('## ####-####', this)" class="form-dados" value="<?php echo utf8_encode ($carrega_dados["telefone"]); ?>" name="telefone">
           </div> 
 
           <div class="formularioItem">
-            <p>Celular:</p>
+            <p>Celular*:</p>
             <input type="text" minlength="12" maxlength="13" OnKeyPress="formatar('## #####-####', this)" class="form-dados" value="<?php echo utf8_encode ($carrega_dados["celular"]); ?>" required="" name="celular">
           </div>
 
@@ -254,7 +258,7 @@ input.form-dados{
           </div> 
 
           <div class="formularioItem">
-            <p>CNPJ*:</p>
+            <p>CNPJ:</p>
             <input type="text" minlength="18" maxlength="18" OnKeyPress="formatar('##.###.###/####-##', this)" class="form-dados" value="<?php echo utf8_encode ($carrega_dados["cnpj"]); ?>" name="cnpj">
           </div> 
 

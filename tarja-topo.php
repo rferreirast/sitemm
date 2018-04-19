@@ -4,7 +4,7 @@ if (isset($_POST['fazer_busca'])) {
 $pesquisar_produtos = $_POST["pesquisar_produtos"];
  
  //header("Location: /produtos/busca.php?produto=$pesquisar_produtos");
-echo" <script>document.location.href='/produtos/busca.php?produto=$pesquisar_produtos'</script>";
+echo" <script>document.location.href='/produtos/busca?produto=$pesquisar_produtos'</script>";
 }
 
 ?>
@@ -143,6 +143,7 @@ input.button-buscar{
  width: 10%;
  margin-left: 15px;
  text-align: left;
+ margin-top: 0;
 }
 .img-logo{
  max-width: 100px;

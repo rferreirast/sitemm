@@ -26,8 +26,10 @@ if ($conn->connect_error) {
   $port     = 465;
   $secure   = 'ssl';
 
- // SITE INFO
- define('SITE_NAME', 'Site Mestre Moveleiro');
+//CARREGA DADOS DA EMPRESA 
+$buscaDadosEmpresa = "SELECT * FROM dados_empresa";
+$resultado_DadosEmpresa = mysqli_query($conn, $buscaDadosEmpresa);
+$carrega_dadosEmpresa = mysqli_fetch_assoc($resultado_DadosEmpresa);
 
 
  ?>

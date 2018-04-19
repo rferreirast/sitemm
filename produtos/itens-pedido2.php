@@ -61,8 +61,6 @@ header("Location: itens-pedido.php");
 
 ?>
 
- <?php include_once '../dados/page_dados.php'; ?>
- <?php include_once 'dados/dados_produtos.php'; ?>
 <!DOCTYPE html>
 <html>
 <html lang="pt-br">

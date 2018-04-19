@@ -138,11 +138,22 @@ include_once("../system/verifica_sessao.php");
 
      <?php while($carregar_pedido = mysqli_fetch_assoc($resultado_pedido)){ ?>
 
+     <?php 
+
+     $valorProdutos = $carregar_pedido["valor_produtos"];
+     $valorFrete = $carregar_pedido["valor_frete"];
+     $valorDesconto = $carregar_pedido["valor_desconto"];
+
+     $totalPedido = ($valorProdutos + $valorFrete - $valorDesconto)
+
+
+     ?>
+
        <tbody>
          <tr>
            <td class="cell"><?php echo utf8_encode($carregar_pedido["id"]); ?></td>
            <td class="cell"><?php echo date('d/m/Y', strtotime($carregar_pedido["data_pedido"])); ?></td> 
-           <td class="cell">R$ <?php echo number_format($carregar_pedido["valor_produtos"], 2,',','.'); ?></td>
+           <td class="cell">R$ <?php echo number_format($totalPedido, 2,',','.'); ?></td>
            <td class="cell"><?php echo utf8_encode($carregar_pedido["status"]); ?></td>
            <td class="cell"><a href="detalhe_pedido.php?pedido=<?php echo utf8_encode($carregar_pedido["id"]); ?>" class="button-detalhesPedido">detalhes</a></td>
          </tr>
