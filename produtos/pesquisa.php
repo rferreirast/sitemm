@@ -7,7 +7,7 @@
 	 $categoria_pesquisa = $_GET['categoria'];
 
 	//$listar = mysqli_query($conn, "SELECT * FROM produtos") or print mysql_error();
-	$listar = "SELECT * FROM loja_produtos WHERE categoria = '$categoria_pesquisa' AND status = 'ativo' ORDER BY preco ASC";
+	$listar = "SELECT * FROM loja_produtos WHERE categoria = '$categoria_pesquisa' AND status = 'ativo' ORDER BY nome ASC";
     $resultado_listar = mysqli_query($conn, $listar);
 
  ?>
@@ -72,9 +72,58 @@
 				<a href="mmp?<?php echo utf8_encode (str_replace (" ", "-",$listar_produtos["nome"])); ?>&produto=<?php echo utf8_encode ($listar_produtos["id"]); ?>">
 				<div class="border-item-produto">
 				<div class="item-produto">
-				<img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($listar_produtos["foto"]); ?>" alt=""> <!-- FOTO -->				
-				<p id="preco">R$ <?php echo utf8_encode (number_format($listar_produtos["preco"], 2,',','.')); ?></p> <!-- PREÇO 1 -->
-				<p id="nomeProduto" ><?php echo utf8_encode ($listar_produtos["nome"]); ?></p> <!-- NOME -->
+				<img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($listar_produtos["foto"]); ?>" alt=""> <!-- FOTO -->	
+				
+        <div class="informacoesProduto" style="float: left; width: 100%; max-height: 100px; min-height: 100px;">
+
+<?php 
+error_reporting(0);
+
+$buscaPrecoAntigo = $listar_produtos["preco_antigo"];
+$precoVenda = $listar_produtos["preco"];
+
+if ($buscaPrecoAntigo > 0) {
+
+ $formataPreco = number_format($buscaPrecoAntigo, 2,',','.');
+
+ $calculoOFF = number_format(-($precoVenda / $buscaPrecoAntigo * 100 - 100), 0);
+
+  echo "
+
+  <div class='emPromocao' style='float: left; width: 100%; min-height: 20.8px;'>
+
+  <p id='preco_antigo' style='float: left; margin: 0; padding: 0; font-size: 14px !important; color: #797979; text-decoration: line-through; font-weight: 400; margin-bottom: 0px; margin-left: 15px; margin-right: 5px;'>R$ ".$formataPreco."</p>
+
+  <p id='valorOFF' style='float: left; margin: 0; padding: 0; color: #64c574; font-size: 15px !important; font-weight: bold; padding: 0;'> ".$calculoOFF."% OFF</p>
+
+  </div>
+
+  ";
+
+}else{
+
+  echo "
+
+  <div class='emPromocao' style='float: left; width: 100%;'>
+
+  <p id='semValor' style='float: left; margin: 0; padding: 0; font-size: 14px !important; text-decoration: line-through; font-weight: 400; margin-bottom: 0px; margin-left: 15px; margin-right: 5px; color: transparent;'>0</p> 
+
+  </div>
+
+  ";
+
+
+//echo "<div id='id_resultado'><a href='visualizar.php?id=". $row_usuario['id_relacionado'] ."'>". $idrelacionado['numero'] ."</a></div>";
+
+   
+
+}
+
+?>        
+        <p id="preco">R$ <?php echo utf8_encode (number_format($listar_produtos["preco"], 2,',','.')); ?></p>
+        <p id="nomeProduto"><?php echo utf8_encode ($listar_produtos["nome"]); ?></p> 
+        </div>
+
 				</a>
 
 				</div>

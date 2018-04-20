@@ -30,6 +30,7 @@ $status = utf8_decode( $_POST["status"]);
 $nome = utf8_decode( $_POST["nome"]);
 $foto = utf8_decode( $_POST["foto"]);
 $custo = utf8_decode( $_POST["custo"]);
+$preco_antigo = utf8_decode( $_POST["preco_antigo"]);
 $preco = utf8_decode( $_POST["preco"]);
 $categoria = utf8_decode($_POST["categoria"]);
 $categoria_destaque = utf8_decode($_POST["categoria_destaque"]);
@@ -83,6 +84,7 @@ $keywords = utf8_decode($_POST["keywords"]);
             `nome`='$nome',
             `foto`='$foto',
             `custo`='$custo',
+            `preco_antigo`='$preco_antigo',
             `preco`='$preco',
             `categoria`='$categoria',
             `categoria_destaque`='$categoria_destaque',
@@ -501,10 +503,8 @@ input.form_caminhoImg{
           <div class="caixa w100">
           <p>Produto:</p>
           <input type="text" class="campo-form w80" value="<?php echo utf8_encode ($carregar_produto["nome"]); ?>" required="" name="nome">
-          </div>
-          
-          <div class="caixa">
-          <p>Categoria:</p>
+
+          <p style="margin-left: 10px;">Categoria:</p>
           <label for="categoria"></label>
           <select name="categoria" required="" class="campo-form">
 
@@ -520,7 +520,9 @@ input.form_caminhoImg{
             <?php } ?>          
             
           </select>
-          </div>
+
+          </div>          
+         
 
           <div class="caixa">
           <p style="color: #d35400;">custo:</p>
@@ -528,7 +530,12 @@ input.form_caminhoImg{
           </div>
 
           <div class="caixa">
-          <p style="color: #27ae60;">Preço:</p>
+          <p style="color: #95a5a6;">Preço Antigo:</p>
+          <input type="text" class="campo-form" name="preco_antigo" value="<?php echo utf8_encode ($carregar_produto["preco_antigo"]); ?>" style="width: 120px;">
+          </div>
+
+          <div class="caixa">
+          <p style="color: #27ae60;">Preço Venda:</p>
           <input type="text" class="campo-form" required="" name="preco" value="<?php echo utf8_encode ($carregar_produto["preco"]); ?>" style="width: 120px;">
           </div>
 
@@ -536,12 +543,9 @@ input.form_caminhoImg{
 
 <?php 
 
- $lucro = 0;
-
-if (isset($_POST['calculoLucro'])) {
-
- $precoVenda = $_POST['preco'];
- $custo = $_POST['custo'];
+//CALCULO DO LUCRO
+ $precoVenda = $carregar_produto["preco"];
+ $custo = $carregar_produto["custo"];
 
  $imposto = ($precoVenda * 0.1);
  $txCartao = ($precoVenda * 0.08);
@@ -555,13 +559,32 @@ if (isset($_POST['calculoLucro'])) {
 
  $lucro = (-($valorLucro / $precoVenda)*100);
 
-}
+ /*if (isset($_POST['calculoLucro'])) {
+ 
+ //CALCULO DO LUCRO
+ $precoVenda = $carregar_produto["preco"];
+ $custo = $carregar_produto["custo"];
+
+ $imposto = ($precoVenda * 0.1);
+ $txCartao = ($precoVenda * 0.08);
+ $txContribuicao = ($precoVenda * 0.4);
+
+ //echo "$custo // $imposto // $txCartao // $txContribuicao";
+
+ $somaDespesas = $custo + $imposto + $txCartao + $txContribuicao; 
+
+ $valorLucro = $somaDespesas - $precoVenda;
+
+ $lucro = (-($valorLucro / $precoVenda)*100);
+
+ }*/
+
 
 ?>
 
           <p style="color: #3498db;">Lucro:</p>
           <input type="text" class="campo-form" name="lucro" value="<?php echo number_format($lucro, 2); ?>%" style="width: 120px;">
-          <input type="submit" value="Calcular Lucro" name="calculoLucro" style="background: #27ae60; color: #fff; height: 30px; font-size: 15px; margin-left: 10px; padding: 0px 10px;">
+          <input type="submit" value="..." name="calculoLucro" style="background: #27ae60; color: #fff; height: 30px; font-size: 15px; margin-left: 10px; padding: 0px 10px;">
           </div>
           
           </div>
@@ -645,12 +668,12 @@ if (isset($_POST['calculoLucro'])) {
 
           <a href="lista_produtos.php" class="button-cancelar">cancelar</a>
 
-          <input type="submit" value="excluir" class="button-excluir" onclick="return ExcluiProduto();" name="excluir-produto">
+          <input type="submit" value="Excluir Produto" class="button-excluir" onclick="return ExcluiProduto();" name="excluir-produto">
 
           <!-- SCRIPT DE CONFIRMAÇÃO PARA EXCLUIR OU NÃO O PRODUTO -->
           <script> function ExcluiProduto() {if (confirm("Excluir esse cadastro?")) {return true;} else {return false;} } </script>
 
-          <input type="submit" value="editar" class="button-editar"  name="editar-produto">              
+          <input type="submit" value="Editar Produto" class="button-editar"  name="editar-produto">              
 
           </form>
 

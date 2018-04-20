@@ -14,6 +14,7 @@ $status = utf8_decode( $_POST["status"]);
 $nome = utf8_decode( $_POST["nome"]);
 $foto = utf8_decode( $_POST["foto"]);
 $custo = utf8_decode( $_POST["custo"]);
+$preco_antigo = utf8_decode( $_POST["preco_antigo"]);
 $preco = utf8_decode( $_POST["preco"]);
 $categoria = utf8_decode($_POST["categoria"]);
 $categoria_destaque = utf8_decode($_POST["categoria_destaque"]);
@@ -73,6 +74,7 @@ $keywords = utf8_decode($_POST["keywords"]);
            nome,
            foto,
            custo,
+           preco_antigo,
            preco,
            categoria,
            categoria_destaque,
@@ -91,6 +93,7 @@ $keywords = utf8_decode($_POST["keywords"]);
            '$nome',
            '$foto',
            '$custo',
+           '$preco_antigo',
            '$preco',
            '$categoria',
            '$categoria_destaque',
@@ -349,10 +352,8 @@ input.campo-form:focus{border: 1px solid #014d8f !important;}
           <div class="caixa w100">
           <p>Produto:</p>
           <input type="text" class="campo-form w80" placeholder="Nome do produto..." required="" name="nome">
-          </div>
-          
-          <div class="caixa">
-          <p>Categoria:</p>
+  
+          <p style="margin-left: 10px;">Categoria:</p>
           <label for="categoria"></label>
           <select name="categoria" required="" class="campo-form">
 
@@ -365,11 +366,17 @@ input.campo-form:focus{border: 1px solid #014d8f !important;}
             <?php } ?>          
             
           </select>
+
           </div>
 
           <div class="caixa">
           <p style="color: #d35400;">custo:</p>
           <input type="text" class="campo-form" required="" name="custo" style="width: 120px;">
+          </div>
+
+          <div class="caixa">
+          <p style="color: #95a5a6;">Preço Antigo:</p>
+          <input type="text" class="campo-form" name="preco_antigo" style="width: 120px;">
           </div>
 
           <div class="caixa">

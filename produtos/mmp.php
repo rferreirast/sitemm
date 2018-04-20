@@ -306,6 +306,42 @@ img.mmp-outrasImagens-item:hover{border: 1.15px solid #014d8f; cursor: pointer;}
 	  	
 	  	<div class="mmp-infos-produto-nome"><p><?php echo utf8_encode ($carregar_produto["nome"]); ?></p></div>
 	  	<p style="width: 100%; float: left; color: #848484; font-size: 12px !important;">Código produto: <?php echo utf8_encode ($carregar_produto["id"]); ?></p>
+	  	<?php 
+error_reporting(0);
+
+$buscaPrecoAntigo = $carregar_produto["preco_antigo"];
+$precoVenda = $carregar_produto["preco"];
+
+if ($buscaPrecoAntigo > 0) {
+
+ $formataPreco = number_format($buscaPrecoAntigo, 2,',','.');
+
+ $calculoOFF = number_format(-($precoVenda / $buscaPrecoAntigo * 100 - 100), 0);
+
+  echo "
+
+  <div class='emPromocao' style='float: left; width: 100%; margin-top: 10px;'>
+
+  <p id='preco_antigo' style='float: left; margin: 0; padding: 0; font-size: 15px !important; color: #797979; text-decoration: line-through; font-weight: 400; margin-bottom: 0px; margin-left: 0px; margin-right: 5px;'>R$ ".$formataPreco."</p>
+
+  <p id='valorOFF' style='float: left; margin: 0; padding: 0; color: #64c574; font-size: 16px !important; font-weight: bold; padding: 0;'> ".$calculoOFF."% OFF</p>
+
+  </div>
+
+  ";
+
+}else{
+
+  echo '<p id="semValor" style="margin: 0; padding: 0; font-size: 14px !important; color: transparent;">0</p>  ';
+
+
+//echo "<div id='id_resultado'><a href='visualizar.php?id=". $row_usuario['id_relacionado'] ."'>". $idrelacionado['numero'] ."</a></div>";
+
+   
+
+}
+
+?>
 	  	<div class="mmp-infos-produto-preco"><p>R$ <?php echo utf8_encode (number_format($carregar_produto["preco"], 2,',','.')); ?></p></div> 
 	  	<p style="width: 100%; float: left; color: #848484; font-size: 14px !important; margin-bottom: 20px;"><i class="fas fa-paint-brush"></i> Veja a tabela de cores disponíveis para esse produto <a href="#">clicando aqui</a></p>	
 
@@ -372,8 +408,57 @@ img.mmp-outrasImagens-item:hover{border: 1.15px solid #014d8f; cursor: pointer;}
         <div class="border-item-produto">
         <div class="item-produto">
         <img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($res_produtosSemelhante["foto"]); ?>" alt=""> <!-- FOTO -->
-        <p><?php echo utf8_encode ($res_produtosSemelhante["nome"]); ?></p> <!-- NOME -->
-        <p id="preco">R$ <?php echo utf8_encode (number_format($res_produtosSemelhante["preco"], 2,',','.')); ?></p> <!-- PREÇO 1 -->
+
+        <div class="informacoesProduto" style="float: left; width: 100%; max-height: 100px; min-height: 100px;">
+
+<?php 
+error_reporting(0);
+
+$buscaPrecoAntigo = $res_produtosSemelhante["preco_antigo"];
+$precoVenda = $res_produtosSemelhante["preco"];
+
+if ($buscaPrecoAntigo > 0) {
+
+ $formataPreco = number_format($buscaPrecoAntigo, 2,',','.');
+
+ $calculoOFF = number_format(-($precoVenda / $buscaPrecoAntigo * 100 - 100), 0);
+
+  echo "
+
+  <div class='emPromocao' style='float: left; width: 100%; min-height: 20.8px;'>
+
+  <p id='preco_antigo' style='float: left; margin: 0; padding: 0; font-size: 14px !important; color: #797979; text-decoration: line-through; font-weight: 400; margin-bottom: 0px; margin-left: 15px; margin-right: 5px;'>R$ ".$formataPreco."</p>
+
+  <p id='valorOFF' style='float: left; margin: 0; padding: 0; color: #64c574; font-size: 15px !important; font-weight: bold; padding: 0;'> ".$calculoOFF."% OFF</p>
+
+  </div>
+
+  ";
+
+}else{
+
+  echo "
+
+  <div class='emPromocao' style='float: left; width: 100%;'>
+
+  <p id='semValor' style='float: left; margin: 0; padding: 0; font-size: 14px !important; text-decoration: line-through; font-weight: 400; margin-bottom: 0px; margin-left: 15px; margin-right: 5px; color: transparent;'>0</p> 
+
+  </div>
+
+  ";
+
+
+//echo "<div id='id_resultado'><a href='visualizar.php?id=". $row_usuario['id_relacionado'] ."'>". $idrelacionado['numero'] ."</a></div>";
+
+   
+
+}
+
+?>        
+        <p id="preco">R$ <?php echo utf8_encode (number_format($res_produtosSemelhante["preco"], 2,',','.')); ?></p>
+        <p id="nomeProduto"><?php echo utf8_encode ($res_produtosSemelhante["nome"]); ?></p> 
+        </div>
+        
         </a>
 
         </div></div>
