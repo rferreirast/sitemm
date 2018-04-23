@@ -458,7 +458,7 @@ if ($buscaPrecoAntigo > 0) {
         <p id="preco">R$ <?php echo utf8_encode (number_format($res_produtosSemelhante["preco"], 2,',','.')); ?></p>
         <p id="nomeProduto"><?php echo utf8_encode ($res_produtosSemelhante["nome"]); ?></p> 
         </div>
-        
+
         </a>
 
         </div></div>
@@ -469,7 +469,6 @@ if ($buscaPrecoAntigo > 0) {
 
 
 </div>
-
 
 
 <!-- CONTATOS LEFT -->

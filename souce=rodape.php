@@ -51,6 +51,7 @@
      <a href="#"><p>Sobre produtos</p></a>
   	 <a href="#"><p>Sobre o Frete</p></a>
   	 <a href="#"><p>Formas de Pagamento</p></a>
+     <a href="/nossos-clientes"><p>Nossos Clientes</p></a>
   </div>
 
   <div class="dados-newsletter">

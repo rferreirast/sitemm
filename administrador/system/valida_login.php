@@ -8,7 +8,7 @@ require("config.php");
      	$email = $_POST['email'];
      	$senha = $_POST['senha'];
 
-		$verifica = mysqli_query($conn,"SELECT * FROM  usuarios WHERE email ='$email' AND senha = '$senha'");
+		$verifica = mysqli_query($conn,"SELECT * FROM usuarios WHERE email ='$email' AND senha = '$senha'");
 		if (mysqli_num_rows($verifica) > 0) {			    		
 
             // ATRIBUNDO TEMPO LIMITE DE LOGIN

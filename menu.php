@@ -244,10 +244,9 @@ li{
       </div>
     </div>
 
-    <li><a class="item-menu-container" href="#">Novidades</a></li>
-    <li><a class="item-menu-container" href="#">Destaques</a></li>
-    <li><a class="item-menu-container" href="#">Em promoção</a></li>
-    <li><a class="item-menu-container" href="/clientes">Nossos Clientes</a></li>
+    <li><a class="item-menu-container" href="/produtos/novidades">Novidades</a></li>
+    <li><a class="item-menu-container" href="/produtos/destaques">Destaques</a></li>
+    <li><a class="item-menu-container" href="/produtos/promocao">Em promoção</a></li>
 
 
   </div>

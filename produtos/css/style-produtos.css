@@ -103,10 +103,11 @@ a:hover{
  width: 100%;
  margin-top: 30px;
  margin-bottom: 30px;
+ min-height: 520px;
 }
 .border-item-produto{
  float: left;
- width: 33.3333333%;
+ width: 25%;
  padding: 0 10px;
 }
 .item-produto{

@@ -5,11 +5,11 @@
 .bg-apresentacao{
  float: left;
  width: 100%;
- max-height: 520px;
+ max-height: 550px;
  background-image: url(img/bg.png);
  background-repeat: no-repeat;
- background-size: 550px auto;
- background-position: -100px;
+ background-size: 560px auto;
+ background-position: -100px -22px;
  padding-bottom: 100px;
 }
 
@@ -20,14 +20,12 @@
 .bg-apresentacao{
  float: left;
  width: 100%;
- min-height: 400px;
+ min-height: 450px;
  background-image: url(img/bg.png);
  background-repeat: no-repeat;
  background-size: 1650px auto;
- background-position: 0px -220px;
+ background-position: -50px -145px;
 }
-
-
 
 }
 
