@@ -165,10 +165,10 @@ li{
           
             <div class="item-menu">
               <input type="checkbox" id="check4">
-              <label for="check4"><div class="texto-menu-adm"><span class="icon fas fa-cubes"></span><p>Blog</p><span class="icon fas fa-angle-right"></span></div></label>
+              <label for="check4"><div class="texto-menu-adm"><span class="icon fas fa-cubes"></span><p>Informações</p><span class="icon fas fa-angle-right"></span></div></label>
                <ul>
 
-              <li><a class="item-menu" href="lista_postagens.php">Postagens</a></li>                
+              <li><a class="item-menu" href="informacoes/lista_postagens.php">Postagens</a></li>                
                </ul>
             </div>         
 

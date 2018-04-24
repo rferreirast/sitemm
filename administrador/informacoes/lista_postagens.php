@@ -4,7 +4,7 @@ if (!isset($_SESSION)){session_start();}
 include_once("../system/verifica_sessao.php");
 
 //BUSCA OS DADOS DO PEDIDO NO MYSQL
- $pesquisa_post = "SELECT * FROM blog_postagens";
+ $pesquisa_post = "SELECT * FROM informacoes_postagens";
  $resultado_post = mysqli_query($conn, $pesquisa_post);
 
  ?>
@@ -14,7 +14,7 @@ include_once("../system/verifica_sessao.php");
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Mestre Moveleiro | Postagem Clientes</title> <!-- INFO 1 -->
+  <title>Mestre Moveleiro | Lista de informações</title> <!-- INFO 1 -->
   <meta name="author" content="Rafael Ferreira">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto:300,400,700" rel="stylesheet">

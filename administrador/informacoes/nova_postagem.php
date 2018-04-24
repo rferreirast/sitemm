@@ -4,6 +4,8 @@ if (!isset($_SESSION)){session_start();}
 
 include_once("../system/verifica_sessao.php");
 
+include_once("../system/acao-usuario.php");
+
 if (isset($_POST['criar_Postagem'])) {
 $post_titulo = utf8_decode( $_POST["tituloPost"]);  
 $post_descricao = utf8_decode( $_POST["descricaoPost"]);
@@ -14,30 +16,36 @@ $post_categoria = utf8_decode( $_POST["categoria"]);
 date_default_timezone_set('America/Sao_Paulo'); //DATA E HORA DO PEDIDO 
 $data_postagem = date('Y/m/d H:i');
 
+$post_por = $carregar_usuario['nome'];
+
 //VERIFICA NO BANCO DE DADOS SE JA FOI CADASTRADO 
-$verificaPost = mysqli_query($conn, "SELECT * FROM blog_postagens WHERE post_titulo = '$post_titulo'") or print mysql_error();          
+$verificaPost = mysqli_query($conn, "SELECT * FROM informacoes_postagens WHERE post_titulo = '$post_titulo'") or print mysql_error();          
 if(mysqli_num_rows($verificaPost)>0)
 
   echo '<script>alert("Essa postagem já foi feita!!");</script>';
 
 else {
-
+  
   //SALVA OS DADOS NO MYSQL
-  $inserePost = "INSERT INTO blog_postagens (
+  $inserePost = "INSERT INTO informacoes_postagens (
+  status,
   post_titulo,          
   post_descricao,
   post_conteudo,
   keywords,
   post_categoria,
-  data_postagem
+  data_postagem,
+  post_por
   )
   VALUES (
+  'ativo',
   '$post_titulo',
   '$post_descricao',
   '$post_conteudo',
   '$keywords',
   '$post_categoria',
-  '$data_postagem'
+  '$data_postagem',
+  '$post_por'
    )";
    
   if ($conn->query($inserePost) === TRUE) {

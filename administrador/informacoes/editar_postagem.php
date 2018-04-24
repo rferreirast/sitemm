@@ -8,12 +8,13 @@ include_once("../system/verifica_sessao.php");
  $id_Post = intval($_GET['post']);
 
  //CARREGA PRODUTO 
- $pesquisa_post = "SELECT * FROM blog_postagens WHERE id = '$id_Post'";
+ $pesquisa_post = "SELECT * FROM informacoes_postagens WHERE id = '$id_Post'";
  $resultado_pesquisaPost = mysqli_query($conn, $pesquisa_post);
  $carregar_Post = mysqli_fetch_assoc($resultado_pesquisaPost);
 
 //SALVA NO BANCO DE DADOS
 if (isset($_POST['atualiza_postagem'])) {
+$status = utf8_decode( $_POST["status"]);  
 $post_titulo = utf8_decode( $_POST["tituloPost"]);  
 $post_descricao = utf8_decode( $_POST["descricaoPost"]);
 $post_conteudo = utf8_decode( $_POST["textoPost"]);
@@ -23,7 +24,8 @@ $post_categoria = utf8_decode( $_POST["categoria"]);
 date_default_timezone_set('America/Sao_Paulo'); //DATA E HORA DO PEDIDO 
 $data_modificacao = date('Y/m/d H:i');
 
-$atualizaPost = "UPDATE blog_postagens SET 
+$atualizaPost = "UPDATE informacoes_postagens SET 
+`status`='$status',
 `post_titulo`='$post_titulo',
 `post_descricao`='$post_descricao',
 `post_conteudo`='$post_conteudo',
@@ -102,7 +104,18 @@ input.campo-form{
  margin-left: 10px;
  border: 1px solid #c4c4c4 !important;
 }
-
+select.campo-form{
+ font-size: 15px;
+ border-radius: 3px;
+ color: #343434;
+ background-color: #fff;
+ box-sizing: border-box;
+ height: 32px;
+ padding: 0px 0.4em;
+ width: 400px;
+ margin-left: 10px;
+ border: 1px solid #c4c4c4 !important; 
+}
 /*=========================================================================*/
 
 .tituloCat{float: left; width: 100%; border: 1px solid #c4c4c4; padding: 5px 5px; border-radius: 5px 5px 0px 0px; background: #014d8f;}
@@ -236,6 +249,16 @@ input.campo-form:focus{border: 1px solid #014d8f !important;}
           <div class="caixa">
           <p>Categoria:</p>
           <input type="text" class="campo-form" required="" name="categoria" value="<?php echo utf8_encode($carregar_Post['post_categoria']) ?>" style="width: 120px;">
+          </div>
+
+          <div class="caixa">
+          <p><b>Status:</b></p>
+          <label for="status"></label>
+          <select name="status" required="" class="campo-form" style="width: 150px;">
+          <option value="">Selecione</option>
+          <option value="ativo" <?php if($carregar_Post["status"] == 'ativo') echo "selected"; ?> >ativo</option>
+          <option value="inativo" <?php if($carregar_Post["status"] == 'inativo') echo "selected"; ?> >inativo</option>          
+          </select>
           </div>
 
           <div class="" style="float: left; margin-bottom: 20px; margin-top: 20px; width: 100%;">

@@ -4,9 +4,9 @@ include_once("../system/config.php");
 
 if (!isset($_SESSION)){session_start();}
 
-$link_post = $_GET['p'];
+$id_Post = $_GET['p'];
 
-$busca_post = "SELECT * FROM blog_postagens WHERE link = '$link_post'";
+$busca_post = "SELECT * FROM informacoes_postagens WHERE id = '$id_Post' AND status = 'ativo' ";
 $resultado_post = mysqli_query($conn, $busca_post);
 $carregar_post = mysqli_fetch_assoc($resultado_post);
 
@@ -19,25 +19,28 @@ $carregar_post = mysqli_fetch_assoc($resultado_post);
 <meta charset="UTF-8">
 <meta name=viewport content="width=device-width, initial-scale=1">
 
-<title><?php echo utf8_encode ($carregar_post["post_titulo"])?> - Mestre Moveleiro</title> <!-- INFO 1 <--></-->
+<title><?php echo utf8_encode ($carregar_post["post_titulo"])?> | Mestre Moveleiro</title> <!-- INFO 1 <--></-->
 <meta name="description" content="<?php echo utf8_encode ($carregar_post["post_descricao"])?>"> <!-- INFO 2 -->
 <meta name="author" content="Rafael Ferreira - Mestre Moveleiro">
 <meta property="og:locale" content="pt_BR" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="<?php echo utf8_encode ($carregar_post["post_titulo"])?>" />
 <meta property="og:description" content="<?php echo utf8_encode ($carregar_post["post_descricao"])?>" />
-<meta property="og:url" content="http://www.mestremoveleiro.com.br/<?php echo utf8_encode ($carregar_post["link"])?>" />
+
+<meta property="og:url" content="http://www.mestremoveleiro.com.br/informacoes/info?<?php echo utf8_encode(str_replace (" ", "-",$carregar_post["post_titulo"])); ?>
+&p=<?php echo utf8_encode ($carregar_post["id"])?>" />
+
 <meta property="og:site_name" content="Mestre Moveleiro" />
 <meta property="article:published_time" content="<?php echo utf8_encode ($carregar_post["data_postagem"])?>" />
 <meta property="article:modified_time" content="<?php echo utf8_encode ($carregar_post["data_modificacao"])?>" />
-<meta property="og:image" content="https://www.conversion.com.br/blog/img-postagens/<?php echo utf8_encode ($carregar_post["imagem_postagem"])?>" />
+<meta property="og:image" content="https://www.conversion.com.br/informacoes/img-postagens/<?php echo utf8_encode ($carregar_post["imagem_postagem"])?>" />
 
 <meta name="keywords" content="<?php echo utf8_encode ($carregar_post["keywords"])?>">
 <meta name="robots" content="index, follow">
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script> <!-- ICONES -->
 
 <link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="css/style-blog.css">
+<link rel="stylesheet" href="css/style-informacoes.css">
 <link rel="shortcut icon" href='../img/logo-topo.png' />
 <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto:300,400,700" rel="stylesheet">
 
@@ -49,14 +52,15 @@ $carregar_post = mysqli_fetch_assoc($resultado_post);
 
 @media screen and (min-width:320px) {
 
-.tituloBlog{float: left; width: 100%; background: #c4c4c4; padding: 40px 0px;}
-.tituloBlog h1{ color: #fff; text-align: center; font-size: 22px !important; margin-bottom: 10px;}
+.tituloinformacoes{float: left; width: 100%; background: #fff; margin-top: 60px; padding-bottom: 10px; border-bottom: 1px solid #c4c4c4;}
+.tituloinformacoes h1{ color: #333; text-align: center; font-size: 32px !important; font-weight: bold; margin-bottom: 10px; letter-spacing: -.055em;}
+.tituloinformacoes h2{ color: #a0a0a0; text-align: center; font-size: 20px !important; margin-bottom: 10px;}
 
 .section{float: left; width: 90%; margin: 30px 0px;}
 .container-conteudo{width: 100%; margin: auto;}
 
-.section h2{color: #151515; font-size: 25px !important; margin-bottom: 20px; font-weight: 400;}
-.section p{color: #151515; font-size: 16px !important; margin-bottom: 20px; line-height: 1.6em;}
+.section h2{color: #333; font-size: 25px !important; margin-bottom: 20px; padding-top: 10px; font-weight: 400;}
+.section p{color: #333; font-size: 16px !important; margin-bottom: 20px; line-height: 1.6em;}
 
 }
 
@@ -81,8 +85,11 @@ $carregar_post = mysqli_fetch_assoc($resultado_post);
 <!-- MENU -->
 <?php include('../menu.php'); ?>
 
-<div class="tituloBlog">
+<div class="tituloinformacoes">
+  <div class="container-conteudo">
 	<h1><?php echo utf8_encode ($carregar_post["post_titulo"])?></h1>
+	<h2><?php echo utf8_encode ($carregar_post["post_descricao"])?></h2>
+  </div>
 </div>
 
 <section id="conteudo" class="section">
@@ -92,6 +99,8 @@ $carregar_post = mysqli_fetch_assoc($resultado_post);
 
 </div>
 </section>
+
+<!-- NOSSOS PRODUTOS -->
 
 <!-- CONTATOS LEFT -->
 <?php include_once('../souce=contatos-page-left.php'); ?>
