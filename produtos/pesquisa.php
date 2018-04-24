@@ -23,7 +23,7 @@
 
 <meta property="og:locale" content="pt_BR" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="<?php echo utf8_encode ($carrega_dadosEmpresa['nome'])?> | Produtos" />
+<meta property="og:title" content="<?php echo utf8_encode ($carrega_dadosEmpresa['nome'])?> | Categoria: <?php echo utf8_encode ($categoria_pesquisa)?>" />
 <meta property="og:description" content="<?php echo utf8_encode ($carrega_dadosEmpresa['sobre_empresa'])?>" />
 <meta property="og:url" content="http://www.mestremoveleiro.com.br/produtos/pesquisa?categoria=<?php echo utf8_encode ($categoria_pesquisa)?>" />
 <meta property="og:site_name" content="<?php echo utf8_encode ($carrega_dadosEmpresa['nome'])?>" />

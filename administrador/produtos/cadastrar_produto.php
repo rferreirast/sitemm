@@ -236,7 +236,7 @@ select.campo-form{
 .button-cancelar:hover{background: #c24e02; color: #fff;text-decoration: none}
 
 
-
+  
 
 /*=========================================================================*/
 
@@ -489,9 +489,9 @@ input.campo-form:focus{border: 1px solid #014d8f !important;}
 
           <div class="tituloCat"><h2>Keywords SEO</h2></div>
 
-          <div class="" style="margin-bottom: 20px; margin-top: 20px; width: 100%;">
+          <div class="" style=" margin-bottom: 20px; margin-top: 20px; width: 100%;">
 
-            <textarea type="text" name="keywords" required="" class="descricao" rows="1" placeholder="Ex: Cadeiras de ferro, mesas de ferro, cadeiras para buffet..." style="overflow-x: hidden; word-wrap: break-word; width: 95%;"></textarea>           
+            <textarea type="text" name="keywords" required="" class="descricao" rows="1" placeholder="Ex: Cadeiras de ferro, mesas de ferro, cadeiras para buffet..." style="overflow-x: hidden; word-wrap: break-word; "></textarea>           
 
           </div>
           </div>

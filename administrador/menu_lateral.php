@@ -168,7 +168,7 @@ li{
               <label for="check4"><div class="texto-menu-adm"><span class="icon fas fa-cubes"></span><p>Blog</p><span class="icon fas fa-angle-right"></span></div></label>
                <ul>
 
-              <li><a class="item-menu" href="#">Postagens</a></li>                
+              <li><a class="item-menu" href="lista_postagens.php">Postagens</a></li>                
                </ul>
             </div>         
 
