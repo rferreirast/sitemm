@@ -33,7 +33,7 @@ include_once("system/cadastra_cliente.php");
 <style>
 @media screen and (min-width:320px) {
 
-.container-registrar{float: left; width: 100%; min-height: 500px;}
+.container-registrar{float: left; width: 100%; min-height: 520px;}
 .margin-registrar{
  width: 90%;
  margin: auto;
@@ -45,7 +45,7 @@ include_once("system/cadastra_cliente.php");
  background: #fff;
  min-height: 250px;
  border-radius: 10px;
- margin-top: 40px;
+ margin-top: 80px;
  margin-bottom: 40px;
  border: 1px solid #c4c4c4;
  padding: 20px 20px;

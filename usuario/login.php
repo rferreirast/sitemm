@@ -32,7 +32,7 @@ include_once("system/valida_login.php");
 <style>
 @media screen and (min-width:320px) {
 
-.container-login{float: left; width: 100%; min-height: 500px;}
+.container-login{float: left; width: 100%; min-height: 520px;}
 .margin-login{
  width: 90%;
  margin: auto;
@@ -43,7 +43,7 @@ include_once("system/valida_login.php");
  background: #fff;
  min-height: 250px;
  border-radius: 10px;
- margin-top: 40px;
+ margin-top: 80px;
  margin-bottom: 40px;
  border: 1px solid #c4c4c4;
  padding: 20px 20px;
@@ -158,7 +158,7 @@ input.compo_form{
         <span id="dadosIncorretos"><p><?php error_reporting(0); echo $dadosIncorretos; ?></p></span>
         <input type="submit" class="button_login" value="Entrar" name="entrar">
 
-        <a href="#" class="forget-senha">Esqueci a minha senha</a>
+        <a href="password/esqueci-senha" class="forget-senha">Esqueci a minha senha</a>
 
       </form>
 

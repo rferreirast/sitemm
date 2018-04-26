@@ -1,3 +1,4 @@
 user-agent:*
 dissalow:/usuario
+dissalow:/administrador
 sitemap:http://www.mestremoveleiro.com.br/sitemap.xml
