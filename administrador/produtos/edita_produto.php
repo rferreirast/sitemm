@@ -607,22 +607,18 @@ input.form_caminhoImg{
            <div class="item-formulario caixa-border padding-form" style="margin-bottom: 20px; margin-top: 20px;">
            <div class="tituloCat"><h2>Descrição completa</h2></div>
 
-          <link rel="stylesheet" href="editor/./minified/themes/default.min.css" id="theme-style" />
-          <script src="editor/./minified/sceditor.min.js"></script>
-          <script src="editor/./minified/icons/monocons.js"></script>
-          <script src="editor/./minified/formats/bbcode.js"></script>
-
           <style>
-            .sceditor-container{min-width: 100%; min-height: 450px;}
-            .sceditor-toolbar{}
+            .cke_chrome{min-width: 100%;}
+            #txtArtigo{min-width: 100%; }
+            #cke_1_contents{min-height: 450px !important; padding: 10px;}
           </style>
             
-<textarea id="example" style="height:300px;width:600px;" name="descricao_completa" required="">
-
-<?php echo utf8_encode ($carregar_produto["descricao_completa"]); ?>
-
-</textarea>
-
+         <textarea id="txtArtigo" name="textoPost" style="height:300px; width:600px;"><?php echo utf8_encode ($carregar_produto["descricao_completa"]); ?></textarea>
+         <script src="ckeditor/ckeditor.js"></script>
+        <script>
+                CKEDITOR.replace( 'txtArtigo' );
+        </script>
+            
           </div>
 
           <div class="item-formulario caixa-border padding-form" style="margin-bottom: 20px; margin-top: 20px;">

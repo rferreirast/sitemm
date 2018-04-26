@@ -224,31 +224,18 @@ input.campo-form:focus{border: 1px solid #014d8f !important;}
 
           <div class="tituloCat"><h2>Postagem</h2></div>
 
-          <link rel="stylesheet" href="editor/./minified/themes/default.min.css" id="theme-style" />
-          <script src="editor/./minified/sceditor.min.js"></script>
-          <script src="editor/./minified/icons/monocons.js"></script>
-          <script src="editor/./minified/formats/bbcode.js"></script>
-
           <style>
-            .sceditor-container{min-width: 100%; min-height: 450px;}
-            .sceditor-toolbar{}
+            .cke_chrome{min-width: 100%;}
+            #txtArtigo{min-width: 100%; }
+            #cke_1_contents{min-height: 450px !important; padding: 10px;}
           </style>
             
-         <textarea id="example" style="height:300px; width:600px;" name="textoPost" required="">
-<p>Escolher as cadeiras de ferro para o seu salão de festas requer alguns cuidados essenciais. Você precisa estar atento a alguns detalhes para que tudo saia como o imaginado. Algumas informações como .. são muito importantes na hora de escolher a qualidade e a quantidade de cadeiras de ferro.</p>
-<p></p>
+         <textarea id="txtArtigo" name="textoPost" style="height:300px; width:600px;"></textarea>
 
-<h2>A durabilidade das cadeiras de ferro para o salão de festas</h2>
-<p>Mais importante que o preço é a durabilidade da cadeiras de ferro, isso garante mais segurança ao seu salão de festas.</p>  
-<p></p>
-
-<h2>A qualidade das cadeiras de ferro para o salão de festas </h2>
-<p>Você também precisa estar atento a qualidade das cadeiras de ferro que pretende comprar.</p> 
-<p></p>
-
-
-</textarea>
-
+         <script src="ckeditor/ckeditor.js"></script>
+        <script>
+                CKEDITOR.replace( 'txtArtigo' );
+        </script>
 
          </div>
 

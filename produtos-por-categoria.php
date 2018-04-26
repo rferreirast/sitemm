@@ -12,6 +12,8 @@ include_once("system/config.php");
 
 @media screen and (min-width:320px) {
 
+.produtosCategoria{float: left; width: 100%; display: block;}
+
 .iconesCategoria{float: left; width: 100%; padding: 20px 0; margin-bottom: 20px;}
 
 .iconeCategoria-iten{
@@ -33,6 +35,8 @@ border: 1px solid #d5d5d5;
 /****** PARA O PC ******/
 @media screen and (min-width:1025px) {
 
+.produtosCategoria{display: none;}
+
 .iconeCategoria-iten{
 width: 16.666666666%;
 }
@@ -42,6 +46,7 @@ width: 16.666666666%;
 
 
 </style>
+
 
 <div class="produtosCategoria">
  <div class="container-site">

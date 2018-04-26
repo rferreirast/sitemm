@@ -225,17 +225,17 @@ input.campo-form:focus{border: 1px solid #014d8f !important;}
 
           <div class="tituloCat"><h2>Texto da postagem</h2></div>
 
-          <link rel="stylesheet" href="editor/./minified/themes/default.min.css" id="theme-style" />
-          <script src="editor/./minified/sceditor.min.js"></script>
-          <script src="editor/./minified/icons/monocons.js"></script>
-          <script src="editor/./minified/formats/bbcode.js"></script>
-
           <style>
-            .sceditor-container{min-width: 100%; min-height: 450px;}
-            .sceditor-toolbar{}
+            .cke_chrome{min-width: 100%;}
+            #txtArtigo{min-width: 100%; }
+            #cke_1_contents{min-height: 450px !important; padding: 10px;}
           </style>
             
-         <textarea id="example" style="height:300px; width:600px;" name="textoPost" required=""><?php echo utf8_encode($carregar_Post['post_conteudo']) ?></textarea>
+         <textarea id="txtArtigo" name="textoPost" style="height:300px; width:600px;"><?php echo utf8_encode($carregar_Post['post_conteudo']) ?></textarea>
+         <script src="ckeditor/ckeditor.js"></script>
+        <script>
+                CKEDITOR.replace( 'txtArtigo' );
+        </script>
 
 
          </div>
