@@ -10,6 +10,11 @@ $busca_post = "SELECT * FROM informacoes_postagens WHERE id = '$id_Post' AND sta
 $resultado_post = mysqli_query($conn, $busca_post);
 $carregar_post = mysqli_fetch_assoc($resultado_post);
 
+
+/*$texto = 'A principal matÃ©ria prima utilizada na fabricaÃ§Ã£o das cadeiras de ferro Ã© o ferro aÃ§o carbono';
+
+echo utf8_decode($texto);*/
+
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +24,7 @@ $carregar_post = mysqli_fetch_assoc($resultado_post);
 <meta charset="UTF-8">
 <meta name=viewport content="width=device-width, initial-scale=1">
 
-<title><?php echo utf8_encode ($carregar_post["post_titulo"])?> | Mestre Moveleiro</title> <!-- INFO 1 <--></-->
+<title><?php echo utf8_encode ($carregar_post["post_titulo"])?> | <?php echo utf8_encode ($carrega_dadosEmpresa['nome'])?></title> <!-- INFO 1 <--></-->
 <meta name="description" content="<?php echo utf8_encode ($carregar_post["post_descricao"])?>"> <!-- INFO 2 -->
 <meta name="author" content="Rafael Ferreira - Mestre Moveleiro">
 <meta property="og:locale" content="pt_BR" />
@@ -61,7 +66,9 @@ $carregar_post = mysqli_fetch_assoc($resultado_post);
 
 .section h2{color: #333; font-size: 25px !important; margin-bottom: 20px; padding-top: 10px; font-weight: 400;}
 .section p{color: #333; font-size: 16px !important; margin-bottom: 20px; line-height: 1.6em;}
-
+.section ul{float: left; width: 100%; margin-bottom: 20px;}
+.section li{display: list-item; list-style-type: initial; width: 100%; margin-bottom: 10px; margin-left: 15px; color: #333; font-size: 16px !important; line-height: 1.6em;}
+strong{font-weight: bold;}
 }
 
 @media screen and (min-width:1025px) {
@@ -95,7 +102,7 @@ $carregar_post = mysqli_fetch_assoc($resultado_post);
 <section id="conteudo" class="section">
 <div class="container-conteudo">
 
-<?php echo utf8_encode ($carregar_post["post_conteudo"])?>
+<?php echo html_entity_decode($carregar_post["post_conteudo"])?>
 
 </div>
 </section>

@@ -4,7 +4,7 @@ if (!isset($_SESSION)){session_start();}
 include_once("../system/verifica_sessao.php");
 
 //BUSCA OS DADOS DO PEDIDO NO MYSQL
- $pesquisa_post = "SELECT * FROM informacoes_postagens";
+ $pesquisa_post = "SELECT * FROM informacoes_postagens ORDER BY id DESC";
  $resultado_post = mysqli_query($conn, $pesquisa_post);
 
  ?>
@@ -75,7 +75,8 @@ include_once("../system/verifica_sessao.php");
 /*==========================*/
 .container-lista-Postagem{
  float: left;
- width: 100%;  
+ width: 100%; 
+ margin-bottom: 60px; 
 }
 
 </style>
@@ -126,6 +127,7 @@ include_once("../system/verifica_sessao.php");
        <thead>
          <tr>
            <th class="headerPosts">Id</th>
+           <th class="headerPosts">Status</th>
            <th class="headerPosts">Titulo</th>
            <th class="headerPosts">Descrição</th>
            <th class="headerPosts"></th>
@@ -137,6 +139,7 @@ include_once("../system/verifica_sessao.php");
        <tbody>
          <tr>
            <td class="cellPosts"><?php echo utf8_encode($carrega_post["id"]); ?></td>
+           <td class="cellPosts"><?php echo utf8_encode($carrega_post["status"]); ?></td>
            <td class="cellPosts"><?php echo utf8_encode($carrega_post["post_titulo"]); ?></td>
            <td class="cellPosts"><?php echo utf8_encode($carrega_post["post_descricao"]); ?></td>
            <td class="cellPosts"><a href="editar_postagem.php?post=<?php echo utf8_encode($carrega_post["id"]); ?>" class="button-detalhesPost">detalhes</a></td>

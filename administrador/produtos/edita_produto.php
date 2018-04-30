@@ -543,6 +543,8 @@ input.form_caminhoImg{
 
 <?php 
 
+error_reporting(0);
+
 //CALCULO DO LUCRO
  $precoVenda = $carregar_produto["preco"];
  $custo = $carregar_produto["custo"];
@@ -584,7 +586,7 @@ input.form_caminhoImg{
 
           <p style="color: #3498db;">Lucro:</p>
           <input type="text" class="campo-form" name="lucro" value="<?php echo number_format($lucro, 2); ?>%" style="width: 120px;">
-          <input type="submit" value="..." name="calculoLucro" style="background: #27ae60; color: #fff; height: 30px; font-size: 15px; margin-left: 10px; padding: 0px 10px;">
+          <!--<input type="submit" value="..." name="calculoLucro" style="background: #27ae60; color: #fff; height: 30px; font-size: 15px; margin-left: 10px; padding: 0px 10px;">-->
           </div>
           
           </div>
@@ -613,7 +615,7 @@ input.form_caminhoImg{
             #cke_1_contents{min-height: 450px !important; padding: 10px;}
           </style>
             
-         <textarea id="txtArtigo" name="textoPost" style="height:300px; width:600px;"><?php echo utf8_encode ($carregar_produto["descricao_completa"]); ?></textarea>
+         <textarea id="txtArtigo" name="descricao_completa" style="height:300px; width:600px;"><?php echo utf8_encode ($carregar_produto["descricao_completa"]); ?></textarea>
          <script src="ckeditor/ckeditor.js"></script>
         <script>
                 CKEDITOR.replace( 'txtArtigo' );

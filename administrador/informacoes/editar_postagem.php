@@ -14,10 +14,11 @@ include_once("../system/verifica_sessao.php");
 
 //SALVA NO BANCO DE DADOS
 if (isset($_POST['atualiza_postagem'])) {
-$status = utf8_decode( $_POST["status"]);  
+$status = utf8_decode( $_POST["status"]); 
+$principal = utf8_decode( $_POST["principal"]); 
 $post_titulo = utf8_decode( $_POST["tituloPost"]);  
 $post_descricao = utf8_decode( $_POST["descricaoPost"]);
-$post_conteudo = utf8_decode( $_POST["textoPost"]);
+$post_conteudo = html_entity_decode( $_POST["textoPost"]);
 $keywords = utf8_decode( $_POST["keywords"]);
 $post_categoria = utf8_decode( $_POST["categoria"]);
 
@@ -26,6 +27,7 @@ $data_modificacao = date('Y/m/d H:i');
 
 $atualizaPost = "UPDATE informacoes_postagens SET 
 `status`='$status',
+`principal`='$principal',
 `post_titulo`='$post_titulo',
 `post_descricao`='$post_descricao',
 `post_conteudo`='$post_conteudo',
@@ -231,7 +233,7 @@ input.campo-form:focus{border: 1px solid #014d8f !important;}
             #cke_1_contents{min-height: 450px !important; padding: 10px;}
           </style>
             
-         <textarea id="txtArtigo" name="textoPost" style="height:300px; width:600px;"><?php echo utf8_encode($carregar_Post['post_conteudo']) ?></textarea>
+         <textarea type="text" id="txtArtigo" name="textoPost" style="height:300px; width:600px;"><?php echo ($carregar_Post['post_conteudo']) ?></textarea>
          <script src="ckeditor/ckeditor.js"></script>
         <script>
                 CKEDITOR.replace( 'txtArtigo' );
@@ -258,6 +260,16 @@ input.campo-form:focus{border: 1px solid #014d8f !important;}
           <option value="">Selecione</option>
           <option value="ativo" <?php if($carregar_Post["status"] == 'ativo') echo "selected"; ?> >ativo</option>
           <option value="inativo" <?php if($carregar_Post["status"] == 'inativo') echo "selected"; ?> >inativo</option>          
+          </select>
+          </div>
+
+          <div class="caixa">
+          <p><b>Principal:</b></p>
+          <label for="principal"></label>
+          <select name="principal" required="" class="campo-form" style="width: 150px;">
+          <option value="">Selecione</option>
+          <option value="sim" <?php if($carregar_Post["principal"] == 'sim') echo "selected"; ?> >sim</option>
+          <option value="nao" <?php if($carregar_Post["principal"] == 'nao') echo "selected"; ?> >nao</option>          
           </select>
           </div>
 

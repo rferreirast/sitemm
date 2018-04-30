@@ -7,9 +7,11 @@ include_once("../system/verifica_sessao.php");
 include_once("../system/acao-usuario.php");
 
 if (isset($_POST['criar_Postagem'])) {
+$status = utf8_decode( $_POST["status"]); 
+$principal = utf8_decode( $_POST["principal"]); 
 $post_titulo = utf8_decode( $_POST["tituloPost"]);  
 $post_descricao = utf8_decode( $_POST["descricaoPost"]);
-$post_conteudo = utf8_decode( $_POST["textoPost"]);
+$post_conteudo = html_entity_decode( $_POST["textoPost"]);
 $keywords = utf8_decode( $_POST["keywords"]);
 $post_categoria = utf8_decode( $_POST["categoria"]);
 
@@ -29,6 +31,7 @@ else {
   //SALVA OS DADOS NO MYSQL
   $inserePost = "INSERT INTO informacoes_postagens (
   status,
+  principal,
   post_titulo,          
   post_descricao,
   post_conteudo,
@@ -39,6 +42,7 @@ else {
   )
   VALUES (
   'ativo',
+  'principal'
   '$post_titulo',
   '$post_descricao',
   '$post_conteudo',
@@ -248,6 +252,26 @@ input.campo-form:focus{border: 1px solid #014d8f !important;}
           <div class="caixa">
           <p>Categoria:</p>
           <input type="text" class="campo-form" required="" name="categoria" style="width: 120px;">
+          </div>
+
+          <div class="caixa">
+          <p><b>Status:</b></p>
+          <label for="status"></label>
+          <select name="status" required="" class="campo-form" style="width: 150px;">
+          <option value="">Selecione</option>
+          <option value="ativo" >ativo</option>
+          <option value="inativo" >inativo</option>          
+          </select>
+          </div>
+
+          <div class="caixa">
+          <p><b>Principal:</b></p>
+          <label for="principal"></label>
+          <select name="principal" required="" class="campo-form" style="width: 150px;">
+          <option value="">Selecione</option>
+          <option value="sim" >sim</option>
+          <option value="nao" >nao</option>          
+          </select>
           </div>
 
           <div class="" style="float: left; margin-bottom: 10px; width: 100%;">

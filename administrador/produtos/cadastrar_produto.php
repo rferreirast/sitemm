@@ -410,7 +410,7 @@ input.campo-form:focus{border: 1px solid #014d8f !important;}
             #cke_1_contents{min-height: 450px !important; padding: 10px;}
           </style>
             
- <textarea id="txtArtigo" name="textoPost" style="height:300px; width:600px;">
+ <textarea id="txtArtigo" name="descricao_completa" style="height:300px; width:600px;">
 <h2><b>MEDIDAS DO PRODUTO</b></h2>
 
 <p>Altura: x cm</p>
@@ -420,7 +420,7 @@ input.campo-form:focus{border: 1px solid #014d8f !important;}
 <h2><b>MATERIAL</b></h2>
 
 <p>Material da base: x em aço carbono 1020, Pintura Eletrostática e Soldagem Mig/Mag.</p>
-<p>Material do assento: </p>
+<p>Material do assento: Madeira OSB com espuma revestida em corino.</p>
 <p>Material do tampo: Madeira MDF cor de 15 mm e Fita de Borda.</p>
 
 <h2><b>DETALHES DO PRODUTO</b></h2>
@@ -436,11 +436,6 @@ input.campo-form:focus{border: 1px solid #014d8f !important;}
 <h2><b>O MELHOR CUSTO BENEFÍCIO DO MERCADO</b></h2>
 
 <p>Nossos produtos possuem uma vida útil média de +10 anos. Se for usado seguindo as nossas recomendações de cuidados e limpeza você terá um bom produto por décadas.</p>
-
-<h2><b>GARANTIA EXCLUSIVA</b></h2>
-
-<p>Se em até 15 dias você não ficar satisfeito com a mercadoria, devolvemos o seu dinheiro.</p>
-<p>Se você não gostar da mercadoria por qualquer motivo, você tem 15 dias para entrar em contato e cancelar a compra, você nos devolve a mercadoria e devolvemos o seu dinheiro total. Cobrimos todos os custos.</p>
 
 <p></p>
 </textarea>
