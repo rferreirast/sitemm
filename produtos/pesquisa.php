@@ -3,12 +3,41 @@
     
      if (!isset($_SESSION)){session_start();}
 
-     //BUSCA CODIGO NA URL
-	 $categoria_pesquisa = $_GET['categoria'];
+    //BUSCA CODIGO NA URL
+	$categoria_pesquisa = $_GET['categoria'];
+
+	$categoria = $categoria_pesquisa;
 
 	//$listar = mysqli_query($conn, "SELECT * FROM produtos") or print mysql_error();
 	$listar = "SELECT * FROM loja_produtos WHERE categoria = '$categoria_pesquisa' AND status = 'ativo' ORDER BY nome ASC";
     $resultado_listar = mysqli_query($conn, $listar);
+
+
+if (isset($_GET['ordem'])) {
+
+    $ordem = $_GET['ordem'];
+
+	if ($ordem = $_GET['ordem'] == 'alfabetica') {
+
+	$listar = "SELECT * FROM loja_produtos WHERE categoria = '$categoria_pesquisa' AND status = 'ativo' ORDER BY nome ASC";
+    $resultado_listar = mysqli_query($conn, $listar);	
+
+	}
+
+	if ($ordem = $_GET['ordem'] == 'menor-preco') {
+
+	$listar = "SELECT * FROM loja_produtos WHERE categoria = '$categoria_pesquisa' AND status = 'ativo' ORDER BY preco ASC";
+    $resultado_listar = mysqli_query($conn, $listar);
+
+	}
+
+	if ($ordem = $_GET['ordem'] == 'maior-preco') {
+
+	$listar = "SELECT * FROM loja_produtos WHERE categoria = '$categoria_pesquisa' AND status = 'ativo' ORDER BY preco DESC";
+    $resultado_listar = mysqli_query($conn, $listar);
+
+	}
+}
 
  ?>
 
@@ -62,7 +91,25 @@
 <div class="container-produtos">
 	<div class="container-site">
 
-	<div class="titulo-container-produtos" style="width: 100%; float: left;"><p style="font-size: 28px !important; color: #666666; margin-left: 10px; margin-right: 10px;"><?php echo ucfirst ($categoria_pesquisa)?></p></div>
+	<div class="titulo-container-produtos" style="width: 100%; float: left;">
+		<p style="float: left; font-size: 28px !important; color: #666666; margin-left: 10px; margin-right: 10px;"><?php echo ucfirst ($categoria_pesquisa)?></p>
+
+	   <div class="filtroOrdem">
+
+	   <div class='category_listfiltro'>
+          <button class='dropbtnfiltro'>Ordenar por<span class='icon fas fa-angle-down' id='icon-drop'></span></button>
+          <div class='dropdown-contentfiltro'>
+
+            <a href='/produtos/pesquisa?categoria=<?php echo $categoria; ?>&ordem=alfabetica'>Ordem alfabética</a>
+            <a href='/produtos/pesquisa?categoria=<?php echo $categoria; ?>&ordem=menor-preco'>Menor preço</a>
+            <a href='/produtos/pesquisa?categoria=<?php echo $categoria; ?>&ordem=maior-preco'>Maior preço</a>                   
+
+          </div>
+        </div>
+
+	   </div>
+
+	</div>
 		
 		<div class="container-produtos-itens" style="width: 100%; float: left;">
 

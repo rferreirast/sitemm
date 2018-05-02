@@ -7,9 +7,38 @@
      //BUSCA CODIGO NA URL
 	 $item_pesquisa = $_GET['produto'];
 
+	 $busca = $item_pesquisa;
+
 	//REALIZA BUSCA NO BANCO DE DADOS COM A PALAVRA DIGITADA
 	/*$listar = "SELECT * FROM loja_produtos WHERE nome LIKE '$item_pesquisa%' AND status = 'ativo' ORDER BY preco desc ";
     $resultado_listar = mysqli_query($conn, $listar);*/
+
+if (isset($_GET['ordem'])) {
+
+    $ordem = $_GET['ordem'];
+
+	if ($ordem = $_GET['ordem'] == 'alfabetica') {
+
+	$listar = "SELECT * FROM loja_produtos WHERE categoria = '$categoria_pesquisa' AND status = 'ativo' ORDER BY nome ASC";
+    $resultado_listar = mysqli_query($conn, $listar);	
+
+	}
+
+	if ($ordem = $_GET['ordem'] == 'menor-preco') {
+
+	$listar = "SELECT * FROM loja_produtos WHERE categoria = '$categoria_pesquisa' AND status = 'ativo' ORDER BY preco ASC";
+    $resultado_listar = mysqli_query($conn, $listar);
+
+	}
+
+	if ($ordem = $_GET['ordem'] == 'maior-preco') {
+
+	$listar = "SELECT * FROM loja_produtos WHERE categoria = '$categoria_pesquisa' AND status = 'ativo' ORDER BY preco DESC";
+    $resultado_listar = mysqli_query($conn, $listar);
+
+	}
+}
+
 
  ?>
  
@@ -62,7 +91,25 @@
 <div class="container-produtos">
 	<div class="container-site">
 
-	<div class="titulo-container-produtos" style="width: 100%; float: left;"><p style="font-size: 28px !important; color: #666666; margin-left: 10px; margin-right: 10px;">Pesquisa: <?php echo ucfirst($item_pesquisa)?></p></div>
+	<div class="titulo-container-produtos" style="width: 100%; float: left;">
+		<p style="float: left; font-size: 28px !important; color: #666666; margin-left: 10px; margin-right: 10px;">Pesquisa: <?php echo ucfirst($item_pesquisa)?></p>
+
+	   <div class="filtroOrdem">
+
+	   <div class='category_listfiltro'>
+          <button class='dropbtnfiltro'>Ordenar por<span class='icon fas fa-angle-down' id='icon-drop'></span></button>
+          <div class='dropdown-contentfiltro'>
+
+            <a href='/produtos/busca?produto=<?php echo $busca; ?>&ordem=alfabetica'>Ordem alfabética</a>
+            <a href='/produtos/busca?produto=<?php echo $busca; ?>&ordem=menor-preco'>Menor preço</a>
+            <a href='/produtos/busca?produto=<?php echo $busca; ?>&ordem=maior-preco'>Maior preço</a>                   
+
+          </div>
+        </div>
+
+	   </div>
+
+	</div>
 		
 		<div class="container-produtos-itens" style="width: 100%; float: left;">
 

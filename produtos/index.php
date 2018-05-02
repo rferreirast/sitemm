@@ -7,6 +7,33 @@
   $listar = "SELECT * FROM loja_produtos WHERE status = 'ativo' ORDER BY nome ASC";
   $resultado_listar = mysqli_query($conn, $listar);
 
+if (isset($_GET['ordem'])) {
+
+    $ordem = $_GET['ordem'];
+
+  if ($ordem = $_GET['ordem'] == 'alfabetica') {
+
+  $listar = "SELECT * FROM loja_produtos WHERE status = 'ativo' ORDER BY nome ASC";
+  $resultado_listar = mysqli_query($conn, $listar);
+
+  }
+
+  if ($ordem = $_GET['ordem'] == 'menor-preco') {
+
+  $listar = "SELECT * FROM loja_produtos WHERE status = 'ativo' ORDER BY preco ASC";
+  $resultado_listar = mysqli_query($conn, $listar);
+
+  }
+
+  if ($ordem = $_GET['ordem'] == 'maior-preco') {
+
+  $listar = "SELECT * FROM loja_produtos WHERE status = 'ativo' ORDER BY preco DESC";
+  $resultado_listar = mysqli_query($conn, $listar);
+
+  }
+}
+
+
  ?>
  
 <!DOCTYPE html>
@@ -60,7 +87,25 @@
 <div class="container-produtos">
   <div class="container-site">
 
-  <div class="titulo-container-produtos" style="width: 100%; float: left;"><p style="font-size: 28px !important; color: #666666; margin-left: 10px; margin-right: 10px;">Nossos produtos</p></div>
+  <div class="titulo-container-produtos" style="width: 100%; float: left;">
+    <p style="float: left; font-size: 28px !important; color: #666666; margin-left: 10px; margin-right: 10px;">Nossos produtos</p>
+
+     <div class="filtroOrdem">
+
+     <div class='category_listfiltro'>
+          <button class='dropbtnfiltro'>Ordenar por<span class='icon fas fa-angle-down' id='icon-drop'></span></button>
+          <div class='dropdown-contentfiltro'>
+
+            <a href='/produtos?ordem=alfabetica'>Ordem alfabética</a>
+            <a href='/produtos?ordem=menor-preco'>Menor preço</a>
+            <a href='/produtos?ordem=maior-preco'>Maior preço</a>                   
+
+          </div>
+        </div>
+
+     </div>
+
+  </div>
     
     <div class="container-produtos-itens" style="width: 100%; float: left;">
 
