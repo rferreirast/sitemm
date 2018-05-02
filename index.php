@@ -43,6 +43,10 @@
 <!-- Analytics -->
 <?php include_once('souce=analytics.php'); ?>
 
+<style>
+#verMais{float: left; color: #014d8f; margin-top: 15px; font-size: 15px !important; font-weight: bold; } 
+</style>
+
 <!-- PRODUTOS EM DESTAQUE =====================================================================================================-->
 
 <?php 
@@ -56,7 +60,9 @@ $resultado_listarDestaque = mysqli_query($conn, $listarDestaque);
 <div class="container-produtos" style="margin-top: 20px; margin-bottom: 0; min-height: auto;">
   <div class="container-site">
 
-<div class="titulo-container-produtos" style="width: 100%; float: left;"><p style="float: left; font-size: 28px !important; color: #666666; margin-left: 10px; margin-right: 10px;">Produtos em Destaque</p></div>
+<div class="titulo-container-produtos" style="width: 100%; float: left;"><p style="float: left; font-size: 28px !important; color: #666666; margin-left: 10px; margin-right: 10px;">Produtos em Destaque</p>
+  <a href="/produtos/destaques" id="verMais">Ver mais</a>
+</div>
     
 <div class="container-produtos-itens" style="width: 100%; float: left;">
 
@@ -139,7 +145,9 @@ $resultado_listarPromocao = mysqli_query($conn, $listarPromocao);
 <div class="container-produtos" style="margin-bottom: 20px; min-height: auto;">
   <div class="container-site">
 
-<div class="titulo-container-produtos" style="width: 100%; float: left;"><p style="font-size: 28px !important; color: #666666; margin-left: 10px; margin-right: 10px;">Produtos em Promoção</p></div>
+<div class="titulo-container-produtos" style="width: 100%; float: left;"><p style="float: left;font-size: 28px !important; color: #666666; margin-left: 10px; margin-right: 10px;">Produtos em Promoção</p>
+<a href="/produtos/promocao" id="verMais">Ver mais</a>
+</div>
     
 <div class="container-produtos-itens" style="width: 100%; float: left;">
 

@@ -41,8 +41,8 @@ else {
   post_por
   )
   VALUES (
-  'ativo',
-  'principal'
+  '$status',
+  '$principal',
   '$post_titulo',
   '$post_descricao',
   '$post_conteudo',
@@ -117,6 +117,18 @@ input.campo-form{
  width: 400px;
  margin-left: 10px;
  border: 1px solid #c4c4c4 !important;
+}
+select.campo-form{
+ font-size: 15px;
+ border-radius: 3px;
+ color: #343434;
+ background-color: #fff;
+ box-sizing: border-box;
+ height: 32px;
+ padding: 0px 0.4em;
+ width: 400px;
+ margin-left: 10px;
+ border: 1px solid #c4c4c4 !important; 
 }
 
 /*=========================================================================*/
