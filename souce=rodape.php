@@ -15,7 +15,7 @@
  margin-bottom: 20px;
 }
 .dados-rodape p{width: 100%; float: left; font-size: 16px !important; color: #797979; margin-bottom: 5px;}
-.dados-rodape p:hover{color: #014d8f;}
+.dados-rodape a > p:hover{color: #014d8f;}
 /*foooter*/  
 .copyright{
  float: left;
@@ -92,7 +92,15 @@
 
   </div>
 
+  <div class="dados-rodape">
+     <h2 style="color: #444; font-size: 18px !important; font-weight: bold; margin-bottom: 10px;">ATENDIMENTO</h2>
+     <p><i class="fas fa-phone"></i> (19) 3818-8942</p>  
+     <p><i class="fab fa-whatsapp"></i> (19) 3818-8942</p>
+     <p><i class="fas fa-envelope-open"></i> contato@mestremoveleiro.com.br</p>
+     <p><i class="fas fa-clock"></i> Segunda à sexta 08h às 18h</p>
+  </div>
 
+   
 </div>
 </div>
 

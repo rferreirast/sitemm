@@ -10,7 +10,6 @@ $resultado_post = mysqli_query($conn, $busca_post);
 ?>
 
 <!DOCTYPE html>
-<html>
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">

@@ -1,7 +1,6 @@
 <?php include_once("system/config.php"); ?>
 
 <!DOCTYPE html>
-<html>
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
@@ -15,6 +14,8 @@
 <meta property="og:description" content="<?php echo utf8_encode ($carrega_dadosEmpresa['sobre_empresa'])?>" />
 <meta property="og:url" content="http://www.mestremoveleiro.com.br">
 <meta property="og:site_name" content="<?php echo utf8_encode ($carrega_dadosEmpresa['nome'])?>" />
+<meta property="og:region" content="SP" />
+<meta property="og:phone_number" content=" <?php echo utf8_encode ($carrega_dadosEmpresa['telefone'])?>" />
 <meta name="robots" content="index, follow">
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">

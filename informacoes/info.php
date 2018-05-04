@@ -18,7 +18,6 @@ echo utf8_decode($texto);*/
 ?>
 
 <!DOCTYPE html>
-<html>
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
@@ -31,6 +30,8 @@ echo utf8_decode($texto);*/
 <meta property="og:type" content="article" />
 <meta property="og:title" content="<?php echo utf8_encode ($carregar_post["post_titulo"])?>" />
 <meta property="og:description" content="<?php echo utf8_encode ($carregar_post["post_descricao"])?>" />
+<meta property="og:region" content="SP" />
+<meta property="og:phone_number" content=" <?php echo utf8_encode ($carrega_dadosEmpresa['telefone'])?>" />
 
 <meta property="og:url" content="http://www.mestremoveleiro.com.br/informacoes/info?<?php echo utf8_encode(str_replace (" ", "-",$carregar_post["post_titulo"])); ?>
 &p=<?php echo utf8_encode ($carregar_post["id"])?>" />

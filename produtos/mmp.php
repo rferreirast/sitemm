@@ -28,7 +28,6 @@ include_once("../system/config.php");
  ?>
 
 <!DOCTYPE html>
-<html>
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
@@ -256,6 +255,7 @@ img.mmp-outrasImagens-item:hover{border: 1.15px solid #014d8f; cursor: pointer;}
 <!-- MENU -->
 <?php include('../menu.php'); ?>
 
+
 <div class="container-produtos">
 	<div class="container-siteP">
 
@@ -263,6 +263,15 @@ img.mmp-outrasImagens-item:hover{border: 1.15px solid #014d8f; cursor: pointer;}
 	  
       <div class="mmp-do-produto">
        <div class="mmp-do-produto-margem">
+
+<?php if ($carregar_produto == 0) { 
+echo '<div class="infoCadastro" style="width: 100%; float: left;">
+<p style="color: #595959; font-size: 30px !important; text-align: center; margin-top: 60px; min-height: 100px;"><i class="fas fa-exclamation-triangle"></i> Essa página não existe</p>
+
+<p style="color: #014d8f; font-size: 20px !important; text-align: center; margin-top: 0px; min-height: 100px;"><a href="/">ir para a página principal</a></p>
+
+</div>';
+}else{ ?>
 
 	  <style>
 
@@ -281,7 +290,6 @@ img.mmp-outrasImagens-item:hover{border: 1.15px solid #014d8f; cursor: pointer;}
 		.mmp-outrasImagens-item:select{border: 1px solid #014d8f;}
 		
 	 </style>
-
 
 	  <div class="mmp-img-produto">
 
@@ -464,9 +472,15 @@ if ($buscaPrecoAntigo > 0) {
         </div></div>
 
 		<?php } ?>
+		<?php } ?>
 
 	</div>
 
+</div>
+
+
+</div>
+</div>
 
 </div>
 

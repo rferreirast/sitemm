@@ -1,25 +1,35 @@
-<?php include_once 'dados/page_dados.php'; ?>
+<?php include_once("system/config.php"); ?>
+
 <!DOCTYPE html>
-<html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title><?php echo utf8_encode ($TITULO_PAGINA)?></title> <!-- INFO 1 -->
-  <meta name="description" content="<?php echo utf8_encode ($SOBRE_PAGINA)?>"> <!-- INFO 2 -->
-  <meta name="author" content="Rafael Ferreira">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto:300,400,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script> <!-- ICONES -->
-  <meta name=viewport content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" href='img/logo-topo.png' /> <!-- INFO 3 -->
-  <link rel="stylesheet" href="css/style.css">
-  <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<meta charset="UTF-8">
+<title><?php echo utf8_encode ($carrega_dadosEmpresa['nome'])?> | Contato</title>
+<meta name="description" content="<?php echo utf8_encode ($carrega_dadosEmpresa['sobre_empresa'])?>">
+<meta name="author" content="Rafael Ferreira - Mestre Moveleiro">
+
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="<?php echo utf8_encode ($carrega_dadosEmpresa['nome'])?> | Contato" />
+<meta property="og:description" content="<?php echo utf8_encode ($carrega_dadosEmpresa['sobre_empresa'])?>" />
+<meta property="og:url" content="http://www.mestremoveleiro.com.br/contato">
+<meta property="og:site_name" content="<?php echo utf8_encode ($carrega_dadosEmpresa['nome'])?>" />
+<meta property="og:region" content="SP" />
+<meta property="og:phone_number" content=" <?php echo utf8_encode ($carrega_dadosEmpresa['telefone'])?>" />
+<meta name="robots" content="index, follow">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto:300,400,700" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<meta name=viewport content="width=device-width, initial-scale=1">
+
+<link rel="shortcut icon" href='img/logo-topo.png' />
+<link rel="stylesheet" href="css/style.css">
+
+ <link rel="stylesheet" href="produtos/css/style-produtos.css">
 
 <link rel="stylesheet" href="css/style.css">
 <style>
@@ -83,7 +93,7 @@ input.campo-form{
  width: 100%;
  transition: all 0.23s ease-in-out 0s;
 }
-textarea.menssagem{
+textarea.mensagem{
  font-size: 15px;
  border: 1px solid #ABB0B2;
  -webkit-border-radius: 3px;
@@ -133,11 +143,11 @@ input.email-dados-formulario{
 
 <div class="background" >
 
-<!-- ANALYTICS -->
-<?php include('souce=analytics.php'); ?>
+<!-- LOGO -->
+<?php include('souce=cabecalho.php'); ?>
 
-<!-- MENU -->
-<?php include('souce=menu.php'); ?>
+<!-- Analytics -->
+<?php include_once('souce=analytics.php'); ?>
 
 <div class="content-formulario-contato">
  <div class="container-site">
@@ -151,11 +161,24 @@ input.email-dados-formulario{
     <input type="text" class="campo-form" placeholder="Insira seu Nome..." required="" name="nome">
     <input type="text" class="campo-form" placeholder="Insira seu e-mail..." required="" name="email">
     <input type="text" class="campo-form" placeholder="Insira seu telefone..." required="" name="telefone">
-    <textarea class="campo-form menssagem" rows="6" placeholder="Insira sua menssagem..." name="mensagem" ></textarea>
+    <textarea class="campo-form mensagem" rows="6" placeholder="Insira sua mensagem..." name="mensagem" ></textarea>
     <input type="submit" value="Enviar" class="button-enviar" name="enviar">
 
     </form>
 
+    </div>
+
+    <style>
+    .dados-contato{float: left; width: 100%; margin-left: 20px;}
+    .dados-contato p{color: #555; font-size: 18px !important; margin-bottom: 10px;}
+    </style>
+
+    <div class="dados-contato">
+     <h2 style="color: #444; font-size: 22px !important; font-weight: bold; margin-bottom: 10px;">ATENDIMENTO</h2>
+     <p><i class="fas fa-phone"></i> (19) 3818-8942</p>  
+     <p><i class="fab fa-whatsapp"></i> (19) 3818-8942</p>
+     <p><i class="fas fa-envelope-open"></i> contato@mestremoveleiro.com.br</p>
+     <p><i class="fas fa-clock"></i> Segunda à sexta 08h às 18h</p>
     </div>
 
    </div>
