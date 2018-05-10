@@ -117,7 +117,7 @@ li{
 		
          <div class="menu-itens">
 
-         	<li class="menu-item"><a href="painel_adm.php"><i class="fas fa-home" id="icones-menu"></i>Inicio</a></li>
+         	<li class="menu-item"><a href="/administrador/painel_adm"><i class="fas fa-home" id="icones-menu"></i>Inicio</a></li>
 
           <div class="menu-adm">
 
@@ -165,7 +165,7 @@ li{
           
             <div class="item-menu">
               <input type="checkbox" id="check4">
-              <label for="check4"><div class="texto-menu-adm"><span class="icon fas fa-cubes"></span><p>Informações</p><span class="icon fas fa-angle-right"></span></div></label>
+              <label for="check4"><div class="texto-menu-adm"><span class="icon fas fa-edit"></span><p>Informações</p><span class="icon fas fa-angle-right"></span></div></label>
                <ul>
 
               <li><a class="item-menu" href="/administrador/informacoes/lista_postagens.php">Postagens</a></li>                

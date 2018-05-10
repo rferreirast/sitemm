@@ -92,7 +92,7 @@ include_once("../system/verifica_sessao.php");
 <div class="conteudo-principal"> 
 	<div class="container-conteudo">
 	
-		<div class="titulo-categotia-adm"><h2>Pedidos Clientes</h2></div>
+		<div class="titulo-categotia-adm"><h2><i class="fas fa-list-ul"></i> Pedidos Clientes</h2></div>
 
     <div class="container-m2">
    

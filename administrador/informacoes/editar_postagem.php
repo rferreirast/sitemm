@@ -193,7 +193,7 @@ input.campo-form:focus{border: 1px solid #014d8f !important;}
   <div class="container-conteudo">
   
 
-    <div class="titulo-categotia-adm"><h2>Editar postagem</h2></div>
+    <div class="titulo-categotia-adm"><h2><i class="fas fa-edit"></i> Editar postagem</h2></div>
 
 
     <div class="conteinerPostagem">

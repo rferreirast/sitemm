@@ -1,5 +1,6 @@
 <?php
 error_reporting(E_ALL ^ E_DEPRECATED);
+set_time_limit(0);
 //Banco de dados
  define('HOSTNAME', 'bdmestre.mysql.dbaas.com.br');
  define('USERNAME', 'bdmestre');

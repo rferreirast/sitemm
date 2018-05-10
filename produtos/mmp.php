@@ -346,7 +346,6 @@ if ($buscaPrecoAntigo > 0) {
 //echo "<div id='id_resultado'><a href='visualizar.php?id=". $row_usuario['id_relacionado'] ."'>". $idrelacionado['numero'] ."</a></div>";
 
    
-
 }
 
 ?>

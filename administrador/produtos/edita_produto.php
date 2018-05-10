@@ -356,7 +356,7 @@ input.campo-form:focus{border: 1px solid #014d8f !important;}
   <div class="container-conteudo">
   
 
-    <div class="titulo-categotia-adm"><h2>Editar produto</h2></div>
+    <div class="titulo-categotia-adm"><h2><i class="fas fa-cube"></i> Editar produto</h2></div>
 
     <div class="container-editar-produto">
 

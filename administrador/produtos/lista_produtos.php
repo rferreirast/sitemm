@@ -10,6 +10,57 @@ include_once("../system/verifica_sessao.php");
  $pesquisa_categoria = "SELECT * FROM categorias";
  $resultado_categorias = mysqli_query($conn, $pesquisa_categoria);
 
+if (isset($_GET['ordem'])) {
+
+    $ordem = $_GET['ordem'];
+
+  if ($ordem = $_GET['ordem'] == 'status') {
+
+  $listar = "SELECT * FROM loja_produtos ORDER BY status DESC";
+  $resultado_listar = mysqli_query($conn, $listar);
+
+  }
+
+  if ($ordem = $_GET['ordem'] == 'alfabetica') {
+
+  $listar = "SELECT * FROM loja_produtos ORDER BY nome ASC";
+  $resultado_listar = mysqli_query($conn, $listar);
+
+  }
+
+  if ($ordem = $_GET['ordem'] == 'menor-preco') {
+
+  $listar = "SELECT * FROM loja_produtos ORDER BY preco ASC";
+  $resultado_listar = mysqli_query($conn, $listar);
+
+  }
+
+  if ($ordem = $_GET['ordem'] == 'maior-preco') {
+
+  $listar = "SELECT * FROM loja_produtos ORDER BY preco DESC";
+  $resultado_listar = mysqli_query($conn, $listar);
+
+  }
+}
+
+if (isset($_POST['fazer_busca'])) {
+
+$produtoPesquisa = $_POST['pesquisar_produtos']; 
+
+echo "<script> location.href='http://mm.siteoficial.ws/administrador/produtos/lista_produtos?pesquisa=$produtoPesquisa'; </script>";
+
+}
+
+if (isset($_GET['pesquisa'])) {
+
+  $pesquisa = $_GET['pesquisa'];
+
+  $listar = "SELECT * FROM loja_produtos WHERE nome LIKE '%$pesquisa%' ORDER BY preco ASC";
+  $resultado_listar = mysqli_query($conn, $listar);
+
+  }
+
+
  ?>
 
 <!DOCTYPE html>
@@ -17,7 +68,7 @@ include_once("../system/verifica_sessao.php");
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Mestre moveleiro | Lista de Produtos</title> <!-- INFO 1 -->
+  <title>Mestre Moveleiro | Lista de Produtos</title> <!-- INFO 1 -->
   <meta name="author" content="Rafael Ferreira">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto:300,400,700" rel="stylesheet">
@@ -39,7 +90,6 @@ include_once("../system/verifica_sessao.php");
  float: left;
  width: 100%;
  display: flex;
- padding: 0 20px;
  padding-bottom: 30px;
  margin-bottom: 30px;
  border-bottom: 1px solid #dddddd;
@@ -47,8 +97,7 @@ include_once("../system/verifica_sessao.php");
 /*========================*/
 .container-pesquisa{
  float: left;
- display: flex;
- width: 80%;  
+ width: 100%;  
 }
 .campo-form{
  font-size: 15px;
@@ -64,13 +113,13 @@ include_once("../system/verifica_sessao.php");
 }
 /*========================*/
 .container-addProduto{
- float: left;
- width: 20%; 
+ float: right;
  text-align: right;
+ margin-top: 15px;
 }
 .button-add-produto a{
  padding: 8px 20px;
- background: #555;
+ background: #014d8f;
  color: #fff;
  border-radius: 5px;
  text-decoration: none;  
@@ -85,33 +134,33 @@ include_once("../system/verifica_sessao.php");
 .produto-item{
  float: left;
  width: 100%;
- padding: 0 20px;
- display: flex;
  margin-bottom: 20px;
- border-bottom: 1px solid #dddddd;
+ border: 1px solid #014d8f;
+ border-radius: 5px;
 }
 .status-produto{
  float: left;
- width: 60px;
+ padding: 5px;
  height: 100px;
 }
 .status-produto p{
- font-size: 18px;
+ font-size: 14px;
  color: #151515;
  text-align: center;
  margin-top: 25px;
 }
 .codigo-produto{
  float: left;
- width: 55px;
- height: 100px;
+ padding: 5px;
+ margin-left: 10px;
 }
 .codigo-produto p{
- font-size: 18px;
- color: #151515;
+ font-size: 16px;
+ color: #fff;
  text-align: center;
- margin-top: 25px;
 }
+
+/*******************************/
 .imagem-item-produto{
  float: left;
  width: 100px;
@@ -121,19 +170,44 @@ include_once("../system/verifica_sessao.php");
 .imagem-item-produto img{
  width: 100%;
 }
+.categoriaProduto, .custoProduto, .precoProduto, .lucroProduto, .medidasProduto, .pesoProduto{
+ float: left;
+ width: auto;
+ padding: 5px;
+ margin-left: 10px;
+ margin-top: 25px;
+ display: flex;
+}
+
+span#produto{
+ color: #919191;
+} 
+.categoriaProduto, .custoProduto, .precoProduto, .lucroProduto, .medidasProduto, .pesoProduto p{
+ font-size: 14px; 
+ color: #151515;
+}
+
 .descricao-produto{
  float: left;
- width: 900px;
- height: 100px;
  padding: 5px;
 }
 .descricao-produto p{
- font-size: 18px;
- color: #151515;
- margin-top: 25px;
+ font-size: 16px;
+ color: #fff;
 }
+.ver-naLoja{
+ float: right;
+ padding: 5px;
+ margin-right: 10px;
+}
+.ver-naLoja a{
+ font-size: 16px;
+ color: #fff; 
+}
+
+
 .button-editar-produtos, .button-excluir-produtos {
- float: left;
+ float: right;
  height: 100px; 
 }
 /* BOTÃO EDITAR **/
@@ -182,47 +256,53 @@ include_once("../system/verifica_sessao.php");
  margin-left: 10px;
 }
 
-/*MENU DROP*/
-.category_list {
+
+/*MENU DROP ORDEM PRODUTOS*/
+.category_listfiltro {
  float: left;
  display: inline-block;
 }
-.dropbtn {
+.dropbtnfiltro {
  color: #fff;
- font-size: 15px;
- padding: 5px 15px;
+ font-size: 15px !important;
+ background: #014d8f;
+ padding: 4px 10px;
+ margin-top: 15px;
  font-weight: bold;
  cursor: pointer;
- background: #014d8f;
  border-radius: 5px;
  margin-bottom: 2px;
 }
 
-.dropdown-content {
+.dropdown-contentfiltro {
  display: none;
  position: absolute;
- background-color: #333;
+ background-color: transparent;
+ border-bottom: 2px;
+ background-color: #fff;
  min-width: 185px;
  border-radius: 5px;
- padding: 20px 0;
-
+ padding: 0px 0;
 }
 
-.dropdown-content a {
+.dropdown-contentfiltro a {
  color: black;
- color: #fff;
+ color: #333;
  padding: 12px 16px;
+ border-left: 2px solid #014d8f;
+ border-bottom: 1px solid #c4c4c4;
  text-decoration: none;
  display: block;
 }
+#icon-drop{ color: #fff; margin-left: 10px; }
 
-.dropdown-content a:hover {background-color: #3887f5;}
+.dropdown-contentfiltro a:hover {color: #3887f5; border-left: 2px solid #3887f5;}
 
-.category_list:hover .dropdown-content {
+.category_listfiltro:hover .dropdown-contentfiltro {
     display: block;
 }
 
-.dropdown:hover .dropbtn {
+.dropdown:hover .dropbtnfiltro {
 }
 </style>
 
@@ -240,27 +320,26 @@ include_once("../system/verifica_sessao.php");
 	<div class="container-conteudo">
 	
 
-		<div class="titulo-categotia-adm"><h2>Lista de produtos</h2></div>
+		<div class="titulo-categotia-adm"><h2><i class="fas fa-cube"></i> Lista de produtos</h2></div>
 
     <div class="container-m2">
 
     <div class="container-pesquisa">
-      <!---<p>Pesquisa:</p> <input type="text" class="campo-form" placeholder="Descrição 1" required="" name="descricao1">-->
 
-          <!--<p>Categoria:</p>
-          <label for="categoria"></label>
-          <select name="categoria" class="category_list campo-form">
-            <option class="categoy_item" value="0">Todos</option>            
-            <option class="categoy_item" value="1">Cadeiras</option>
-            <option class="categoy_item" value="2">Mesas</option> 
-            <option class="categoy_item" value="3">Banquetas</option> 
-            <option class="categoy_item" value="4">Poltronas</option>                
-          </select>--> 
+      <div class="barraPesquisa" style="float: left; width: 100%; margin-bottom: 10px;">
 
+        <form method="post">
 
-        <div class="category_list">
-          <button class="dropbtn">Filtro por Categorias <span class="icon fas fa-angle-down" id="icon"></span></button>
-          <div class="dropdown-content">
+         <input type="text" class="campo-form" placeholder="Buscar Produtos..." name="pesquisar_produtos" style="width: 90%; height: 35px; margin-left: 0;">
+         <input type="submit" value="⌕" class="campo-form button-buscar" name="fazer_busca" style="width: 30px !important; height: 35px; margin-top: 10px; margin: -25px; background: #333; color: #fff; ">
+
+        </form>
+        
+      </div>
+
+        <div class="category_listfiltro">
+          <button class="dropbtnfiltro"><i class="fas fa-cube"></i> Categorias <span class="icon fas fa-angle-down" id='icon-drop'></span></button>
+          <div class="dropdown-contentfiltro">
 
             <a href="#" class="category_item" category="0">Todos</a>
 
@@ -273,12 +352,24 @@ include_once("../system/verifica_sessao.php");
           </div>
         </div>
 
+        <div class='category_listfiltro' style="margin-left: 20px;">
+          <button class='dropbtnfiltro'><i class="fas fa-filter"></i> Ordenar por<span class='icon fas fa-angle-down' id='icon-drop'></span></button>
+          <div class='dropdown-contentfiltro'>
 
-      </div>      
+            <a href='http://mm.siteoficial.ws/administrador/produtos/lista_produtos?ordem=status'>Status</a>
+            <a href='http://mm.siteoficial.ws/administrador/produtos/lista_produtos?ordem=alfabetica'>Ordem alfabética</a>
+            <a href='http://mm.siteoficial.ws/administrador/produtos/lista_produtos?ordem=menor-preco'>Menor preço</a>
+            <a href='http://mm.siteoficial.ws/administrador/produtos/lista_produtos?ordem=maior-preco'>Maior preço</a>                   
+          </div>
+        </div>
 
-    <div class="container-addProduto">
-      <div class="button-add-produto"><a href="cadastrar_produto.php">Cadastrar Produto</a></div>
-    </div>  
+
+         <div class="container-addProduto">
+          <div class="button-add-produto"><a href="cadastrar_produto.php"><i class="fas fa-plus"></i> Cadastrar</a></div>
+        </div>
+
+
+      </div>    
 
     </div>
 
@@ -288,13 +379,81 @@ include_once("../system/verifica_sessao.php");
 
      <?php while($listar_produtos = mysqli_fetch_assoc($resultado_listar)){ ?>
 
-       <div class="produto-item product-item" category="<?php echo utf8_encode ($listar_produtos["categoria"]); ?>">
-         <div class="status-produto"><p><?php echo utf8_encode ($listar_produtos["status"]); ?></p></div>
-         <div class="codigo-produto"><p><?php echo utf8_encode ($listar_produtos["id"]); ?></p></div>
-         <div class="imagem-item-produto"><img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($listar_produtos["foto"]); ?>" alt=""></div>
-         <div class="descricao-produto"><p><?php echo utf8_encode ($listar_produtos["nome"]); ?></p></div>
 
-         <div class="button-editar-produtos"><a href="edita_produto.php?codigo=<?php echo utf8_encode ($listar_produtos["id"]); ?>">editar</a></div>
+       <div class="produto-item product-item" category="<?php echo utf8_encode ($listar_produtos["categoria"]); ?>">
+
+        <div class="tarja-top-produto" style="width: 100%; float: left; background: #014d8f; border-radius: 3px; ">
+
+          <div class="codigo-produto"><p>#<?php echo utf8_encode ($listar_produtos["id"]); ?></p></div>
+          <div class="descricao-produto"><p><?php echo utf8_encode ($listar_produtos["nome"]); ?></p></div>
+
+          <div class="ver-naLoja"><a href="#" title="Ver na loja"><i class="fas fa-share-square"></i></a></div>
+       
+        </div>
+
+        <div class="informacoesProduto" style="width: 100%; float: left; padding: 10px 20px;">
+
+         <div class="status-produto"><p><?php echo utf8_encode ($listar_produtos["status"]); ?></p></div>
+         
+         <div class="imagem-item-produto"><img src="http://www.mestremoveleiro.com.br/produtos/img-produtos/<?php echo utf8_encode ($listar_produtos["foto"]); ?>" alt=""></div>
+
+         <div class="categoriaProduto"><p><span id="produto">Categoria:</span> <?php echo utf8_encode ($listar_produtos["categoria"]); ?></p></div> 
+
+         <div class="custoProduto"><p><span id="produto">Custo:</span> R$ <?php echo utf8_encode (number_format($listar_produtos["custo"], 2,',','.')); ?></p></div>
+
+         <div class="precoProduto"><p><span id="produto">Preco:</span> R$ <?php echo utf8_encode (number_format($listar_produtos["preco"], 2,',','.')); ?></p></div>
+
+<?php 
+
+error_reporting(0);
+
+//CALCULO DO LUCRO
+ $precoVenda = $listar_produtos["preco"];
+ $custo = $listar_produtos["custo"];
+
+ $imposto = ($precoVenda * 0.1);
+ $txCartao = ($precoVenda * 0.08);
+ $txContribuicao = ($precoVenda * 0.4);
+
+ //echo "$custo // $imposto // $txCartao // $txContribuicao";
+
+ $somaDespesas = $custo + $imposto + $txCartao + $txContribuicao; 
+
+ $valorLucro = $somaDespesas - $precoVenda;
+
+ $lucro = number_format(-($valorLucro / $precoVenda)*100, 3,',','.');
+
+
+//SE O PRODUTO TEM MENOS DE 10% DE LUCRO
+ if ($lucro < 10) {
+
+  echo " <div class='lucroProduto'><p style='color: #fff; background: #c0392b; font-weight: bold;'><span id='produto' style='color: #fff;
+'>Lucro:</span> ".$lucro."% </p></div> ";
+   
+ }
+ //SE O PRODUTO TEM MAIS DE 20% DE LUCRO
+elseif ($lucro > 19.999) {
+
+  echo "
+
+   <div class='lucroProduto'><p style='color: #27ae60; font-weight: bold;'><span id='produto'>Lucro:</span> ".$lucro."% </p></div>
+
+";
+}else{
+
+  echo "<div class='lucroProduto'><p><span id='produto'>Lucro:</span> ".$lucro."% </p></div> ";
+
+ }
+
+?>
+
+         <div class="medidasProduto"><p><span id="produto">Medidas:</span> <?php echo utf8_encode ($listar_produtos["altura"]); ?>x<?php echo utf8_encode ($listar_produtos["comprimento"]); ?>x<?php echo utf8_encode ($listar_produtos["largura"]); ?></p></div> 
+
+         <div class="pesoProduto"><p><span id="produto">Peso:</span> <?php echo utf8_encode ($listar_produtos["peso"]); ?> Kg</p></div>    
+
+         <div class="button-editar-produtos"><a href="edita_produto.php?codigo=<?php echo utf8_encode ($listar_produtos["id"]); ?>"><i class="fas fa-cog"></i></a></div>
+
+         </div>
          
        </div>
 
