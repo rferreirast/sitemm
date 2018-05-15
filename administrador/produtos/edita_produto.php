@@ -44,6 +44,9 @@ $descricao_completa = utf8_decode($_POST["descricao_completa"]);
 $descricao_produto = utf8_decode($_POST["descricao_produto"]);
 $keywords = utf8_decode($_POST["keywords"]);
 
+date_default_timezone_set('America/Sao_Paulo'); //DATA E HORA DO PEDIDO 
+$data_modificacao = date('Y/m/d H:i');
+
 //se vazio cancela operação
  if ($status == "") {
   exit;
@@ -96,7 +99,8 @@ $keywords = utf8_decode($_POST["keywords"]);
             `peso`='$peso',
             `descricao_completa`='$descricao_completa',
             `descricao_produto`='$descricao_produto',
-            `keywords`='$keywords' 
+            `keywords`='$keywords',
+            `data_modificacao`='$data_modificacao' 
             WHERE id = '$id_produto' ";
 
             $data = mysqli_query($conn, $sql);

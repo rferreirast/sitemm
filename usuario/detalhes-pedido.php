@@ -120,7 +120,7 @@ if (isset($_POST['enviar_mensagem'])) {
     text-align: left;
     }
     .imagem_cabecalho_impressao{float: left;}
-    .imagem_cabecalho_impressao img{float: left; width: 300px; margin-top: 28px; margin-left: -40px;}
+    .imagem_cabecalho_impressao img{float: left; width: 150px; margin-top: 28px; margin-left: 10px; margin-right: 20px;}
     .dados_cabecalho_impressao{float: left; margin-top: 10px;}
     .dados_cabecalho_impressao p{color: #151515; font-size: 12px !important;}
 

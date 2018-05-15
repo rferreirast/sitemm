@@ -1,41 +1,58 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 <url>
 <loc>http://www.mestremoveleiro.com.br/</loc>
 </url>
-
 <url>
 <loc>http://www.mestremoveleiro.com.br/produtos/</loc>
 </url>
-
 <url>
 <loc>http://www.mestremoveleiro.com.br/clientes/</loc>
 </url>
-
 <url>
 <loc>http://www.mestremoveleiro.com.br/contato</loc>
 </url>
-
 <url>
-<loc>http://www.mestremoveleiro.com.br/informacoes/info?Cadeiras-de-Ferro&amp;p=5</loc>
+<loc>
+http://www.mestremoveleiro.com.br/informacoes/info?Cadeiras-de-Ferro&p=5
+</loc>
+</url>
+<url>
+<loc>
+http://www.mestremoveleiro.com.br/informacoes/info?Mesa-de-Ferro&p=6
+</loc>
+</url>
+<url>
+<loc>
+http://www.mestremoveleiro.com.br/informacoes/info?Fábrica-de-Cadeiras&p=7
+</loc>
+</url>
+<url>
+<loc>
+http://www.mestremoveleiro.com.br/informacoes/info?Fábrica-de-Mesas&p=8
+</loc>
+</url>
+<url>
+<loc>
+http://www.mestremoveleiro.com.br/informacoes/info?Mesa-para-Buffet&p=9
+</loc>
+</url>
+<url>
+<loc>
+http://www.mestremoveleiro.com.br/informacoes/info?Cadeiras-de-Ferro-para-Festas&p=10
+</loc>
+</url>
+<url>
+<loc>
+http://www.mestremoveleiro.com.br/informacoes/info?Cadeiras-de-Ferro-para-Buffet&p=11
+</loc>
 </url>
 
 <url>
-<loc>http://www.mestremoveleiro.com.br/informacoes/info?Mesa-de-Ferro&amp;p=6</loc>
+<loc>
+http://www.mestremoveleiro.com.br/
+</loc>
 </url>
 
-<url>
-<loc>http://www.mestremoveleiro.com.br/informacoes/info?Fábrica-de-Cadeiras&amp;p=7</loc>
-</url>
 
-<url>
-<loc>http://www.mestremoveleiro.com.br/informacoes/info?Fábrica-de-Mesas&amp;p=8</loc>
-</url>
-
-<url>
-<loc>http://www.mestremoveleiro.com.br/informacoes/info?Mesa-para-Buffet&amp;p=9</loc>
-</url>
 
 </urlset>

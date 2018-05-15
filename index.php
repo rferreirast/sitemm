@@ -1,4 +1,11 @@
-<?php include_once("system/config.php"); ?>
+<?php
+
+
+include_once("system/config.php"); 
+
+if (!isset($_SESSION)){session_start();}
+
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">

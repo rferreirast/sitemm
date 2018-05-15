@@ -41,6 +41,22 @@ if (isset($_GET['ordem'])) {
   $resultado_listar = mysqli_query($conn, $listar);
 
   }
+
+  if ($ordem = $_GET['ordem'] == 'data-cadastro') {
+
+  $listar = "SELECT * FROM loja_produtos ORDER BY data_postagem DESC";
+  $resultado_listar = mysqli_query($conn, $listar);
+
+  }
+
+  if ($ordem = $_GET['ordem'] == 'data-alteracao') {
+
+  $listar = "SELECT * FROM loja_produtos ORDER BY data_modificacao DESC";
+  $resultado_listar = mysqli_query($conn, $listar);
+
+  }
+  
+
 }
 
 if (isset($_POST['fazer_busca'])) {
@@ -58,7 +74,7 @@ if (isset($_GET['pesquisa'])) {
   $listar = "SELECT * FROM loja_produtos WHERE nome LIKE '%$pesquisa%' ORDER BY preco ASC";
   $resultado_listar = mysqli_query($conn, $listar);
 
-  }
+}
 
 
  ?>
@@ -283,20 +299,19 @@ span#produto{
  min-width: 185px;
  border-radius: 5px;
  padding: 0px 0;
+ border: 1px solid #ddd;
 }
 
 .dropdown-contentfiltro a {
  color: black;
  color: #333;
- padding: 12px 16px;
- border-left: 2px solid #014d8f;
- border-bottom: 1px solid #c4c4c4;
+ padding: 6px 8px;
  text-decoration: none;
  display: block;
 }
 #icon-drop{ color: #fff; margin-left: 10px; }
 
-.dropdown-contentfiltro a:hover {color: #3887f5; border-left: 2px solid #3887f5;}
+.dropdown-contentfiltro a:hover {color: #fff; background: #3d566d; }
 
 .category_listfiltro:hover .dropdown-contentfiltro {
     display: block;
@@ -356,10 +371,17 @@ span#produto{
           <button class='dropbtnfiltro'><i class="fas fa-filter"></i> Ordenar por<span class='icon fas fa-angle-down' id='icon-drop'></span></button>
           <div class='dropdown-contentfiltro'>
 
+            <a href='http://mm.siteoficial.ws/administrador/produtos/lista_produtos'>Codigo</a>
             <a href='http://mm.siteoficial.ws/administrador/produtos/lista_produtos?ordem=status'>Status</a>
             <a href='http://mm.siteoficial.ws/administrador/produtos/lista_produtos?ordem=alfabetica'>Ordem alfabética</a>
             <a href='http://mm.siteoficial.ws/administrador/produtos/lista_produtos?ordem=menor-preco'>Menor preço</a>
-            <a href='http://mm.siteoficial.ws/administrador/produtos/lista_produtos?ordem=maior-preco'>Maior preço</a>                   
+            <a href='http://mm.siteoficial.ws/administrador/produtos/lista_produtos?ordem=maior-preco'>Maior preço</a>
+
+            <div class="dividir" style="height: 1px; margin: 12px 0; overflow: hidden; background-color: #c4c4c4;"></div>
+
+            <a href='http://mm.siteoficial.ws/administrador/produtos/lista_produtos?ordem=data-cadastro'>Data de Cadastro</a>
+            <a href='http://mm.siteoficial.ws/administrador/produtos/lista_produtos?ordem=data-alteracao'>Data de Alteração</a> 
+
           </div>
         </div>
 

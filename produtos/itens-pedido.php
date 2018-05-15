@@ -1,5 +1,7 @@
 <?php 
 
+include_once("../system/config.php");
+
 include_once("../usuario/system/connect.php");
 
 if (!isset($_SESSION)){session_start();}
@@ -363,7 +365,7 @@ input.qt_itens_atualizar:hover{color: #fff; background: #27ae60 ; cursor: pointe
 
                 <div class="buttons-actionPedido">
                 <input type="submit" id="finalizaPedido" value="Finalizar pedido" class="" name="finalizar_pedido">
-				<a href="#" id="adicionarItens">Adicionar Itens</a>
+				<a href="http://www.mestremoveleiro.com.br/produtos/" id="adicionarItens">Adicionar Itens</a>
 				</div>
 
 				</form>

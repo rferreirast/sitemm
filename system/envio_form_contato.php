@@ -34,7 +34,7 @@ $mensagem = $_POST["mensagem"];
  
   // Remetente
   $mail->From = $username;
-  $mail->FromName = SITE_NAME;
+  $mail->FromName = 'Site Mestre Moveleiro';
 
   // Destino
   $mail->addAddress($username);
@@ -61,7 +61,11 @@ $mensagem = $_POST["mensagem"];
   $mail->Body = $message;
   $mail->AltBody = strip_tags($message);
  
- echo '<script>alert("Mensagem enviada, logo entraremos em contato");</script>';
+ echo "<script>
+       alert('Mensagem enviada, logo entraremos em contato !');
+       location.href='http://www.mestremoveleiro.com.br/contato?mensagemenviada=sim';
+       </script>";
+
  // Faz a validação se a mensagem foi enviada para o servidor. 
  return $mail->Send();
 

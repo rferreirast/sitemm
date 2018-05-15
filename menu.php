@@ -247,8 +247,7 @@ li{
     <li><a class="item-menu-container" href="/produtos/novidades">Novidades</a></li>
     <li><a class="item-menu-container" href="/produtos/destaques">Destaques</a></li>
     <li><a class="item-menu-container" href="/produtos/promocao">Em promoção</a></li>
-
-
+   
   </div>
 
 <!-- MENU USUARIO -->
@@ -257,6 +256,7 @@ li{
   
    <div class="menu-usuarios">
 
+      <li><a class="item-menu-usuarios" href="/contato" id="border-left">Contato</a></li>
       <li><?php echo $menu1 ?></li>
       <li><?php echo $menu2 ?></li>
       <!--<li><a class="item-menu-usuarios" href="#" id="border-left">Contato</a></li>-->

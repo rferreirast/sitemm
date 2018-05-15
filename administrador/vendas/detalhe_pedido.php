@@ -467,10 +467,13 @@ $id_pedido = intval($_GET['pedido']);  //BUSCA O ID DO PEDIDO NA URL
 
 //DATA E HORA DO ENVIO DA MENSAGEM
 date_default_timezone_set('America/Sao_Paulo');
- $data_atual = date('Y/m/d H:i');           
+$data_atual = date('Y/m/d H:i');           
 
 if (isset($_POST['enviar_mensagem'])) {
-  $mensagem = utf8_decode($_POST["mensagem"]);
+
+$mensagem = utf8_decode($_POST["mensagem"]);
+$mensagemSend = $_POST["mensagem"];
+$email = $carrega_dados["email"];
 
   //se vazio cancela operação
   if ($mensagem == "") {
@@ -481,7 +484,12 @@ if (isset($_POST['enviar_mensagem'])) {
 
       if ($conn->query($salva_mensagem) === TRUE) {
 
+      //ENVIA EMAIL
+      include_once('notificacoes/notificacao_mensagem.php');
+
       echo "<script>location.href='detalhe_pedido.php?pedido=$id_pedido';</script>";
+
+      focus
 
     }else{
 

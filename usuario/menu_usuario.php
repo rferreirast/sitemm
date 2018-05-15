@@ -71,7 +71,7 @@ include_once("system/verifica_sessao.php");
 	
 	<div class="menuUsuario-itens">
 		
-	  <div class="menuUsuario-item"><a href="minha-conta">Minha conta</a></div>
+	  <!--<div class="menuUsuario-item"><a href="minha-conta">Minha conta</a></div>-->
 	  <div class="menuUsuario-item"><a href="meus-pedidos">Meus pedidos</a></div>
 	  <div class="menuUsuario-item"><a href="alterar-senha">Alterar Senha</a></div>
 	  <div class="menuUsuario-item"><a href="meus-dados">Meus dados</a></div>

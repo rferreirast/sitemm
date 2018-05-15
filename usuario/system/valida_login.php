@@ -14,7 +14,7 @@ require("connect.php");
 		if (mysqli_num_rows($verifica) > 0) {			    		
 
             // ATRIBUNDO TEMPO LIMITE DE LOGIN
-			$tempolimite = 10000;
+			$tempolimite = 40000;
 			$_SESSION['registro'] = time();
 			$_SESSION['limite'] = $tempolimite; 
 

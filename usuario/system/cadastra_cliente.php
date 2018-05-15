@@ -9,6 +9,9 @@ $nome = utf8_decode( $_POST["nome"]);
 $email = utf8_decode( $_POST["email"]);
 $senha = utf8_decode( $_POST["senha"]);
 
+date_default_timezone_set('America/Sao_Paulo'); //DATA E HORA DO PEDIDO 
+$data_cadastro = date('Y/m/d H:i');
+
 //se vazio cancela operação
  if ($nome == "") {
   exit;
@@ -25,7 +28,7 @@ $senha = utf8_decode( $_POST["senha"]);
             else {
 
            //SALVA OS DADOS NO MYSQL
-           $sql = "INSERT INTO loja_clientes (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
+           $sql = "INSERT INTO loja_clientes (nome, email, senha, data_cadastro) VALUES ('$nome', '$email', '$senha', '$data_cadastro')";
               if ($conn->query($sql) === TRUE) {
 
                 if (!isset($_SESSION)){session_start();}

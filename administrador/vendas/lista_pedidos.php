@@ -7,6 +7,75 @@ include_once("../system/verifica_sessao.php");
  $pesquisa_pedido = "SELECT * FROM loja_pedidos";
  $resultado_pedido = mysqli_query($conn, $pesquisa_pedido);
 
+
+
+if (isset($_GET['ordem'])) {
+
+    $ordem = $_GET['ordem'];
+
+  if ($ordem = $_GET['ordem'] == 'pedido') {
+
+  $pesquisa_pedido = "SELECT * FROM loja_pedidos ORDER BY id DESC";
+  $resultado_pedido = mysqli_query($conn, $pesquisa_pedido);
+
+  }
+
+  if ($ordem = $_GET['ordem'] == 'data') {
+
+  $pesquisa_pedido = "SELECT * FROM loja_pedidos ORDER BY data_pedido DESC";
+  $resultado_pedido = mysqli_query($conn, $pesquisa_pedido);
+
+  }
+
+  if ($ordem = $_GET['ordem'] == 'nome') {
+
+  $pesquisa_pedido = "SELECT * FROM loja_pedidos ORDER BY preco DESC";
+  $resultado_pedido = mysqli_query($conn, $pesquisa_pedido);
+
+  }
+
+  if ($ordem = $_GET['ordem'] == 'status') {
+
+  $pesquisa_pedido = "SELECT * FROM loja_pedidos ORDER BY status ASC";
+  $resultado_pedido = mysqli_query($conn, $pesquisa_pedido);
+
+  }
+
+  if ($ordem = $_GET['ordem'] == 'menor-valor') {
+
+  $pesquisa_pedido = "SELECT * FROM loja_pedidos ORDER BY valor_produtos ASC";
+  $resultado_pedido = mysqli_query($conn, $pesquisa_pedido);
+
+  }
+
+  if ($ordem = $_GET['ordem'] == 'maior-valor') {
+
+  $pesquisa_pedido = "SELECT * FROM loja_pedidos ORDER BY valor_produtos DESC";
+  $resultado_pedido = mysqli_query($conn, $pesquisa_pedido);
+
+  }
+
+}
+
+
+if (isset($_POST['fazer_busca'])) {
+
+$clientePesquisa = $_POST['pesquisar_cliente']; 
+
+echo "<script> location.href='http://mm.siteoficial.ws/administrador/vendas/lista_pedidos?pesquisa=$clientePesquisa'; </script>";
+
+}
+
+if (isset($_GET['pesquisa'])) {
+
+  $pesquisa = $_GET['pesquisa'];
+
+  $pesquisa_pedido = "SELECT * FROM loja_pedidos WHERE nome LIKE '%$pesquisa%' ORDER BY preco ASC";
+  $resultado_pedido = mysqli_query($conn, $pesquisa_pedido);
+
+}
+
+
  ?>
 
 <!DOCTYPE html>
@@ -35,8 +104,6 @@ include_once("../system/verifica_sessao.php");
 .container-m2{
  float: left;
  width: 100%;
- display: flex;
- padding: 0 20px;
  padding-bottom: 30px;
  margin-bottom: 30px;
  border-bottom: 1px solid #dddddd;
@@ -44,8 +111,7 @@ include_once("../system/verifica_sessao.php");
 /*========================*/
 .container-pesquisa{
  float: left;
- display: flex;
- width: 80%;  
+ width: 100%;  
 }
 .campo-form{
  font-size: 15px;
@@ -62,7 +128,6 @@ include_once("../system/verifica_sessao.php");
 /*========================*/
 .container-addPedidos{
  float: left;
- width: 20%; 
  text-align: right;
 }
 .button-add-produto a{
@@ -77,6 +142,55 @@ include_once("../system/verifica_sessao.php");
  float: left;
  width: 100%;  
 }
+
+/*MENU DROP ORDEM PRODUTOS*/
+.category_listfiltro {
+ float: left;
+ display: inline-block;
+}
+.dropbtnfiltro {
+ color: #fff;
+ font-size: 15px !important;
+ background: #014d8f;
+ padding: 4px 10px;
+ margin-top: 15px;
+ font-weight: bold;
+ cursor: pointer;
+ border-radius: 5px;
+ margin-bottom: 2px;
+}
+
+.dropdown-contentfiltro {
+ display: none;
+ position: absolute;
+ background-color: transparent;
+ border-bottom: 2px;
+ background-color: #fff;
+ min-width: 185px;
+ border-radius: 5px;
+ padding: 0px 0;
+ border: 1px solid #ddd;
+ z-index: 99;
+}
+
+.dropdown-contentfiltro a {
+ color: black;
+ color: #333;
+ padding: 6px 8px;
+ text-decoration: none;
+ display: block;
+}
+#icon-drop{ color: #fff; margin-left: 10px; }
+
+.dropdown-contentfiltro a:hover {color: #fff; background: #3d566d; }
+
+.category_listfiltro:hover .dropdown-contentfiltro {
+    display: block;
+}
+
+.dropdown:hover .dropbtnfiltro {
+}
+
 
 </style>
 
@@ -95,10 +209,41 @@ include_once("../system/verifica_sessao.php");
 		<div class="titulo-categotia-adm"><h2><i class="fas fa-list-ul"></i> Pedidos Clientes</h2></div>
 
     <div class="container-m2">
+
+
+      <div class="barraPesquisa" style="float: left; width: 100%; margin-bottom: 10px;">
+
+        <form method="post">
+
+         <input type="text" class="campo-form" placeholder="Buscar Cliente..." name="pesquisar_cliente" style="width: 90%; height: 35px; margin-left: 0;">
+         <input type="submit" value="⌕" class="campo-form button-buscar" name="fazer_busca" style="width: 30px !important; height: 35px; margin-top: 10px; margin: -25px; background: #333; color: #fff; ">
+
+        </form>
+        
+      </div>
+
+
+      <div class='category_listfiltro' style="margin-left: 0px;">
+          <button class='dropbtnfiltro'><i class="fas fa-filter"></i> Ordenar por<span class='icon fas fa-angle-down' id='icon-drop'></span></button>
+          <div class='dropdown-contentfiltro'>
+
+            <a href='http://mm.siteoficial.ws/administrador/vendas/lista_pedidos?ordem=pedido'>Pedido</a>
+            <a href='http://mm.siteoficial.ws/administrador/vendas/lista_pedidos?ordem=data'>Data</a>
+            <!--<a href='http://mm.siteoficial.ws/administrador/vendas/lista_pedidos?ordem=nome'>Nome</a>-->
+            <a href='http://mm.siteoficial.ws/administrador/vendas/lista_pedidos?ordem=status'>Status</a>
+
+            <div class="dividir" style="height: 1px; margin: 12px 0; overflow: hidden; background-color: #c4c4c4;"></div>
+
+            <a href='http://mm.siteoficial.ws/administrador/vendas/lista_pedidos?ordem=menor-valor'>Menor Valor</a>
+            <a href='http://mm.siteoficial.ws/administrador/vendas/lista_pedidos?ordem=maior-valor'>Maior Valor</a>
+
+          </div>
+        </div>
+
    
-    <div class="container-addPedidos">
-     <!-- <div class="button-add-produto"><a href="cadastrar_produto.php">+ Pedido</a></div> -->
-    </div>  
+        <div class="container-addPedidos">
+         <!-- <div class="button-add-produto"><a href="cadastrar_produto.php">+ Pedido</a></div> -->
+        </div>  
 
     </div>
 
@@ -118,7 +263,7 @@ include_once("../system/verifica_sessao.php");
  border-radius: 5px;
  text-decoration: none;
 }
-.button-detalhesPedido:hover{ color: #fefefe; background: #ffb900;}
+.button-detalhesPedido:hover{ color: #fefefe; background: #ffb900; text-decoration: none;}
  
 
 

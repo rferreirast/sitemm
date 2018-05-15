@@ -1,10 +1,20 @@
 <?php 
 
 if (isset($_POST['fazer_busca'])) {
+
 $pesquisar_produtos = $_POST["pesquisar_produtos"];
- 
+
+date_default_timezone_set('America/Sao_Paulo'); //DATA E HORA DO PEDIDO 
+$data_pesquisa = date('Y/m/d H:i');
+
+//SALVA A PESQUISA NO BANCO DE DADOS
+$salvaPalavra = "INSERT INTO loja_pesquisa_clientes (pesquisa, data_pesquisa) VALUES ( '$pesquisar_produtos', '$data_pesquisa')";
+
+if ($conn->query($salvaPalavra))
+
  //header("Location: /produtos/busca.php?produto=$pesquisar_produtos");
 echo" <script>document.location.href='/produtos/busca?produto=$pesquisar_produtos'</script>";
+
 }
 
 ?>
@@ -203,7 +213,8 @@ input.button-buscar{
 
        <li><a class="item-mobile" href="/">inicio</a></li>
        <li><a class="item-mobile" href="/produtos">produtos</a></li>
-       <li><a class="item-mobile" href="/usuario/minha-conta">minha conta</a></li>       
+       <li><a class="item-mobile" href="/usuario/minha-conta">minha conta</a></li> 
+       <li><a class="item-mobile" href="/contato">contato</a></li>     
         
       </ul>
     </div>         

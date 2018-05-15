@@ -28,6 +28,9 @@ $descricao_completa = utf8_decode($_POST["descricao_completa"]);
 $descricao_produto = utf8_decode($_POST["descricao_produto"]);
 $keywords = utf8_decode($_POST["keywords"]);
 
+date_default_timezone_set('America/Sao_Paulo'); //DATA E HORA DO PEDIDO 
+$data_postagem = date('Y/m/d H:i');
+
 //se vazio cancela operação
  if ($status == "") {
   exit;
@@ -86,7 +89,8 @@ $keywords = utf8_decode($_POST["keywords"]);
            peso,           
            descricao_completa,
            descricao_produto,
-           keywords         
+           keywords,
+           data_postagem       
            ) 
            VALUES (
            '$status',
@@ -105,7 +109,8 @@ $keywords = utf8_decode($_POST["keywords"]);
            '$peso', 
            '$descricao_completa',
            '$descricao_produto',
-           '$keywords'
+           '$keywords',
+           '$data_postagem'
            )";
 
               if ($conn->query($sql) === TRUE) {

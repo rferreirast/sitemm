@@ -350,7 +350,7 @@ if ($buscaPrecoAntigo > 0) {
 
 ?>
 	  	<div class="mmp-infos-produto-preco"><p>R$ <?php echo utf8_encode (number_format($carregar_produto["preco"], 2,',','.')); ?></p></div> 
-	  	<p style="width: 100%; float: left; color: #848484; font-size: 14px !important; margin-bottom: 20px;"><i class="fas fa-paint-brush"></i> Veja a tabela de cores disponíveis para esse produto <a href="/produtos/tabela-cores">clicando aqui</a></p>	
+	  	<!--<p style="width: 100%; float: left; color: #848484; font-size: 14px !important; margin-bottom: 20px;"><i class="fas fa-paint-brush"></i> Veja a tabela de cores disponíveis para esse produto <a href="/produtos/tabela-cores">clicando aqui</a></p>-->	
 
 	  	<div class="mmp-infos-descricao-lateral">
 	  	    <p id="infoMedidas">Medidas</p>
