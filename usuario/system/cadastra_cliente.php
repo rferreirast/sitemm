@@ -5,7 +5,8 @@ include_once("system/connect.php");
 if (!isset($_SESSION)){session_start();}
 
 if (isset($_POST['create_account'])) {
-$nome = utf8_decode( $_POST["nome"]);  
+$nome = utf8_decode( $_POST["nome"]);
+$celular = utf8_decode( $_POST["celular"]);  
 $email = utf8_decode( $_POST["email"]);
 $senha = utf8_decode( $_POST["senha"]);
 
@@ -28,7 +29,8 @@ $data_cadastro = date('Y/m/d H:i');
             else {
 
            //SALVA OS DADOS NO MYSQL
-           $sql = "INSERT INTO loja_clientes (nome, email, senha, data_cadastro) VALUES ('$nome', '$email', '$senha', '$data_cadastro')";
+           $sql = "INSERT INTO loja_clientes (nome, celular, email, senha, data_cadastro) VALUES ('$nome', '$celular', '$email', '$senha', '$data_cadastro')";
+           
               if ($conn->query($sql) === TRUE) {
 
                 if (!isset($_SESSION)){session_start();}

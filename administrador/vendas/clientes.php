@@ -1,1 +1,0 @@
-lista dados clientes com drop do faaq

@@ -28,6 +28,8 @@ include_once("system/cadastra_cliente.php");
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 
+<script src="js/mascara_numeros.js" type="text/javascript"></script>
+
 <meta name="robots" content="noindex, nofollow">
 
 <style>
@@ -139,6 +141,7 @@ input.compo_form{
       <form method="POST">
 
         <div class="form_item"><input type="text" placeholder="Nome" autofocus="" required="" class="compo_form" name="nome" selected></div>
+        <div class="form_item"><input type="text" placeholder="Celular" minlength="12" maxlength="13" OnKeyPress="formatar('## #####-####', this)" autofocus="" required="" class="compo_form" name="celular" selected></div>
         <div class="form_item"><input type="email" placeholder="Email" required="" class="compo_form" name="email"></div>
         <div class="form_item"><input type="password" placeholder="Senha" required="" class="compo_form" name="senha"></div>
         <input type="submit" class="button_criar" value="Criar conta" name="create_account">

@@ -489,8 +489,6 @@ $email = $carrega_dados["email"];
 
       echo "<script>location.href='detalhe_pedido.php?pedido=$id_pedido';</script>";
 
-      focus
-
     }else{
 
       echo "<script>

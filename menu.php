@@ -116,7 +116,7 @@ if (isset($_SESSION['sessao_usuario'])) {
 }
 .itens-menu-container{
  float: left;
- width: 70%;
+ width: 60%;
 }
 li{
  float: left;
@@ -194,7 +194,7 @@ li{
 .menu-usuario{ 
  display: block;
  float: left;
- width: 30%;
+ width: 40%;
 }
 .menu-usuarios{
  float: right;

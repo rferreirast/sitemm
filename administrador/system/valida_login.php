@@ -12,7 +12,7 @@ require("config.php");
 		if (mysqli_num_rows($verifica) > 0) {			    		
 
             // ATRIBUNDO TEMPO LIMITE DE LOGIN
-			$tempolimite = 99000;
+			$tempolimite = 990000;
 			$_SESSION['registro'] = time();
 			$_SESSION['limite'] = $tempolimite; 
 
