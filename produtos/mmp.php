@@ -360,7 +360,7 @@ if ($buscaPrecoAntigo > 0) {
 			<p><b><i class="fas fa-cube"></i> Peso:</b> 12 kg</p>
 	  	</div>
 
-	  	<div class="mmp-button-comprar"><a href="itens-pedido?addItem=<?php echo utf8_encode ($carregar_produto["id"]); ?>">Adicionar ao pedido <i class="fas fa-shopping-cart" id="icon-sacola"></i></a></div>
+	  	<div class="mmp-button-comprar"><a href="itens-pedido?addItem=<?php echo utf8_encode ($carregar_produto["id"]); ?>">Adicionar ao orçamento <i class="fas fa-shopping-cart" id="icon-sacola"></i></a></div>
 
         </div> 
 	  </div>

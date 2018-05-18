@@ -121,7 +121,7 @@
 
 		<div class="usuario-container">	
 
-		<div class="texto-usuarios"><p>Você precisa estar logado para fazer um pedido !!</p></div>
+		<div class="texto-usuarios"><p>Você precisa estar logado para fazer um orçamento !!</p></div>
 
 			<div class="usuario-iten" id="registro"><a href="/usuario/registro">Sou novo</a></div>
 			<div class="usuario-iten" id="login"><a href="/usuario/login">Já tenho conta</a></div>

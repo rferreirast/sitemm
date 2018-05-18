@@ -48,7 +48,7 @@ $data_cadastro = date('Y/m/d H:i');
                   //CAPTURANDO EMAIL LOGIN
                     //setcookie("login", $email);   
 
-                  header("location: meus-dados");        
+                  header("location: http://www.mestremoveleiro.com.br/produtos/itens-pedido");        
 
 
                   }

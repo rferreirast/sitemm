@@ -144,7 +144,10 @@ input.email-dados-formulario{
 <div class="background" >
 
 <!-- LOGO -->
-<?php include('souce=cabecalho.php'); ?>
+<?php include('tarja-topo.php'); ?>
+
+<!-- MENU -->
+<?php include('menu.php'); ?>
 
 <!-- Analytics -->
 <?php include_once('souce=analytics.php'); ?>
